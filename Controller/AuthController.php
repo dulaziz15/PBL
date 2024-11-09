@@ -1,7 +1,9 @@
 <?php
-require_once "../Model/user.php";
+namespace Dulaz\Controller;
+use Dulaz\Interface\AuthControllerInterface;
+use Dulaz\Model\User;
 
-class AuthController {
+class AuthController implements AuthControllerInterface{
     private $user;
     public function __construct(){
         $this->user = new User();
