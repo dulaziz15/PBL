@@ -1,8 +1,10 @@
 <?php
+namespace Dulaz\Config;
+use PDO;
 
-class Koneksi {
+class koneksi {
 
-    public function Koneksi() {
+    public function KoneksiDB() {
         $conn = new PDO("sqlsrv:server=LAPTOP-60DUFOCJ\SQLEXPRESS;database=BebasTanggunganTADB");
         return $conn;
     }

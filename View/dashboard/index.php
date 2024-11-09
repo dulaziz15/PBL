@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include "../component/header.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,5 +12,6 @@
 <body>
     <h1>Dashboard</h1>
     <h1><?= $_SESSION['user']['email'] ?></h1>
+    <a href='../../routes/route.php?page=logout'>logout</a>
 </body>
 </html>

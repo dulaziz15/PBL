@@ -2,7 +2,10 @@
     "name": "dulaz/pbl",
     "autoload": {
         "psr-4": {
-            "Dulaz\\Pbl\\": "src/"
+            "Dulaz\\Controller\\": "Controller/",
+            "Dulaz\\Model\\": "Model/",
+            "Dulaz\\Interface\\": "Interface/",
+            "Dulaz\\Config\\": "Config/"
         }
     },
     "authors": [
