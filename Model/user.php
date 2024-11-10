@@ -1,6 +1,6 @@
 <?php
-namespace Dulaz\Model;
-use Dulaz\Config\koneksi;
+namespace Pbl\Model;
+use Pbl\Config\koneksi;
 session_start();
 
 class user {

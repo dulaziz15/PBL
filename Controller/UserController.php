@@ -1,7 +1,7 @@
 <?php
-namespace Dulaz\Controller;
-use Dulaz\Model\User;
-use Dulaz\Interface\UserControllerInterface;
+namespace Pbl\Controller;
+use Pbl\Model\User;
+use Pbl\Interface\UserControllerInterface;
 
 
 class UserController implements UserControllerInterface {

@@ -1,11 +1,11 @@
 {
-    "name": "dulaz/pbl",
+    "name": "pbl/pbl",
     "autoload": {
         "psr-4": {
-            "Dulaz\\Controller\\": "Controller/",
-            "Dulaz\\Model\\": "Model/",
-            "Dulaz\\Interface\\": "Interface/",
-            "Dulaz\\Config\\": "Config/"
+            "Pbl\\Controller\\": "Controller/",
+            "Pbl\\Model\\": "Model/",
+            "Pbl\\Interface\\": "Interface/",
+            "Pbl\\Config\\": "Config/"
         }
     },
     "authors": [
@@ -14,7 +14,5 @@
             "email": "107160974+dulaziz15@users.noreply.github.com"
         }
     ],
-    "require": {
-        "phpoffice/phpword": "^1.3"
-    }
+    "require": {}
 }

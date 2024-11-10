@@ -1,7 +1,7 @@
 <?php
-namespace Dulaz\Controller;
-use Dulaz\Interface\AuthControllerInterface;
-use Dulaz\Model\User;
+namespace Pbl\Controller;
+use Pbl\Interface\AuthControllerInterface;
+use Pbl\Model\User;
 
 class AuthController implements AuthControllerInterface{
     private $user;

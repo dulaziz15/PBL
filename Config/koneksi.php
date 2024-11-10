@@ -1,5 +1,5 @@
 <?php
-namespace Dulaz\Config;
+namespace Pbl\Config;
 use PDO;
 
 class koneksi {

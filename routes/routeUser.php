@@ -1,5 +1,5 @@
 <?php
-    use Dulaz\Controller\UserController;
+    use Pbl\Controller\UserController;
     class RouteUser {
         private $user;
         public function __construct(){

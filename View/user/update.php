@@ -27,7 +27,7 @@
 <script>
     $.ajax({
         type: 'GET',
-        url: '/PBL/routes/route.php?page=user&sub=getOne&id=' + <?= $_GET['id'] ?>, 
+        url: '/Pbl/routes/route.php?page=user&sub=getOne&id=' + <?= $_GET['id'] ?>, 
         success: function(user) {
             $("#username").val(user.username);
             $("#email").val(user.email);

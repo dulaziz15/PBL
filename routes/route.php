@@ -1,7 +1,7 @@
 <?php
 require '../vendor/autoload.php';
 require_once './routeUser.php';
-use Dulaz\Controller\AuthController;
+use Pbl\Controller\AuthController;
 
 $auth = new AuthController();
 $user = new RouteUser();

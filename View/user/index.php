@@ -26,7 +26,7 @@
 <script>
     $.ajax({
         type: 'GET',
-        url: '/PBL/routes/route.php?page=user&sub=getAll', 
+        url: '/Pbl/routes/route.php?page=user&sub=getAll', 
         success: function(data) {
             if (Array.isArray(data)) {
                 let tableContent = '';
