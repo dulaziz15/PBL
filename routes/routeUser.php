@@ -1,6 +1,7 @@
 <?php
+    namespace Pbl\Routes;
     use Pbl\Controller\UserController;
-    class RouteUser {
+    class routeUser {
         private $user;
         public function __construct(){
             $this->user = new UserController();

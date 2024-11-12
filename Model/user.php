@@ -1,7 +1,7 @@
 <?php
 namespace Pbl\Model;
 use Pbl\Config\koneksi;
-session_start();
+// session_start();
 
 class user {
     private $koneksi;

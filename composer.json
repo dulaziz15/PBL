@@ -5,7 +5,8 @@
             "Pbl\\Controller\\": "Controller/",
             "Pbl\\Model\\": "Model/",
             "Pbl\\Interface\\": "Interface/",
-            "Pbl\\Config\\": "Config/"
+            "Pbl\\Config\\": "Config/",
+            "Pbl\\Routes\\": "Routes/"
         }
     },
     "authors": [

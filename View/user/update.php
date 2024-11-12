@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update User</title>
-    <?php
-        include '../component/header.php';
-    ?>
-</head>
-<body>
-    <h1>Update User</h1>
+<?php
+include "../component/header.php";
+include "../component/sidebar.php"
+?>
+<div class="content">
+    <div class="header-main">
+        <h2>Management User</h2>
+    </div>
+    <div class="body-main">
+    <h2>Update User</h2>
     <form action="../../routes/route.php?page=user&sub=update&id=<?= $_GET['id'] ?>" method="POST">
         <input type="number" name="username" placeholder="username" id="username">
         <input type="email" name="email" placeholder="email" id="email">
@@ -22,8 +20,11 @@
         </select>
         <input type="submit" value="Update">
     </form>
-</body>
-</html>
+    </div>
+</div>
+<?php
+include "../component/footer.php";
+?>
 <script>
     $.ajax({
         type: 'GET',
