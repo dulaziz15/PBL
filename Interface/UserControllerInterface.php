@@ -1,5 +1,5 @@
 <?php
-namespace Dulaz\Interface;
+namespace Pbl\Interface;
     interface UserControllerInterface {
         public function addUser();
         public function getAll();

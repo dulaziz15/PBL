@@ -1,6 +1,7 @@
 <?php
-    use Dulaz\Controller\UserController;
-    class RouteUser {
+    namespace Pbl\Routes;
+    use Pbl\Controller\UserController;
+    class routeUser {
         private $user;
         public function __construct(){
             $this->user = new UserController();

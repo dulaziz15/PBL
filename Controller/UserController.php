@@ -1,14 +1,17 @@
 <?php
-namespace Dulaz\Controller;
-use Dulaz\Model\User;
-use Dulaz\Interface\UserControllerInterface;
+namespace Pbl\Controller;
+use Pbl\Model\Mahasiswa;
+use Pbl\Model\User;
+use Pbl\Interface\UserControllerInterface;
 
 
 class UserController implements UserControllerInterface {
     private $user;
+    private $mahasiswa;
 
     public function __construct() {
         $this->user = new User();
+        $this->mahasiswa = new Mahasiswa();
     }
 
     public function addUser(){
@@ -32,7 +35,7 @@ class UserController implements UserControllerInterface {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
-            echo json_encode([]);
+            echo json_encode(false);
         }
     }
 
