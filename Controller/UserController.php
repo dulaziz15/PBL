@@ -39,6 +39,16 @@ class UserController implements UserControllerInterface {
         }
     }
 
+    public function getEmpty() {
+        $data = $this->user->getEmpty();
+        if ($data) {
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo json_encode(false);
+        }
+    }
+
     public function edit($id) {
         header('location:../view/user/update.php?id=' . $id);
     }
