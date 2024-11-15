@@ -7,7 +7,14 @@ include "../component/sidebar.php"
         <h2>Management Mahasiswa</h2>
     </div>
     <div class="body-main">
-    <a href="tambah.php" class="btn btn-tambah">Tambah</a>
+        <a href="tambah.php" class="btn btn-tambah">Tambah</a>
+        <?php
+        if (isset($_SESSION['sukses'])) {
+            echo "<h1>" . $_SESSION['sukses'] . "</h1>";
+        } elseif (isset($_SESSION['error'])) {
+            echo "<h1>" . $_SESSION['error'] . "</h1>";
+        }
+        ?>
         <div class="table-container">
             <table class="table">
                 <thead>
@@ -25,23 +32,23 @@ include "../component/sidebar.php"
                 </tbody>
             </table>
         </div>
-</div>
-<?php
-include "../component/footer.php";
-?>
-<?php
-unset($_SESSION['sukses']);
-unset($_SESSION['error']);
-?>
-<script>
-    $.ajax({
-        type: 'GET',
-        url: '/Pbl/routes/route.php?page=mahasiswa&sub=getAll',
-        success: function(data) {
-            if (Array.isArray(data)) {
-                let tableContent = '';
-                data.forEach(mahasiswa => {
-                    tableContent += `
+    </div>
+    <?php
+    include "../component/footer.php";
+    ?>
+    <?php
+    unset($_SESSION['sukses']);
+    unset($_SESSION['error']);
+    ?>
+    <script>
+        $.ajax({
+            type: 'GET',
+            url: '/Pbl/routes/route.php?page=mahasiswa&sub=getAll',
+            success: function(data) {
+                if (Array.isArray(data)) {
+                    let tableContent = '';
+                    data.forEach(mahasiswa => {
+                        tableContent += `
                         <tr>
                         <td>${mahasiswa.NIM}</td>
                         <td>${mahasiswa.nama}</td>
@@ -55,14 +62,14 @@ unset($_SESSION['error']);
                         </td>
                         </tr>
                     `;
-                });
-                $('#dataMahasiswa').html(tableContent);
-            } else {
-                console.error("Expected an array but received:", data);
+                    });
+                    $('#dataMahasiswa').html(tableContent);
+                } else {
+                    console.error("Expected an array but received:", data);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX request failed:", status, error);
             }
-        },
-        error: function(xhr, status, error) {
-            console.error("AJAX request failed:", status, error);
-        }
-    });
-</script>
+        });
+    </script>

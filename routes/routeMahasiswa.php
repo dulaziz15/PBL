@@ -22,9 +22,17 @@ class routeMahasiswa {
         } elseif($sub == "show") {
             $this->mahasiswa->show($id);
         } elseif($sub == "getUser") {
-            $this->user->getAll();
+            $this->user->getEmpty();
         } elseif($sub == "addMahasiswa") {
             $this->mahasiswa->addMahasiswa();
+        } elseif($sub == "edit") {
+            $this->mahasiswa->edit($id);
+        } elseif($sub == 'getWithUser') {
+            $this->mahasiswa->getOne($id);
+        } elseif($sub == 'updateMahasiswa') {
+            $this->mahasiswa->update($id);
+        } elseif($sub == 'hapus') {
+            $this->mahasiswa->hapus($id);
         }
     }
 }
