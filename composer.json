@@ -6,7 +6,8 @@
             "Pbl\\Model\\": "Model/",
             "Pbl\\Interface\\": "Interface/",
             "Pbl\\Config\\": "Config/",
-            "Pbl\\Routes\\": "Routes/"
+            "Pbl\\Routes\\": "Routes/",
+            "Pbl\\Enums\\": "Enums/"
         }
     },
     "authors": [

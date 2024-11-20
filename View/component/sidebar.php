@@ -42,7 +42,7 @@
                     </div>
                 </li>
                 <li>
-                    <div class="menu <?= $url == 'dokumen_ta' ? 'active' : '' ?>">
+                    <div class="menu <?= $url == 'tugas_akhir' ? 'active' : '' ?>">
                         <div class="icon">
                             <i class="fa-solid fa-gauge"></i>
                         </div>

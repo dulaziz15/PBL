@@ -15,7 +15,7 @@ class Mahasiswa
 
     public function getOne($id)
     {
-        $query = "SELECT * FROM Mahasiswa WHERE user_id = $id";
+        $query = "SELECT * FROM Mahasiswa WHERE mahasiswa_id = $id";
         $data = $this->koneksi->KoneksiDB()->query($query);
         $result = $data->fetch();
         return $result;
@@ -32,9 +32,16 @@ class Mahasiswa
         return $result;
     }
 
+    public function getOneByUser($user_id) {
+        $query = "SELECT * FROM Mahasiswa where user_id = $user_id";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetch();
+        return $result;
+    }
+
     public function getAll()
     {
-        $query = "EXEC getAllMahasiswa";
+        $query = "SELECT * FROM Mahasiswa";
         $data = $this->koneksi->KoneksiDB()->query($query);
         $result = $data->fetchAll();
         return $result;
@@ -43,7 +50,7 @@ class Mahasiswa
     public function addMahasiswa($nama, $nim, $kelas, $telp, $temp_lahir, $tgl_lahir, $alamat, $nameImg, $user)
     {
         try {
-            $query = "INSERT INTO Mahasiswa (user_id, nama, NIM, kelas, telp, temp_lahir, tgl_lahir, alamat, img) VALUES ('$user', '$nama', '$nim', '$kelas', '$telp', '$temp_lahir', '$tgl_lahir', '$alamat', '$nameImg')";
+            $query = "INSERT INTO Mahasiswa (user_id, nama, NIM, kelas, telp, temp_lahir, tgl_lahir, alamat, img) VALUES ('$user', '$nama', $nim, '$kelas', $telp, '$temp_lahir', '$tgl_lahir', '$alamat', '$nameImg')";
             $data = $this->koneksi->KoneksiDB()->query($query);
             return true;
         } catch (PDOException $e) {
@@ -93,11 +100,11 @@ class Mahasiswa
 
     public function hapus($id) {
         try {
-            $query = "DELETE FROM Mahasiswa WHERE mahasiswa_id = $id";
+            $query = "DELETE Mahasiswa WHERE mahasiswa_id = $id";
             $data = $this->koneksi->KoneksiDB()->query($query);
             return true;
         } catch(PDOException $e) {
-            return false;
+            return $e;
         }
     }
 }

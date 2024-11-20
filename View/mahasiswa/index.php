@@ -56,9 +56,9 @@ include "../component/sidebar.php"
                         <td>${mahasiswa.telp}</td>
                         <td>${mahasiswa.alamat}</td>
                         <td>
-                            <a href="show.php?id=${mahasiswa.mahasiswa_id}" class="btn btn-show">Show</a>
-                            <a href="../../routes/route.php?page=mahasiswa&sub=edit&id=${mahasiswa.mahasiswa_id}" class="btn btn-edit">Edit</a>
-                            <a href="../../routes/route.php?page=mahasiswa&sub=hapus&id=${mahasiswa.mahasiswa_id}" class="btn btn-hapus">Hapus</a>
+                            <a href="show.php?id=${mahasiswa.mahasiswa_id}" class="btn btn-show"><i class="fa-solid fa-eye"></i><span>Show</span></a>
+                            <a href="../../routes/route.php?page=mahasiswa&sub=edit&id=${mahasiswa.mahasiswa_id}" class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></a>
+                            <a href="../../routes/route.php?page=mahasiswa&sub=hapus&id=${mahasiswa.mahasiswa_id}" class="btn btn-hapus"><i class="fa-solid fa-trash"></i><span>Hapus</span></a>
                         </td>
                         </tr>
                     `;

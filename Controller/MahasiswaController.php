@@ -3,6 +3,7 @@
 namespace Pbl\Controller;
 
 use Pbl\Model\Mahasiswa;
+use Pbl\Enums\view;
 use PDOException;
 
 class MahasiswaController
@@ -42,7 +43,7 @@ class MahasiswaController
         $kelas = $_POST['kelas'];
         $telp = $_POST['telp'];
         $temp_lahir = $_POST['temp_lahir'];
-        $tgl_lahir = $_POST['tgl_lahir'];
+        $tgl_lahir = date($_POST['tgl_lahir']);
         $alamat = $_POST['alamat'];
         $user = $_POST['user_id'];
         $path = "../src/img/mahasiswa/";
@@ -61,7 +62,7 @@ class MahasiswaController
 
     public function edit($id)
     {
-        header('location:../view/mahasiswa/edit.php?id=' . $id);
+        header('location:../view/' . view::MAHASISWA->value . '/edit.php?id=' . $id);
     }
 
     public function getOne($id)
