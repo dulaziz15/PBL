@@ -2,6 +2,7 @@
 namespace Pbl\Routes;
 use Pbl\Controller\MahasiswaController;
 use Pbl\Controller\UserController;
+use Pbl\Enums\view;
 
 class routeMahasiswa {
     private $mahasiswa;
@@ -16,7 +17,7 @@ class routeMahasiswa {
         $sub = isset($_GET['sub']) ? $_GET['sub'] : $_GET['sub'] = 'manageuser';
         $id = isset($_GET['id']) ? $_GET['id'] : "";
         if($sub == "managemahasiswa") {
-            header('location:../view/mahasiswa/index.php');
+            header('location:../view/' . view::MAHASISWA->value . '/index.php');
         } elseif($sub == "getAll") {
             $this->mahasiswa->getAll();
         } elseif($sub == "show") {

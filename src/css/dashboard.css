@@ -132,6 +132,14 @@ body {
     flex-grow: 1; 
 }
 
+.card-main {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
 .content h2 {
     margin-bottom: 20px;
 }
@@ -144,7 +152,7 @@ body {
 .table {
     width: 100%;
     border-collapse: collapse;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     text-align: center;
     border-radius: 5px;
     overflow: hidden;
@@ -163,12 +171,41 @@ th, td {
     padding: 20px;
 }
 
+tbody tr:hover {
+    background-color: white;
+}
+
+.tugas_ahir {
+    padding: 0;
+}
+
+.tugas_akhir table thead tr th {
+    font-size: 15px;
+    padding: 10px;
+}
+
+.tugas_akhir table tbody tr td{
+    font-size: 15px;
+    padding: 10px;
+}
+
 .btn {
     text-decoration: none;
-    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 7px 13px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
 }
+
+.btn i {
+    margin-right: 5px;
+}
+
 
 .btn-tambah {
     background: linear-gradient(90deg, rgba(25,118,210,1) 30%, rgba(11,100,189,1) 96%);
@@ -176,16 +213,71 @@ th, td {
 }
 
 .btn-edit {
+    background-color: #edf2ed;
+    border: 1px solid #FB9D1B;
+    color: #FB9D1B;
+}
+
+.btn-edit:hover {
     background: linear-gradient(90deg, rgba(255,168,29,1) 30%, rgba(252,162,18,1) 96%);
-    padding: 7px 20px;
+    color: white;
 }
 
 .btn-hapus {
+    background-color: #edf2ed;
+    border: 1px solid #C91906;
+    color: #C91906;
+}
+
+.btn-hapus:hover {
     background: linear-gradient(90deg, rgba(217,0,0,1) 30%, rgba(194,1,1,1) 96%);
-    padding: 7px 20px;
+    color: white;
 }
 
 .btn-show {
+    background-color: #d2e8f9;
+    border: 1px solid #1976d2;
+    color: #1976d2;
+}
+
+.btn-show:hover {
     background: linear-gradient(90deg, rgba(25,118,210,1) 30%, rgba(11,100,189,1) 96%);
-    padding: 7px 20px;
+    color: white;
+}
+
+.btn-back {
+    background-color: white;
+    border: 1px solid #D9D9D9;
+    color: #D9D9D9;
+}
+
+.btn-back:hover {
+    background-color: #D9D9D9;
+    color: white;
+}
+
+.status {
+    text-decoration: none;
+    margin: 5px;
+    font-size: 12px;
+    display: flex;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.status i {
+    margin-right: 5px;
+}
+
+.status-verify {
+    background-color: #cef2e0;
+    color: #19D225;
+}
+
+.status-revisi {
+    background-color: #FFA81D;
+    color: #f0e6cf;
 }

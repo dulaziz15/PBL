@@ -1,6 +1,7 @@
 <?php
 require '../vendor/autoload.php';
 use Pbl\Controller\AuthController;
+use Pbl\Enums\role;
 use Pbl\Routes\routeBiodata;
 use Pbl\Routes\routeMahasiswa;
 use Pbl\Routes\routeTA;
@@ -23,7 +24,7 @@ if ($page == 'login') {
 }
 
 if (isset($_SESSION['user'])) {
-    if($_SESSION['user']['role'] == 1) {
+    if($_SESSION['user']['role'] == role::SUPER_ADMIN->value) {
         if ($page == 'user') {
             $user->route();
         } elseif ($page == 'tugasakhir') {
@@ -33,13 +34,13 @@ if (isset($_SESSION['user'])) {
         } elseif($page == 'dashboard') {
             header('location:../view/dashboard/index.php');
         }
-    } elseif ($_SESSION['user']['role'] == 2) {
+    } elseif ($_SESSION['user']['role'] == role::MAHSISWA) {
         if ($page == 'biodata') {
             $biodata->route();
         } elseif($page == 'dashboard') {
             header('location:../view/dashboard/index.php');
         }
-    } elseif ($_SESSION['user']['role'] == 3) {
+    } elseif ($_SESSION['user']['role'] == role::ADMIN_JURUSAN) {
         
     } else {
         header('location:../view/403.php');

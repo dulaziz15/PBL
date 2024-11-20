@@ -14,6 +14,14 @@ class routeTA {
         $id = isset($_GET['id']) ? $_GET['id'] : "";
         if($sub == 'manageTA') {
             $this->tugas_akhir->index();
+        } elseif($sub == 'getAll') {
+            $this->tugas_akhir->getAll();
+        } elseif($sub == 'getOne') {
+            $this->tugas_akhir->getOne($id);
+        } elseif($sub == 'add') {
+            $this->tugas_akhir->add();
+        } elseif($sub == 'hapus') {
+            $this->tugas_akhir->hapus($id);
         }
     }
 }

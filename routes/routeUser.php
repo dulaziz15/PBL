@@ -1,6 +1,7 @@
 <?php
     namespace Pbl\Routes;
     use Pbl\Controller\UserController;
+    use Pbl\Enums\view;
     class routeUser {
         private $user;
         public function __construct(){
@@ -11,7 +12,7 @@
             $sub = isset($_GET['sub']) ? $_GET['sub'] : $_GET['sub'] = 'manageuser';
             $id = isset($_GET['id']) ? $_GET['id'] : "";
             if($sub == 'manageuser') {
-                header('location:../view/user/index.php');
+                header('location:../view/' . view::USER->value . '/index.php');
             } elseif ($sub == 'tambahuser') {
                 $this->user->addUser();
             } elseif ($sub == 'getAll') {
