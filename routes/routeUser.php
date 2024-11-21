@@ -1,13 +1,30 @@
 <?php
-    class RouteUser {
+    namespace Pbl\Routes;
+    use Pbl\Controller\UserController;
+    use Pbl\Enums\view;
+    class routeUser {
+        private $user;
         public function __construct(){
-            
+            $this->user = new UserController();
         }
 
         public function route() {  
-            $page = isset($_GET['sub']) ? $_GET['sub'] : $_GET['sub'] = 'manageuser';
-            if($page == 'manageuser') {
-                header('location:../view/user/index.php');
+            $sub = isset($_GET['sub']) ? $_GET['sub'] : $_GET['sub'] = 'manageuser';
+            $id = isset($_GET['id']) ? $_GET['id'] : "";
+            if($sub == 'manageuser') {
+                header('location:../view/' . view::USER->value . '/index.php');
+            } elseif ($sub == 'tambahuser') {
+                $this->user->addUser();
+            } elseif ($sub == 'getAll') {
+                $this->user->getAll();
+            } elseif($sub == 'edit') {
+                $this->user->edit($id);
+            } elseif($sub == 'getOne') {
+                $this->user->getOne($id);
+            } elseif($sub == 'update') {
+                $this->user->update($id);
+            } elseif($sub == 'hapus') {
+                $this->user->delete($id);
             }
         }
     }

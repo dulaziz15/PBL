@@ -1,15 +1,20 @@
 <?php
-require_once "../Config/koneksi.php";
-session_start();
+namespace Pbl\Model;
+use Pbl\Config\koneksi;
+use PDOException;
+
+// session_start();
+
 class User {
     private $koneksi;
+
     public function __construct(){
         $this->koneksi = new Koneksi();
     }
 
     public function validasi_nim($nim, $password) {
         $query = "select * from dbo.Users where username = '$nim' and password = '$password'";
-        $data = $this->koneksi->Koneksi()->query($query);
+        $data = $this->koneksi->KoneksiDB()->query($query);
         $result = $data->fetch();
         if(empty($result) == true) {
             $_SESSION['error'] = "Nim atau Password salah";
@@ -17,6 +22,62 @@ class User {
         } else {
             $_SESSION['user'] = $result;
             return true;
+        }
+    }
+
+    public function addUser($username, $email, $password, $role) {
+        try {
+            $query = "INSERT INTO Users (username, email, password, role) VALUES ('$username', '$email', '$password', '$role')";
+            $data = $this->koneksi->KoneksiDB()->query($query);
+            return true;
+        } catch(PDOException $e) {
+            return false;
+        }
+    }
+
+    public function getAll() {
+        $query = "SELECT * FROM Users";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetchAll();
+        return $result;
+    }
+
+    public function getEmpty() {
+        $query = "SELECT us.*
+                FROM Users AS us
+                LEFT JOIN Mahasiswa AS mhs ON us.user_id = mhs.user_id
+                WHERE mhs.user_id IS NULL
+                AND us.role = 2;
+                ";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetchAll();
+        return $result;
+    }
+
+    public function getOne($id) {
+        $query = "SELECT * FROM Users WHERE user_id = $id";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetch();
+        return $result;
+    }
+
+    public function update($id, $username, $email, $password, $role) {
+        try {
+            $query = "UPDATE Users SET username = '$username', email = '$email', password = '$password', role = '$role' WHERE user_id = $id";
+            $data = $this->koneksi->KoneksiDB()->query($query);
+            return true;
+        } catch(PDOException $e) {
+            return false;
+        }
+    }
+
+    public function delete($id) {
+        try {
+            $query = "DELETE FROM Users WHERE user_id = $id";
+            $data = $this->koneksi->KoneksiDB()->query($query);
+            return true;
+        } catch(PDOException $e) {
+            return false;
         }
     }
 }

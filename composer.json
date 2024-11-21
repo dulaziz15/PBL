@@ -1,8 +1,13 @@
 {
-    "name": "dulaz/pbl",
+    "name": "pbl/pbl",
     "autoload": {
         "psr-4": {
-            "Dulaz\\Pbl\\": "src/"
+            "Pbl\\Controller\\": "Controller/",
+            "Pbl\\Model\\": "Model/",
+            "Pbl\\Interface\\": "Interface/",
+            "Pbl\\Config\\": "Config/",
+            "Pbl\\Routes\\": "Routes/",
+            "Pbl\\Enums\\": "Enums/"
         }
     },
     "authors": [
@@ -11,7 +16,5 @@
             "email": "107160974+dulaziz15@users.noreply.github.com"
         }
     ],
-    "require": {
-        "phpoffice/phpword": "^1.3"
-    }
+    "require": {}
 }

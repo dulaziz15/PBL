@@ -1,10 +1,20 @@
 <?php
-require_once '../Controller/AuthController.php';
-require_once './routeUser.php';
+require '../vendor/autoload.php';
+use Pbl\Controller\AuthController;
+use Pbl\Enums\role;
+use Pbl\Routes\routeBiodata;
+use Pbl\Routes\routeMahasiswa;
+use Pbl\Routes\routeTA;
+use Pbl\Routes\routeUser;
+
+$biodata = new routeBiodata();
 $auth = new AuthController();
 $user = new RouteUser();
+$tugas_akhir = new routeTA();
+$mahasiswa = new routeMahasiswa();
+
 $page = isset($_GET['page']) ? $_GET['page'] : $_GET['page'] = 'login';
-$basePath = "pbl";
+
 if ($page == 'login') {
     $auth->login();
 } elseif ($page == 'proses_login') {
@@ -14,8 +24,26 @@ if ($page == 'login') {
 }
 
 if (isset($_SESSION['user'])) {
-    if ($page == 'user') {
-        $user->route();
+    if($_SESSION['user']['role'] == role::SUPER_ADMIN->value) {
+        if ($page == 'user') {
+            $user->route();
+        } elseif ($page == 'tugasakhir') {
+            $tugas_akhir->route();
+        } elseif ($page == 'mahasiswa') {
+            $mahasiswa->route();
+        } elseif($page == 'dashboard') {
+            header('location:../view/dashboard/index.php');
+        }
+    } elseif ($_SESSION['user']['role'] == role::MAHSISWA) {
+        if ($page == 'biodata') {
+            $biodata->route();
+        } elseif($page == 'dashboard') {
+            header('location:../view/dashboard/index.php');
+        }
+    } elseif ($_SESSION['user']['role'] == role::ADMIN_JURUSAN) {
+        
+    } else {
+        header('location:../view/403.php');
     }
 } else {
     header('location:../view/login.php');

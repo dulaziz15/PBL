@@ -1,7 +1,9 @@
 <?php
-require_once "../Model/user.php";
+namespace Pbl\Controller;
+use Pbl\Interface\AuthControllerInterface;
+use Pbl\Model\User;
 
-class AuthController {
+class AuthController implements AuthControllerInterface{
     private $user;
     public function __construct(){
         $this->user = new User();

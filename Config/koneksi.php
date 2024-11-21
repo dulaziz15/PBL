@@ -1,9 +1,11 @@
 <?php
+namespace Pbl\Config;
+use PDO;
 
 class Koneksi {
 
-    public function Koneksi() {
-        $conn = new PDO("sqlsrv:server=LAPTOP-60DUFOCJ\SQLEXPRESS;database=BebasTanggunganTADB");
+    public function KoneksiDB() {
+        $conn = new PDO("sqlsrv:server=LAPTOP-60DUFOCJ\SQLEXPRESS;database=BebasTanggunganDB");
         return $conn;
     }
 
