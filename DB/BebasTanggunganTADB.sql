@@ -15,15 +15,15 @@ CREATE TABLE Log_activity (
 	log_id INT PRIMARY KEY IDENTITY(1,1),
 	user_id INT,
 	action VARCHAR(100) NOT NULL, 
-	date VARCHAR(100)
-	FOREIGN KEY (user_id) REFERENCES Users(user_id)
+	date DATE 
+	FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO 
 
 CREATE TABLE Mahasiswa (
 	mahasiswa_id INT PRIMARY KEY IDENTITY(1,1),
 	user_id INT UNIQUE,
-	NIM INT UNIQUE,
+	NIM BIGINT UNIQUE,
 	nama VARCHAR(100),
 	kelas VARCHAR(100),
 	telp BIGINT, 
@@ -31,7 +31,7 @@ CREATE TABLE Mahasiswa (
 	tgl_lahir DATE, 
 	alamat VARCHAR(255),
 	img VARCHAR(255)
-	FOREIGN KEY (user_id) REFERENCES Users(user_id)
+	FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO 
 
@@ -40,17 +40,17 @@ CREATE TABLE Bebas_tanggungan (
 	mahasiswa_id INT UNIQUE,
 	no_surat VARCHAR(100),
 	status INT, 
-	FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id)
+	FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO
 
 CREATE TABLE Tugas_akhir (
 	tugas_akhir_id INT PRIMARY KEY IDENTITY(1,1),
-	mahasiswa_id INT, 
+	mahasiswa_id INT UNIQUE, 
 	judul VARCHAR(255) NOT NULL,
 	file_project VARCHAR(100) NOT NULL, 
 	status INT, 
-	FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id)
+	FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO
 
@@ -60,7 +60,7 @@ CREATE TABLE Dokumen_tugas_akhir (
 	nama_file VARCHAR(100),
 	bagian VARCHAR(100),
 	status INT 
-	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id)
+	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO
 
@@ -68,9 +68,9 @@ CREATE TABLE Catatan_TA (
 	catatan_id INT PRIMARY KEY IDENTITY(1,1),
 	dokumen_id INT,
 	catatan VARCHAR(255) NOT NULL,
-	tanggal VARCHAR,
+	tanggal DATE,
 	status VARCHAR(100)
-	FOREIGN KEY (dokumen_id) REFERENCES Dokumen_tugas_akhir(dokumen_id)
+	FOREIGN KEY (dokumen_id) REFERENCES Dokumen_tugas_akhir(dokumen_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO
 
@@ -81,7 +81,7 @@ CREATE TABLE Dokumen_pendukung (
 	tanda_terima_pkl VARCHAR(100) NOT NULL,
 	bebas_kompen VARCHAR(100) NOT NULL,
 	status INT
-	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id)
+	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO 
 
@@ -89,9 +89,9 @@ CREATE TABLE Catatan_pendukung (
 	catatan_id INT PRIMARY KEY IDENTITY(1,1),
 	dokumen_pendukung_id INT,
 	catatan VARCHAR(255) NOT NULL,
-	tanggal VARCHAR,
+	tanggal DATE,
 	status VARCHAR(100) NOT NULL
-	FOREIGN KEY (dokumen_pendukung_id) REFERENCES Dokumen_pendukung(dokumen_pendukung_id)
+	FOREIGN KEY (dokumen_pendukung_id) REFERENCES Dokumen_pendukung(dokumen_pendukung_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO
 
@@ -168,7 +168,7 @@ VALUES
 	(7, 'Penerapan Machine Learning dalam Dagnosa penyakit', 'machine_learning_diagnosa.zip', 0),
 	(8, 'Sistem Rekomendasi Film Menggunakan Collaborative Filtering', 'rekomendasi_film.zip', 0),
 	(9, 'Sistem Rekomendasi Musik Berdasrkan Prefernsi', 'rekomendasi_musik.zip', 0),
-	(10, 'Penerapan Game-based Learning dalam Pendidikan', 'game_based_learning.zip', 1)
+	(10, 'Penerapan Game-based Learning dalam Pendidikan', 'game_based_learning.zip', 1);
 
 SELECT * FROM Tugas_akhir;
 
@@ -201,14 +201,11 @@ VALUES
 	(9, 'bab1.pdf', 'Pendahuluan', 0),
 	(9, 'bab2.pdf', 'Kajian Pustaka', 1),
 	(9, 'bab3.pdf', 'Metodologi', 1),
-	(10, 'bab1.pdf', 'Pendahuluan', 1),
+	(10, 'ba/b1.pdf', 'Pendahuluan', 1),
 	(10, 'bab2.pdf', 'Kajian Pustaka', 1),
 	(10, 'bab3.pdf', 'Metodologi', 1);
 
 SELECT * FROM Dokumen_tugas_akhir;
-
-ALTER TABLE Catatan_TA
-ALTER COLUMN tanggal DATE;
 
 INSERT INTO Catatan_TA (dokumen_id, catatan, tanggal, status)
 VALUES 
@@ -260,9 +257,6 @@ VALUES
 
 SELECT * FROM Dokumen_pendukung;
 
-ALTER TABLE Catatan_pendukung
-ALTER COLUMN tanggal DATE;
-
 INSERT INTO Catatan_pendukung (dokumen_pendukung_id, catatan, tanggal, status)
 VALUES 
 	(1, 'Dokumen tanda terima TA diterima tanpa revisi.', '2024-11-12', 'Approved'),
@@ -277,3 +271,12 @@ VALUES
 	(10, 'Dokumen tanda terima TA diterima tanpa revisi.', '2024-11-12', 'Approved');
 
 SELECT * FROM Catatan_pendukung;
+
+WITH BebasTanggunganTA AS (
+    SELECT m.nama, ta.judul, ta.file_project, ta.status AS tugas_akhir_status, bt.status AS bebas_tanggungan_status
+    FROM Mahasiswa m
+    JOIN Bebas_tanggungan bt ON m.mahasiswa_id = bt.mahasiswa_id
+    JOIN Tugas_akhir ta ON m.mahasiswa_id = ta.mahasiswa_id
+    WHERE bt.status = 1 
+)
+
