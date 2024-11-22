@@ -49,12 +49,7 @@ class TugasAkhirController {
         ];
         $judul= $_POST['judul'];
         $status = 0;
-
-        if(empty($_POST['mahasiswa'])) {
-            $mahasiswa = ($this->mahasiswa->getOneByUser($this->user))['mahasiswa_id'];
-        } else {
-            $mahasiswa = $_POST['mahasiswa'];
-        }
+        $mahasiswa = $_POST['mahasiswa'];
         $targetDir = '../src/bebas_tanggungan/' . $mahasiswa . "/";
 
         @mkdir($targetDir, 0777, true);
@@ -62,7 +57,6 @@ class TugasAkhirController {
         $data = $this->tugas_akhir->add($file, $mahasiswa, $judul, $status);
         if($data == true) {
             foreach($file as $dokumen) {
-                // var_dump($dokumen['name']);
                 move_uploaded_file($dokumen['tmp_name'], $targetDir . $dokumen['name']);
             }
             $_SESSION['sukses'] = "Data Behasil ditambah";
@@ -70,6 +64,26 @@ class TugasAkhirController {
         } else {
             $_SESSION['error'] = "Data Gagal ditambah Coba Kembali";
             header('location:../routes/route.php?page=tugasakhir&sub=manageTA');
+        }
+    }
+
+    public function getByTA($id) {
+        $data = $this->tugas_akhir->getDokumen($id);
+        if($data) {
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo false;
+        }
+    }
+
+    public function getOneDokumen($id) {
+        $data = $this->tugas_akhir->getOneDokumen($id);
+        if($data) {
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo false;
         }
     }
 

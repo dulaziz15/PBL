@@ -50,6 +50,21 @@ class TugasAkhir
         }
     }
 
+    public function getDokumen($id) {
+        $query = "SELECT * FROM Dokumen_tugas_akhir WHERE tugas_akhir_id = $id";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetchAll();
+        return $result;
+    }
+
+    public function getOneDokumen($id) {
+        $query = "SELECT * FROM Dokumen_tugas_akhir as dta inner join Tugas_akhir as ta on ta.tugas_akhir_id = dta.tugas_akhir_id
+                    inner join Mahasiswa as mhs on mhs.mahasiswa_id = ta.mahasiswa_id WHERE dokumen_id = $id";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetch();
+        return $result;
+    }
+
     public function hapus($id)
     {
         try {

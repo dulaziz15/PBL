@@ -256,6 +256,17 @@ tbody tr:hover {
     color: white;
 }
 
+.btn-verifikasi {
+    background-color: #d2f3e4;
+    border: 1px solid #19D225;
+    color: #19D225;
+}
+
+.btn-verifikasi:hover {
+    background-color: #19D225;
+    color: white;
+}
+
 .status {
     text-decoration: none;
     margin: 5px;
@@ -280,4 +291,23 @@ tbody tr:hover {
 .status-revisi {
     background-color: #FFA81D;
     color: #f0e6cf;
+}
+
+.informasi-dokumen {
+    display: flex;
+}
+
+.pdf {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+embed:focus {
+    outline: none;
+  }
+
+.informasi-dokumen .catatan-header {
+    background-color: #1976d2;
+    padding: 100px;
 }

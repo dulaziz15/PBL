@@ -20,7 +20,6 @@ $.ajax({
                 </td>
                 <td>
                     <a href="show.php?id=${tugas_akhir.tugas_akhir_id}" class="btn btn-show"><i class="fa-solid fa-eye"></i><span>Show</span></a>
-                    <a href="../../routes/route.php?page=tugasakhir&sub=edit&id=${tugas_akhir.tugas_akhir_id}" class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></a>
                     <a href="../../routes/route.php?page=tugasakhir&sub=hapus&id=${tugas_akhir.tugas_akhir_id}" class="btn btn-hapus"><i class="fa-solid fa-trash"></i><span>Hapus</span></a>
                 </td>
                 </tr>
