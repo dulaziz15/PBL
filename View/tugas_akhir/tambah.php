@@ -7,7 +7,7 @@ include "../component/sidebar.php"
         <h2>Management Tugas Akhir</h2>
     </div>
     <div class="body-main">
-        <a href="" class="btn btn-back"><i class="fa-solid fa-arrow-left"></i><span>Back</span></a>
+        <a href="javascript: history.go(-1)" class="btn btn-back"><i class="fa-solid fa-arrow-left"></i><span>Back</span></a>
         <div class="card-main">
             <div class="header-card">
                 <h3>Informasi Dokumen TA</h3>
@@ -29,9 +29,9 @@ include "../component/sidebar.php"
                     <input type="file" name="daftarpustaka" id="daftarpustaka" id="daftarpustaka" accept="application/pdf"><br>
                     <label for="lampiran">Lampiran</label><br>
                     <input type="file" name="lampiran" id="lampiran" accept="application/pdf"><br>
-                    <!-- <select name="mahasiswa" id="dataMahasiswa" style="width: 300px;" class="operator">
+                    <select name="mahasiswa" id="dataMahasiswa" style="width: 300px;" class="operator">
 
-                    </select><br> -->
+                    </select><br>
                     <input type="submit" value="Tambah">
                 </form>
             </div>

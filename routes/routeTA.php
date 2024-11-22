@@ -20,8 +20,13 @@ class routeTA {
             $this->tugas_akhir->getOne($id);
         } elseif($sub == 'add') {
             $this->tugas_akhir->add();
+        } elseif($sub == 'getByTugasAkhir') {
+            $this->tugas_akhir->getByTA($id);
+        } elseif($sub == 'getOneDokumen') {
+            $this->tugas_akhir->getOneDokumen($id);
         } elseif($sub == 'hapus') {
             $this->tugas_akhir->hapus($id);
-        }
+        } 
+        
     }
 }
