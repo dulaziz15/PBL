@@ -17,7 +17,7 @@ class TugasAkhir
 
     public function getAll()
     {
-        $query = "select * from Tugas_akhir as ta inner join Mahasiswa as mhs on mhs.mahasiswa_id = ta.mahasiswa_id";
+        $query = "select * from Tugas_akhir as ta inner join Mahasiswa as mhs on mhs.mahasiswa_id = ta.mahasiswa_id order by ta.tugas_akhir_id desc";
         $data = $this->koneksi->KoneksiDB()->query($query);
         $result = $data->fetchAll();
         return $result;
@@ -63,6 +63,11 @@ class TugasAkhir
         $data = $this->koneksi->KoneksiDB()->query($query);
         $result = $data->fetch();
         return $result;
+    }
+
+    public function addCatatan($id, $catatan, $tanggal) {
+        var_dump($tanggal);
+        $query = "INSERT INTO Catatan_TA (dokumen_id, user_id, catatan, tanggal, status) VALUES ($id, )"
     }
 
     public function hapus($id)

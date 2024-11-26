@@ -1,5 +1,7 @@
 <?php
 namespace Pbl\Controller;
+
+use DateTime;
 use Pbl\Model\Mahasiswa;
 use Pbl\Model\TugasAkhir;
 use Pbl\Enums\view;
@@ -85,6 +87,13 @@ class TugasAkhirController {
         } else {
             echo false;
         }
+    }
+
+    public function addCatatan($id) {
+        $user = $_SESSION['user']['user_id'];
+        $catatan = $_POST['catatan'];
+        $tanggal = new DateTime();
+        $data = $this->tugas_akhir->addCatatan($id, $user,  $catatan, $tanggal);
     }
 
     public function hapus($id) {

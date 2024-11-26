@@ -24,6 +24,8 @@ class routeTA {
             $this->tugas_akhir->getByTA($id);
         } elseif($sub == 'getOneDokumen') {
             $this->tugas_akhir->getOneDokumen($id);
+        } elseif($sub == 'tambahcatatan') {
+            $this->tugas_akhir->addCatatan($id);
         } elseif($sub == 'hapus') {
             $this->tugas_akhir->hapus($id);
         } 
