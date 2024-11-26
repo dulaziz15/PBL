@@ -23,9 +23,31 @@ include "../component/sidebar.php"
                         <div class="pdf">
                         </div>
                         <div class="catatan-dokumen">
-                            <div class="catatan-header">
-                                <span>Catatan Dokumen</span>
-                                <hr>
+                            <div class="card-catatan">
+                                <div class="catatan-header">
+                                    <span>Catatan Dokumen</span>
+                                    <hr>
+                                </div>
+                                <div class="tambah-catatan">
+                                    <a id="button-add-catatan" class="btn btn-tambah-catatan">Tambah</a>
+                                    <form action="../../routes/route.php?page=tugasakhir&sub=tambahcatatan&id=<?= $_GET['id'] ?>" method="post" style="display: none;" id="form-catatan">
+                                        <input type="text" placeholder="catatan" name="catatan"><br>
+                                        <input type="submit" value="Tambah"><br>
+                                    </form>
+                                </div>
+                                <div class="catatan-body">
+                                    <!-- <div class="text">
+                                        Lorem ipsum dolor sit amet consectetur,
+                                        adipisicing elit. Non, suscipit.
+                                    </div>
+                                    <div class="status-catatan">
+                                        <div><span>Status Catatan</span></div>
+                                        <div><a class="status status-verify">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <span>Verify</span>
+                                        </a></div>
+                                    </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -41,6 +63,12 @@ include "../component/sidebar.php"
     unset($_SESSION['error']);
     ?>
     <script>
+        $(document).ready(function() {
+            $("#button-add-catatan").click(function() {
+                $("#form-catatan").slideToggle("slow");
+            });
+        });
+
         $.ajax({
             type: 'GET',
             url: '/Pbl/routes/route.php?page=tugasakhir&sub=getOneDokumen&id=<?= $_GET['id'] ?>',

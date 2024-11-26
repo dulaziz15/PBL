@@ -175,7 +175,7 @@ tbody tr:hover {
     background-color: white;
 }
 
-.tugas_ahir {
+.tugas_akhir {
     padding: 0;
 }
 
@@ -186,7 +186,7 @@ tbody tr:hover {
 
 .tugas_akhir table tbody tr td{
     font-size: 15px;
-    padding: 10px;
+    padding: 20px;
 }
 
 .btn {
@@ -269,13 +269,9 @@ tbody tr:hover {
 
 .status {
     text-decoration: none;
-    margin: 5px;
     font-size: 12px;
-    display: flex;
     padding: 5px 10px 5px 10px;
     border-radius: 10px;
-    justify-content: center;
-    align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -295,10 +291,11 @@ tbody tr:hover {
 
 .informasi-dokumen {
     display: flex;
+    justify-content: center;
 }
 
 .pdf {
-    background-color: white;
+    background-color: #1976d2;
     padding: 20px;
     border-radius: 5px;
 }
@@ -307,7 +304,46 @@ embed:focus {
     outline: none;
   }
 
-.informasi-dokumen .catatan-header {
-    background-color: #1976d2;
-    padding: 100px;
+.informasi-dokumen .card-catatan {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0px 20px 0px 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.card-catatan .tambah-catatan {
+    margin: 20px;
+}
+
+.tambah-catatan .btn-tambah-catatan {
+    background: linear-gradient(90deg, rgba(25,118,210,1) 30%, rgba(11,100,189,1) 96%);
+    color: white;
+    cursor: pointer;
+}
+
+.tambah-catatan form {
+    margin: 20px;
+}
+
+.card-catatan .catatan-body {
+    background-color: whitesmoke;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px;
+}
+
+.catatan-body .text {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.catatan-body .status-catatan {
+    padding: 5px;
+}
+
+.catatan-body .status-catatan div {
+    margin-top: 5px;
 }
