@@ -1,0 +1,132 @@
+/* Menambahkan font Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/bgpoltek.png') repeat;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    background: #f0f0f0; /* Warna latar belakang kartu login */
+    border-radius: 17px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding: 40px 20px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    background-color: white;
+    border-radius: 50%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.logo img {
+    width: 80%;
+    height: auto;
+}
+
+/* Judul */
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0 10px; /* Menambahkan margin untuk jarak */
+}
+
+/* Pesan Error dan Logout */
+.error, .logout {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.error {
+    color: red;
+}
+
+.logout {
+    color: green;
+}
+
+/* Input Form */
+form input[type="number"],
+form input[type="password"] {
+    width: 85%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 17px;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Label dan Checkbox */
+form label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+}
+
+form .options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #3366cc;
+    border: 2px solid #3366cc;
+}
+
+/* Tombol Login */
+form button {
+    width: 93%;
+    padding: 15px 10px;
+    background: #3366cc;
+    color: #fff;
+    border: none;
+    border-radius: 17px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: background 0.3s;
+}
+
+form button:hover {
+    background: #2851a3;
+}
