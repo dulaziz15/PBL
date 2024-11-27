@@ -3,14 +3,12 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login SIBETA</title>
     <link rel="stylesheet" href="../src/css/login.css">
 </head>
-
 <body>
     <div class="login-container">
         <div class="login-card">
@@ -31,9 +29,9 @@ session_start();
                 <input type="password" name="password" id="password" placeholder="PASSWORD" required>
 
                 <div class="options">
-                    <label>
+                    <label class="checkbox-label">
                         <input type="checkbox" id="showPassword">
-                        <span>Tampilkan Password</span>
+                        Tampilkan Password
                     </label>
                     <span>Buat Akun <a href="link_ke_halaman_pendaftaran">Di sini!</a></span>
                 </div>
@@ -54,5 +52,4 @@ session_start();
         });
     </script>
 </body>
-
 </html>
