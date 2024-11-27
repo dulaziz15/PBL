@@ -65,9 +65,68 @@ class TugasAkhir
         return $result;
     }
 
-    public function addCatatan($id, $catatan, $tanggal) {
-        var_dump($tanggal);
-        $query = "INSERT INTO Catatan_TA (dokumen_id, user_id, catatan, tanggal, status) VALUES ($id, )";
+    public function addCatatan($id, $user, $catatan, $tanggal) {
+        // var_dump( $user);
+        try {
+            $query = "INSERT INTO Catatan_TA (dokumen_id, user_id, catatan, tanggal, status) VALUES ('$id', '$user', '$catatan', '$tanggal', 0)";
+            $data = $this->koneksi->KoneksiDB()->query($query);
+            return true;
+        } catch(PDOException $e) {
+            return $e->getMessage();
+        }
+        
+
+    }
+
+    public function getCatatanTA($id) {
+        $query = "SELECT * FROM Catatan_TA where dokumen_id = '$id'";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetchAll();
+        return $result;
+    }
+
+    public function validateCatatan($id) {
+        $query = "SELECT * FROM Catatan_TA WHERE dokumen_id = $id AND status != 1";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetchAll();
+        return $result;
+    }
+
+    public function validateTA($id) {
+        $query = "SELECT * FROM Dokumen_tugas_akhir WHERE tugas_akhir_id = $id AND status != 1";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetchAll();
+        return $result;
+    }
+
+    public function verifikasiCatatan($id) {
+        try{
+            $query = "UPDATE Catatan_TA SET status = 1 WHERE catatan_id = $id";
+            $data = $this->koneksi->KoneksiDB()->query($query);
+            return true;
+        } catch(PDOException $e) {
+            return false;
+        }
+    }
+
+    public function verifikasi($id) {
+        try {
+            $query = "UPDATE Dokumen_tugas_akhir SET status = 1 WHERE dokumen_id = $id";
+            $data = $this->koneksi->KoneksiDB()->query($query);
+            return true;
+        } catch(PDOException $e) {
+            return false;
+        }
+    }
+
+    public function updateStatusTA($id) {
+        try {
+            $query = "UPDATE Tugas_akhir SET status = 1 WHERE tugas_akhir_id = $id";
+            $this->koneksi->KoneksiDB()->query($query);
+            return true;
+        } catch(PDOException $e) {
+            return false;
+        }
     }
 
     public function hapus($id)

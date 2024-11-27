@@ -6,7 +6,7 @@ body {
 
 .container {
     display: flex;
-    margin: 30px;
+    margin: 20px;
     gap: 20px;
     min-height: 80vh;
 }
@@ -298,6 +298,12 @@ tbody tr:hover {
     background-color: #1976d2;
     padding: 20px;
     border-radius: 5px;
+    height: auto;
+}
+
+.pdf embed {
+    width: 500px;
+    height: 700px;
 }
 
 embed:focus {
@@ -310,6 +316,7 @@ embed:focus {
     margin: 0px 20px 0px 20px;
     padding: 20px;
     border-radius: 5px;
+    width: 300px;
 }
 
 .card-catatan .tambah-catatan {
@@ -338,12 +345,21 @@ embed:focus {
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .catatan-body .status-catatan {
-    padding: 5px;
+    /* margin-bottom: 10px; */
 }
 
 .catatan-body .status-catatan div {
     margin-top: 5px;
+}
+
+.verifikasi-catatan {
+    padding: 20px 0px 20px 0px;
+}
+
+.status-catatan .verifikasi-catatan {
+    cursor: pointer;
 }
