@@ -67,7 +67,7 @@ class TugasAkhir
 
     public function addCatatan($id, $catatan, $tanggal) {
         var_dump($tanggal);
-        $query = "INSERT INTO Catatan_TA (dokumen_id, user_id, catatan, tanggal, status) VALUES ($id, )"
+        $query = "INSERT INTO Catatan_TA (dokumen_id, user_id, catatan, tanggal, status) VALUES ($id, )";
     }
 
     public function hapus($id)

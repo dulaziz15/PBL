@@ -4,12 +4,13 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('../img/bgpoltek.png') repeat;
+    background-image: url("../img/bgpoltek.png");
     font-family: 'Inter', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    /* background-color: #2851a3; */
 }
 
 .login-container {
@@ -72,7 +73,8 @@ h2 {
 
 /* Input Form */
 form input[type="number"],
-form input[type="password"] {
+form input[type="password"],
+form input[type="text"] {
     width: 85%;
     padding: 15px;
     margin: 10px 0;
