@@ -1,0 +1,179 @@
+/* Menambahkan font Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("../img/bgpoltek.png");
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    background: #DcDcDc;
+    /* Warna latar belakang kartu login */
+    border-radius: 17px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding: 40px 20px;
+    width: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    background-color: white;
+    border-radius: 50%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.logo img {
+    width: 80%;
+    height: auto;
+}
+
+/* Judul */
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0 10px;
+    /* Menambahkan margin untuk jarak */
+}
+
+/* Pesan Error dan Logout */
+.error,
+.logout {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.error {
+    color: red;
+}
+
+.logout {
+    color: green;
+}
+
+/* Input Form */
+form input[type="number"],
+form input[type="password"],
+form input[type="email"],
+form input[type="text"] {
+    width: 93%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 17px;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Checkbox Options */
+.options {
+    display: flex;
+    align-items: center;
+    /* Menyelaraskan item secara vertikal di tengah */
+    justify-content: space-between;
+    /* Mengatur jarak antara checkbox-label dan span */
+    margin-bottom: 20px;
+    /* Tambahkan jarak bawah */
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    /* Menyelaraskan checkbox dan teks secara vertikal */
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    /* Menghilangkan tampilan default checkbox di WebKit */
+    appearance: none;
+    /* Menghilangkan tampilan default checkbox */
+    width: 20px;
+    /* Ukuran checkbox */
+    height: 20px;
+    /* Ukuran checkbox */
+    border-radius: 5px;
+    /* Border radius 15px */
+    outline: none;
+    /* Menghilangkan outline */
+    cursor: pointer;
+    /* Menunjukkan bahwa ini adalah elemen yang dapat diklik */
+    position: relative;
+    /* Membutuhkan posisi relatif untuk pseudo-element */
+    background-color: white;
+    /* Latar belakang transparan */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    /* Efek shadow */
+    transition: background 0.3s, box-shadow 0.3s;
+    /* Transisi untuk perubahan latar belakang dan shadow */
+    margin-right: 10px;
+    /* Jarak antara checkbox dan teks */
+}
+
+/* Menambahkan efek saat checkbox dicentang */
+input[type="checkbox"]:checked {
+    background-color: white;
+    /* Warna latar belakang saat dicentang */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Efek shadow lebih kuat saat dicentang */
+}
+
+/* Menambahkan efek visual di dalam checkbox saat dicentang */
+input[type="checkbox"]:checked::before {
+    content: '';
+    /* Membuat konten kosong */
+    position: absolute;
+    /* Posisi absolut untuk menempatkan elemen */
+    top: 3px;
+    /* Jarak dari atas */
+    left: 3px;
+    /* Jarak dari kiri */
+    width: 14px;
+    /* Lebar elemen putih */
+    height: 14px;
+    /* Tinggi elemen putih */
+    background-color: #2851a3;
+    /* Warna putih di dalam checkbox */
+    border-radius: 5px;
+    /* Border radius untuk sudut yang lebih halus */
+}
+
+/* Tombol Login */
+form button {
+    width: 101%;
+    padding: 15px 10px;
+    background: #3366cc;
+    color: #fff;
+    border: none;
+    border-radius: 17px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: background 0.3s;
+}
+
+form button:hover {
+    background: #2851a3;
+    /* Warna tombol saat hover */
+}
