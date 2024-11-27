@@ -92,8 +92,66 @@ class TugasAkhirController {
     public function addCatatan($id) {
         $user = $_SESSION['user']['user_id'];
         $catatan = $_POST['catatan'];
-        $tanggal = new DateTime();
+        $format = new DateTime();
+        $tanggal = $format->format('Y-m-d');
         $data = $this->tugas_akhir->addCatatan($id, $user,  $catatan, $tanggal);
+        if($data == true) {
+            $_SESSION['sukses'] = "Catatan Behasil ditambahkan";
+            header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
+        } else {
+            $_SESSION['error'] = "Catatan Gagal ditambahkan Coba Kembali";
+            header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
+        }
+    }
+
+    public function getCatatanTA($id) {
+        $data = $this->tugas_akhir->getCatatanTA($id);
+        if($data) {
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo false;
+        }
+    }
+
+    public function verifikasiCatatan($id) {
+        $data = $this->tugas_akhir->verifikasiCatatan($id);
+        if($data == true) {
+            $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
+            header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
+        } else {
+            $_SESSION['error'] = "Catatan Gagal terverifikasi Coba Kembali";
+            header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
+        }
+    }
+
+    public function verifikasiDokumen($id) {
+        $catatan = $this->tugas_akhir->validateCatatan($id);
+        $ta = $this->tugas_akhir->getOneDokumen($id);
+        if($catatan == null) {
+            $data = $this->tugas_akhir->verifikasi($id);
+            $this->verifikasiTA($ta['tugas_akhir_id']);
+            if($data == true) {
+                $_SESSION['sukses'] = "Dokumen Behasil terverifikasi";
+                header('location:../view/tugas_akhir/show.php?id=' . $ta['tugas_akhir_id']);
+            } else {
+                $_SESSION['error'] = "Dokumen Gagal terverifikasi Coba Kembali";
+                header('location:../view/tugas_akhir/show.php?id=' . $ta['tugas_akhir_id']);
+            }
+        } else {
+            $_SESSION['error'] = "Pastikan Catatan telah terverifikasi !";
+            header('location:../view/tugas_akhir/show.php?id=' . $ta['tugas_akhir_id']);
+        }
+    }
+
+    public function verifikasiTA($id) {
+        $data = $this->tugas_akhir->validateTA($id);
+        if($data == null) {
+            $this->tugas_akhir->updateStatusTA($id);
+            return true;
+        } else {
+            return true;
+        }
     }
 
     public function hapus($id) {

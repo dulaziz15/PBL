@@ -57,7 +57,12 @@ include "../component/sidebar.php"
             url: '/Pbl/routes/route.php?page=tugasakhir&sub=getOne&id=<?= $_GET['id'] ?>',
             success: function(data) {
                 console.log(data);
-                $("#status_project").append(`${data.status}`);
+                $("#status_project").append(`<div>
+                    <a class="status ${data.status == 1 ? 'status-verify' : 'status-revisi'}">
+                        <i class="fa-solid ${data.status == 1 ? 'fa-circle-check' : 'fa-pen-to-square'}"></i>
+                            <span>${data.status == 1 ? 'Verifiy' : 'Revisi'}</span>
+                            </a>
+                    </div>`);
                 $("#data_tugas_akhir").append(`
                     <li><span>NAMA : </span>${data.nama}</li>
                     <li><span>JUDUL : </span>${data.judul}</li>
@@ -67,6 +72,7 @@ include "../component/sidebar.php"
                 console.error("AJAX request failed:", status, error);
             }
         });
+
         $.ajax({
             type: 'GET',
             url: '/Pbl/routes/route.php?page=tugasakhir&sub=getOne&id=<?= $_GET['id'] ?>',
@@ -78,6 +84,7 @@ include "../component/sidebar.php"
                 console.error("AJAX request failed:", status, error);
             }
         });
+
         $.ajax({
             type: 'GET',
             url: '/Pbl/routes/route.php?page=tugasakhir&sub=getByTugasAkhir&id=<?= $_GET['id'] ?>',
@@ -90,9 +97,17 @@ include "../component/sidebar.php"
                 <tr>
                 <td>${tugas_akhir.bagian}</td>
                 <td>${tugas_akhir.nama_file}</td>
-                <td>${tugas_akhir.status}</td>
                 <td>
-                    <a href="../../routes/route.php?page=tugasakhir&sub=verifikasi&id=${tugas_akhir.dokumen_id}" onclick=" return confirm('Apakah yakin ?')" class="btn btn-verifikasi"><i class="fa-solid fa-circle-check"></i><span>Verifikasi</span></a>
+                <div>
+                    <a class="status ${tugas_akhir.status == 1 ? 'status-verify' : 'status-revisi'}">
+                        <i class="fa-solid ${tugas_akhir.status == 1 ? 'fa-circle-check' : 'fa-pen-to-square'}"></i>
+                            <span>${tugas_akhir.status == 1 ? 'Verifiy' : 'Revisi'}</span>
+                            </a>
+                    </div>
+                </td>
+                <td>
+                    <a href="../../routes/route.php?page=tugasakhir&sub=verifikasi&id=${tugas_akhir.dokumen_id}" onclick=" return confirm('Pastikan semua catatan sudah terverifikasi !')" class="btn btn-verifikasi"><i class="fa-solid fa-circle-check"></i><span>Verifikasi</span></a>
+                    <a href="../../routes/route.php?page=tugasakhir&sub=edit&id=${tugas_akhir.dokumen_id}" class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></a>
                     <a href="show_dokumen.php?id=${tugas_akhir.dokumen_id}" class="btn btn-show"><i class="fa-solid fa-eye"></i><span>Show</span></a>
                 </td>
                 </tr>
@@ -107,4 +122,5 @@ include "../component/sidebar.php"
                 console.error("AJAX request failed:", status, error);
             }
         });
+        
     </script>

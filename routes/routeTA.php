@@ -26,6 +26,12 @@ class routeTA {
             $this->tugas_akhir->getOneDokumen($id);
         } elseif($sub == 'tambahcatatan') {
             $this->tugas_akhir->addCatatan($id);
+        } elseif($sub == 'getCatatanTA') {
+            $this->tugas_akhir->getCatatanTA($id);
+        } elseif($sub == 'verifikasiCatatan') {
+            $this->tugas_akhir->verifikasiCatatan($id);
+        } elseif($sub == 'verifikasi') {
+            $this->tugas_akhir->verifikasiDokumen($id);
         } elseif($sub == 'hapus') {
             $this->tugas_akhir->hapus($id);
         } 

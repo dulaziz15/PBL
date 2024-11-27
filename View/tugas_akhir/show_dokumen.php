@@ -35,19 +35,7 @@ include "../component/sidebar.php"
                                         <input type="submit" value="Tambah"><br>
                                     </form>
                                 </div>
-                                <div class="catatan-body">
-                                    <!-- <div class="text">
-                                        Lorem ipsum dolor sit amet consectetur,
-                                        adipisicing elit. Non, suscipit.
-                                    </div>
-                                    <div class="status-catatan">
-                                        <div><span>Status Catatan</span></div>
-                                        <div><a class="status status-verify">
-                                            <i class="fa-solid fa-circle-check"></i>
-                                            <span>Verify</span>
-                                        </a></div>
-                                    </div> -->
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -75,10 +63,59 @@ include "../component/sidebar.php"
             success: function(data) {
                 console.log(data);
                 $("#data").html(`<p>${data.judul}</p>`);
-                $(".pdf").append(`<span>${data.nama_file}</span><br><embed src="../../src/bebas_tanggungan/${data.mahasiswa_id}/${data.nama_file}" width="500px" height="500px" />`)
+                $(".pdf").append(`<span>${data.nama_file}</span><br><embed src="../../src/bebas_tanggungan/${data.mahasiswa_id}/${data.nama_file}" />`)
             },
             error: function(xhr, status, error) {
                 console.error("AJAX request failed:", status, error);
             }
         });
+
+        $.ajax({
+            type: 'GET',
+            url: '/Pbl/routes/route.php?page=tugasakhir&sub=getCatatanTA&id=<?= $_GET['id'] ?>',
+            success: function(data) {
+                console.log(data);
+                if (Array.isArray(data)) {
+                    let tableContent = '';
+                    data.forEach(catatan => {
+                        tableContent += `
+                                                <div class="catatan-body">
+                                    <div class="text">
+                                        ${catatan.catatan}
+                                    </div>
+                                    <div class="status-catatan">
+                                        <div><span>Status Catatan</span></div>
+                                            <a style="margin-right: 10px;" class="status ${catatan.status == 1 ? 'status-verify' : 'status-revisi'}">
+                                                        <i class="fa-solid ${catatan.status == 1 ? 'fa-circle-check' : 'fa-pen-to-square'}"></i>
+                                                            <span>${catatan.status == 1 ? 'Verifiy' : 'Revisi'}</span>
+                                                    </a>
+                                        <div class="verifikasi-catatan">
+                                        <a onclick="UpdateCatatan(${catatan.catatan_id})" class="btn btn-verifikasi" ${catatan.status == 1 ? 'style="display:none;"' : ''} ">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <span>Verifikasi</span>
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>
+                        `;
+                    });
+                    $('.card-catatan').append(tableContent);
+                } else {
+                    console.error("Expected an array but received:", data);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX request failed:", status, error);
+            }
+        });
+
+        function UpdateCatatan(id) {
+            $.post("/Pbl/routes/route.php?page=tugasakhir&sub=verifikasiCatatan&id=" + id, {
+                    id: id,
+                    status: 1
+                },
+                function(data, status) {
+                    window.location.reload();
+                });
+        }
     </script>

@@ -3,7 +3,6 @@ $.ajax({
     type: 'GET',
     url: '/Pbl/routes/route.php?page=tugasakhir&sub=getAll',
     success: function(data) {
-        console.log(data);
         if (Array.isArray(data)) {
             let tableContent = '';
             data.forEach(tugas_akhir => {
@@ -13,10 +12,12 @@ $.ajax({
                 <td>${tugas_akhir.NIM}</td>
                 <td>${tugas_akhir.judul}</td>
                 <td>
-                    <a class="status status-verify">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Verify</span>
-                    </a>
+                    <div>
+                    <a class="status ${tugas_akhir.status == 1 ? 'status-verify' : 'status-revisi'}">
+                        <i class="fa-solid ${tugas_akhir.status == 1 ? 'fa-circle-check' : 'fa-pen-to-square'}"></i>
+                            <span>${tugas_akhir.status == 1 ? 'Verifiy' : 'Revisi'}</span>
+                            </a>
+                    </div>
                 </td>
                 <td>
                     <a href="show.php?id=${tugas_akhir.tugas_akhir_id}" class="btn btn-show"><i class="fa-solid fa-eye"></i><span>Show</span></a>
