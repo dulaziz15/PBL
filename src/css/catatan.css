@@ -1,0 +1,51 @@
+/* CARD CATATAN */
+
+.informasi-dokumen .card-catatan {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0px 20px 0px 20px;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.card-catatan .tambah-catatan {
+    margin: 20px;
+}
+
+.tambah-catatan .btn-tambah-catatan {
+    background: linear-gradient(90deg, rgba(25,118,210,1) 30%, rgba(11,100,189,1) 96%);
+    color: white;
+    cursor: pointer;
+}
+
+.tambah-catatan form {
+    margin: 20px;
+}
+
+.card-catatan .catatan-body {
+    background-color: whitesmoke;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px;
+}
+
+.catatan-body .text {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.catatan-body .status-catatan div {
+    margin-top: 5px;
+}
+
+.verifikasi-catatan {
+    padding: 20px 0px 20px 0px;
+}
+
+.status-catatan .verifikasi-catatan {
+    cursor: pointer;
+}

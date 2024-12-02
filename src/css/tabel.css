@@ -1,0 +1,56 @@
+/* SEMUA TABLE */
+
+.table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: linear-gradient(90deg, rgba(25,118,210,1) 30%, rgba(11,100,189,1) 96%);
+    color: white;
+}
+
+.table tbody {
+    background-color: aliceblue;
+}
+
+table th, td {
+    padding: 20px !important;
+}
+
+.table tbody tr:hover {
+    background-color: white;
+}
+
+/* TABEL TUGAS AKHIR */
+
+.table .tugas_akhir {
+    padding: 0;
+}
+
+.table .tugas_akhir table thead tr th {
+    font-size: 15px;
+    padding: 10px;
+}
+
+.tugas_akhir .table tbody tr td{
+    font-size: 15px;
+    padding: 20px;
+}
+
+.table .table-container.dokumen {
+    font-size: 15px;
+}
+
+div.dt-container .dt-search input {
+    background-color: aqua !important;
+}

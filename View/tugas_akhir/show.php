@@ -27,6 +27,13 @@ include "../component/sidebar.php"
                     </div>
                     <div class="table-container dokumen">
                         <table class="table">
+                            <?php
+                            if (isset($_SESSION['sukses'])) {
+                                echo "<h1>" . $_SESSION['sukses'] . "</h1>";
+                            } elseif (isset($_SESSION['error'])) {
+                                echo "<h1>" . $_SESSION['error'] . "</h1>";
+                            }
+                            ?>
                             <thead>
                                 <tr>
                                     <th>BAGIAN</th>
@@ -107,13 +114,14 @@ include "../component/sidebar.php"
                 </td>
                 <td>
                     <a href="../../routes/route.php?page=tugasakhir&sub=verifikasi&id=${tugas_akhir.dokumen_id}" onclick=" return confirm('Pastikan semua catatan sudah terverifikasi !')" class="btn btn-verifikasi"><i class="fa-solid fa-circle-check"></i><span>Verifikasi</span></a>
-                    <a href="../../routes/route.php?page=tugasakhir&sub=edit&id=${tugas_akhir.dokumen_id}" class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></a>
+                    <a href="edit_dokumen.php?id=${tugas_akhir.dokumen_id}" class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></a>
                     <a href="show_dokumen.php?id=${tugas_akhir.dokumen_id}" class="btn btn-show"><i class="fa-solid fa-eye"></i><span>Show</span></a>
                 </td>
                 </tr>
             `;
                     });
                     $('#dataTugasAkhir').html(tableContent);
+                    $('table').DataTable();
                 } else {
                     console.error("Expected an array but received:", data);
                 }
@@ -122,5 +130,4 @@ include "../component/sidebar.php"
                 console.error("AJAX request failed:", status, error);
             }
         });
-        
     </script>

@@ -49,6 +49,27 @@
                         <a href="../../routes/route.php?page=tugasakhir&sub=manageTA">Data Dokumen TA</a>
                     </div>
                 </li>
+                <li>
+                    <div class="menu <?= $url == 'dokumen' ? 'active' : '' ?>">
+                        <div class="icon">
+                            <i class="fa-solid fa-gauge"></i>
+                        </div>
+                        <a href="../../routes/route.php?page=dokumenpendukung&sub=manageDokumen">Dokumen Pendukung</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span>Arsip</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu <?= $url == 'pendukung' ? 'active' : '' ?>">
+                        <div class="icon">
+                            <i class="fa-solid fa-gauge"></i>
+                        </div>
+                        <a href="../../routes/route.php?page=tugasakhir&sub=manageTA">Arsip</a>
+                    </div>
+                </li>
                 <?php
                     } elseif($_SESSION['user']['role'] == 2) {
                 ?>

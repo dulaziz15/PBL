@@ -63,7 +63,7 @@ include "../component/sidebar.php"
             success: function(data) {
                 console.log(data);
                 $("#data").html(`<p>${data.judul}</p>`);
-                $(".pdf").append(`<span>${data.nama_file}</span><br><embed src="../../src/bebas_tanggungan/${data.mahasiswa_id}/${data.nama_file}" />`)
+                $(".pdf").append(`<span>${data.nama_file}</span><br><embed src="../../src/bebas_tanggungan/${data.NIM}/${data.nama_file}" />`)
             },
             error: function(xhr, status, error) {
                 console.error("AJAX request failed:", status, error);

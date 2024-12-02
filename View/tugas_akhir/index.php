@@ -27,7 +27,6 @@ include "../component/sidebar.php"
                     </tr>
                 </thead>
                 <tbody id="dataTugasAkhir">
-
                 </tbody>
             </table>
         </div>

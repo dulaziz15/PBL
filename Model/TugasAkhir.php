@@ -50,6 +50,34 @@ class TugasAkhir
         }
     }
 
+    public function update($id) {
+        $judul = $_POST['judul'];
+        try {
+            $query = "UPDATE Tugas_akhir SET judul = '$judul'";
+            $data = $this->koneksi->KoneksiDB()->query($query);
+            return true;
+        } catch(PDOException $e) {
+            return false;
+        }
+    }
+
+    public function getNIMbyDokumen($id) {
+        $query = "select NIM, ta.tugas_akhir_id from Dokumen_tugas_akhir as dok inner join Tugas_akhir as ta on ta.tugas_akhir_id = dok.tugas_akhir_id inner join Mahasiswa as mhs on mhs.mahasiswa_id = ta.mahasiswa_id where dok.dokumen_id = $id";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetch();
+        return $result;
+    }
+
+    public function updateDokumenTA($id, $file) {
+        try {
+            $query = "UPDATE Dokumen_tugas_akhir SET nama_file = '" . $file['name'] . "'WHERE dokumen_id = $id";
+            $this->koneksi->KoneksiDB()->query($query);
+            return true;
+        } catch(PDOException $e) {
+            return false;
+        }
+    }
+
     public function getDokumen($id) {
         $query = "SELECT * FROM Dokumen_tugas_akhir WHERE tugas_akhir_id = $id";
         $data = $this->koneksi->KoneksiDB()->query($query);
@@ -66,7 +94,6 @@ class TugasAkhir
     }
 
     public function addCatatan($id, $user, $catatan, $tanggal) {
-        // var_dump( $user);
         try {
             $query = "INSERT INTO Catatan_TA (dokumen_id, user_id, catatan, tanggal, status) VALUES ('$id', '$user', '$catatan', '$tanggal', 0)";
             $data = $this->koneksi->KoneksiDB()->query($query);
