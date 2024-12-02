@@ -25,7 +25,7 @@ Proyek ini merupakan **Sistem Informasi Bebas Tanggungan TA** yang dirancang unt
 
 ## Bahasa Pemrograman yang Digunakan
 - **Frontend**: HTML, CSS, JavaScript  
-- **Backend**: PHP, Laravel  
-- **Database**: MySQL  
+- **Backend**: PHP
+- **Database**: SQL  
 
 ---
