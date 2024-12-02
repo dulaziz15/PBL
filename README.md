@@ -1,7 +1,7 @@
 # SISTEM INFORMASI BEBAS TANGGUNGAN TA
 
 ## Deskripsi
-Proyek ini merupakan **Sistem Informasi Bebas Tanggungan TA** yang dirancang untuk membantu pengelolaan data bebas tanggungan tugas akhir di institusi pendidikan. Proyek ini dibuat sebagai bagian dari pembelajaran kelas 2G.
+Proyek ini merupakan **Sistem Informasi Bebas Tanggungan TA** yang dirancang untuk membantu pengelolaan data bebas tanggungan tugas akhir di **Politeknik Negeri Malang**.
 
 ---
 
