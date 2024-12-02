@@ -2,10 +2,10 @@
 namespace Pbl\Config;
 use PDO;
 
-class Koneksi {
+class koneksi {
 
     public function KoneksiDB() {
-        $conn = new PDO("sqlsrv:server=LAPTOP-60DUFOCJ\SQLEXPRESS;database=BebasTanggunganDB");
+        $conn = new PDO("sqlsrv:server=LAPTOP-60DUFOCJ\SQLEXPRESS;database=BebasTanggunganTADB");
         return $conn;
     }
 
