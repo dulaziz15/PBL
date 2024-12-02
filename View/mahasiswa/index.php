@@ -64,6 +64,14 @@ include "../component/sidebar.php"
                     `;
                     });
                     $('#dataMahasiswa').html(tableContent);
+                    $('table').DataTable({
+                paging: true, // Menampilkan paginasi
+                searching: true, // Mengaktifkan pencarian
+                ordering: true, // Mengaktifkan sorting
+                info: true, // Menampilkan informasi tabel
+                autoWidth: true, // Menonaktifkan pengaturan otomatis lebar kolom
+                responsive: true
+            });
                 } else {
                     console.error("Expected an array but received:", data);
                 }

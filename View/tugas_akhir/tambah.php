@@ -54,7 +54,7 @@ include "../component/sidebar.php"
                     let tableContent = '';
                     data.forEach(mahasiswa => {
                         tableContent += `
-                        <option value="${mahasiswa.mahasiswa_id}">${mahasiswa.nama}</option>
+                        <option value="${mahasiswa.mahasiswa_id}:${mahasiswa.NIM}">${mahasiswa.nama}</option>
                     `;
                     });
                     $('#dataMahasiswa').append(tableContent);

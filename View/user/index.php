@@ -64,6 +64,21 @@ unset($_SESSION['error']);
                     `;
                 });
                 $('#dataUser').html(tableContent);
+                $('table').DataTable({
+                paging: true, // Menampilkan paginasi
+                searching: true, // Mengaktifkan pencarian
+                ordering: true, // Mengaktifkan sorting
+                info: true, // Menampilkan informasi tabel
+                autoWidth: true, // Menonaktifkan pengaturan otomatis lebar kolom
+                responsive: true, // Menyusun ulang kolom secara responsif di perangkat mobile
+                language: {
+                    search: "Cari:",
+                    lengthMenu: "Tampilkan _MENU_ entri per halaman",
+                    info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ entri",
+                    infoEmpty: "Menampilkan 0 hingga 0 dari 0 entri",
+                    infoFiltered: "(disaring dari _MAX_ total entri)"
+                }
+            });
             } else {
                 console.error("Expected an array but received:", data);
             }

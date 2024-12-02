@@ -40,6 +40,10 @@ class TugasAkhirController {
             echo false;
         }
     }
+
+    public function edit($id) {
+        header('location:../view/' . View::TUGASAKHIR->value . '/edit.php?id=' . $id);
+    }
     
     public function add() {
         $file = [
@@ -51,11 +55,11 @@ class TugasAkhirController {
         ];
         $judul= $_POST['judul'];
         $status = 0;
-        $mahasiswa = $_POST['mahasiswa'];
-        $targetDir = '../src/bebas_tanggungan/' . $mahasiswa . "/";
+        $mahasiswa_list = $_POST['mahasiswa'];
+        list($mahasiswa, $nim) = explode(':', $mahasiswa_list);
+        $targetDir = '../src/bebas_tanggungan/' . $nim . "/";
 
         @mkdir($targetDir, 0777, true);
-        $path = '../src/bebas_tanggungan/' . $_SESSION['user']['username'] . "/";
         $data = $this->tugas_akhir->add($file, $mahasiswa, $judul, $status);
         if($data == true) {
             foreach($file as $dokumen) {
@@ -66,6 +70,32 @@ class TugasAkhirController {
         } else {
             $_SESSION['error'] = "Data Gagal ditambah Coba Kembali";
             header('location:../routes/route.php?page=tugasakhir&sub=manageTA');
+        }
+    }
+
+    public function update($id) {
+        $data = $this->tugas_akhir->update($id);
+        if($data == true) {
+            $_SESSION['sukses'] = "Data Behasil diupdate";
+            header('location:../routes/route.php?page=tugasakhir&sub=manageTA');
+        } else {
+            $_SESSION['error'] = "Data Gagal diupdate Coba Kembali";
+            header('location:../routes/route.php?page=tugasakhir&sub=manageTA');
+        }
+    }
+
+    public function updateDokumenTA($id) {
+        $file = $_FILES['dokumen'];
+        $data = $this->tugas_akhir->updateDokumenTA($id, $file);
+        $dokumen = $this->tugas_akhir->getNIMbyDokumen($id);
+        $targetDir = '../src/bebas_tanggungan/' . $dokumen['nim'] . "/";
+        if($data == true) {
+            move_uploaded_file($file['dokumen']['tmp_name'], $targetDir . $file['name']);
+            $_SESSION['sukses'] = "Data Behasil diupdate";
+            header('location:../view/tugas_akhir/show.php?id=' . $dokumen['tugas_akhir_id']);
+        } else {
+            $_SESSION['error'] = "Data Gagal diupdate Coba Kembali";
+            header('location:../view/tugas_akhir/show.php?id=' . $dokumen['tugas_akhir_id']);
         }
     }
 

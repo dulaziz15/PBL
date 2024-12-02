@@ -4,6 +4,7 @@ use Pbl\Controller\AuthController;
 use Pbl\Enums\role;
 use Pbl\Routes\routeBiodata;
 use Pbl\Routes\routeMahasiswa;
+use Pbl\Routes\routePendukung;
 use Pbl\Routes\routeTA;
 use Pbl\Routes\routeUser;
 
@@ -12,6 +13,7 @@ $auth = new AuthController();
 $user = new RouteUser();
 $tugas_akhir = new routeTA();
 $mahasiswa = new routeMahasiswa();
+$pendukung = new routePendukung();
 
 $page = isset($_GET['page']) ? $_GET['page'] : $_GET['page'] = 'login';
 
@@ -29,6 +31,8 @@ if (isset($_SESSION['user'])) {
             $user->route();
         } elseif ($page == 'tugasakhir') {
             $tugas_akhir->route();
+        } elseif ($page == 'dokumenpendukung') {
+            $pendukung->route();
         } elseif ($page == 'mahasiswa') {
             $mahasiswa->route();
         } elseif($page == 'dashboard') {

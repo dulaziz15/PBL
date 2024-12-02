@@ -10,7 +10,7 @@ class routeTA {
     }
 
     public function route() {
-        $sub = isset($_GET['sub']) ? $_GET['sub'] : $_GET['sub'] = 'manageuser';
+        $sub = isset($_GET['sub']) ? $_GET['sub'] : $_GET['sub'] = 'manageTA';
         $id = isset($_GET['id']) ? $_GET['id'] : "";
         if($sub == 'manageTA') {
             $this->tugas_akhir->index();
@@ -18,8 +18,14 @@ class routeTA {
             $this->tugas_akhir->getAll();
         } elseif($sub == 'getOne') {
             $this->tugas_akhir->getOne($id);
+        } elseif($sub == 'edit') {
+            $this->tugas_akhir->edit($id);
         } elseif($sub == 'add') {
             $this->tugas_akhir->add();
+        } elseif($sub == 'update') {
+            $this->tugas_akhir->update($id);
+        } elseif($sub == 'updateDokumenTA') {
+            $this->tugas_akhir->updateDokumenTA($id);
         } elseif($sub == 'getByTugasAkhir') {
             $this->tugas_akhir->getByTA($id);
         } elseif($sub == 'getOneDokumen') {
