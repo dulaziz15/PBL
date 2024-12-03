@@ -1,27 +1,113 @@
-a,
-button,
-input,
-select,
-h1,
-h2,
-h3,
-h4,
-h5,
-* {
-    box-sizing: border-box;
+/* Atur latar belakang */
+body {
     margin: 0;
     padding: 0;
-    border: none;
-    text-decoration: none;
-    background: none;
-
-    -webkit-font-smoothing: antialiased;
+    font-family: Arial, sans-serif;
+    color: white;
 }
 
-menu,
-ol,
-ul {
-    list-style-type: none;
+/* Logo */
+.logo {
+    width: 356px;
+    height: 74px;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white; /* Gradien warna hijau */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.navbar a {
+    color: #0061E0;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 15px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #0061E0;
+    border-bottom: 2px solid #0061E0;
+}
+
+/* Section Styling */
+section {
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+}
+
+/* Gambar latar belakang dengan ukuran dapat diatur */
+#home {
+    background: url('home.png') no-repeat center center;
+    background-size: 100%;
+}
+
+#alur {
+    background: url('alurbebastanggungan.png') no-repeat center center;
+    background-size: 60%;
+}
+
+/* Styling Kontak dengan CSS Grid */
+#kontak {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #f4f4f4; /* Warna latar belakang untuk kontras */
+    color: #333;
+}
+
+.kontak-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Grid responsif */
+    gap: 20px;
+    width: 80%;
+    max-width: 1200px;
+    text-align: left;
+}
+
+.kontak-item {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.kontak-item h3 {
+    margin-bottom: 10px;
+    color: #4CAF50; /* Warna hijau untuk judul */
+}
+
+.kontak-item p {
     margin: 0;
-    padding: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Responsif untuk perangkat kecil */
+@media (max-width: 768px) {
+    section {
+        height: auto;
+    }
+    #home, #alur {
+        background-size: 100%;
+    }
 }
