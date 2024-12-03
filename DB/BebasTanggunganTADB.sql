@@ -39,7 +39,7 @@ CREATE TABLE Bebas_tanggungan (
     bebas_tanggungan_id INT PRIMARY KEY IDENTITY(1,1),
     mahasiswa_id INT UNIQUE,
     no_surat VARCHAR(100),
-    status_bebas_tanggungan VARCHAR(20) CHECK (status_bebas_tanggungan IN ('Pending', 'Approved', 'Rejected')),
+    status_bebas_tanggungan VARCHAR(20) CHECK (status_bebas_tanggungan IN ('Pending', 'Approved')),
     FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO
@@ -49,7 +49,7 @@ CREATE TABLE Tugas_akhir (
 	mahasiswa_id INT UNIQUE, 
 	judul VARCHAR(255) NOT NULL,
 	file_project VARCHAR(100) NOT NULL, 
-	status_tugas_akhir VARCHAR(20) CHECK (status_tugas_akhir IN ('Pending', 'Approved', 'Rejected')), 
+	status_tugas_akhir VARCHAR(20) CHECK (status_tugas_akhir IN ('Pending', 'Approved')), 
 	FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id) ON DELETE CASCADE ON UPDATE CASCADE 
 )
 GO
@@ -59,7 +59,7 @@ CREATE TABLE Dokumen_tugas_akhir (
 	tugas_akhir_id INT,
 	nama_file VARCHAR(100),
 	bagian VARCHAR(100),
-	status_dokumen_ta VARCHAR(20) CHECK (status_dokumen_ta IN ('Pending', 'Approved', 'Rejected')), 
+	status_dokumen_ta VARCHAR(20) CHECK (status_dokumen_ta IN ('Pending', 'Approved')), 
 	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO
@@ -70,7 +70,7 @@ CREATE TABLE Catatan_TA (
     user_id INT,
     catatan VARCHAR(255) NOT NULL,
     tanggal DATE,
-    status_catatan_ta VARCHAR(20) CHECK (status_catatan_ta IN ('Pending', 'Approved', 'Rejected')),
+    status_catatan_ta VARCHAR(20) CHECK (status_catatan_ta IN ('Pending', 'Approved', 'Submit')),
     FOREIGN KEY (dokumen_id) REFERENCES Dokumen_tugas_akhir(dokumen_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) 
 )
@@ -82,7 +82,7 @@ CREATE TABLE Dokumen_pendukung (
 	tanda_terima_ta VARCHAR(100) NOT NULL,
 	tanda_terima_pkl VARCHAR(100) NOT NULL,
 	bebas_kompen VARCHAR(100) NOT NULL,
-	status_dokumen_pendukung VARCHAR(20) CHECK (status_dokumen_pendukung IN ('Pending', 'Approved', 'Rejected')),
+	status_dokumen_pendukung VARCHAR(20) CHECK (status_dokumen_pendukung IN ('Pending', 'Approved')),
 	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id) ON DELETE CASCADE ON UPDATE CASCADE 
 )
 GO 
@@ -93,7 +93,7 @@ CREATE TABLE Catatan_pendukung (
 	user_id INT,
 	catatan VARCHAR(255) NOT NULL,
 	tanggal DATE,
-	status_catatan_pendukung VARCHAR(20) CHECK (status_catatan_pendukung IN ('Pending', 'Approved', 'Rejected')),
+	status_catatan_pendukung VARCHAR(20) CHECK (status_catatan_pendukung IN ('Pending', 'Approved', 'Submit')),
 	FOREIGN KEY (dokumen_pendukung_id) REFERENCES Dokumen_pendukung(dokumen_pendukung_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES Users(user_id) 
 )
@@ -150,13 +150,13 @@ GO
 INSERT INTO Bebas_tanggungan (mahasiswa_id, no_surat, status_bebas_tanggungan)
 VALUES
     (1, 'BT-001', 'Pending'),
-    (2, 'BT-002', 'Rejected'),
+    (2, 'BT-002', 'Pending'),
     (3, 'BT-003', 'Approved'),
     (4, 'BT-004', 'Approved'),
     (5, 'BT-005', 'Approved'),
     (6, 'BT-006', 'Pending'),
     (7, 'BT-007', 'Approved'),
-    (8, 'BT-008', 'Rejected'),
+    (8, 'BT-008', 'Pending'),
     (9, 'BT-009', 'Pending'),
     (10, 'BT-010', 'Approved');
 
@@ -166,12 +166,12 @@ INSERT INTO Tugas_akhir (mahasiswa_id, judul, file_project, status_tugas_akhir)
 VALUES 
 	(1, 'Analisis Keamanan Jaringan', 'keamanan_jaringan.zip', 'Pending'),
 	(2, 'Optimasi Algoritma Pencarian Data', 'optimasi_algoritma.zip', 'Approved'),
-	(3, 'Keamanan Data dalam Cloud Computing ', 'keamanan_data_cloud.zip', 'Rejected'),
+	(3, 'Keamanan Data dalam Cloud Computing ', 'keamanan_data_cloud.zip', 'Pending'),
 	(4, 'Aplikasi Monitoring Jaringan Berbasis Android', 'monitoring_jaringan.zip', 'Approved'),
 	(5, 'Penerapan IOT pada Smart Home', 'iot_smart_home.zip', 'Pending'),
 	(6, 'Keamanan pada Jaringan Wireless', 'keamanan_jaringan_wireless.zip', 'Approved'),
 	(7, 'Penerapan Machine Learning dalam Dagnosa penyakit', 'machine_learning_diagnosa.zip', 'Pending'),
-	(8, 'Sistem Rekomendasi Film Menggunakan Collaborative Filtering', 'rekomendasi_film.zip', 'Rejected'),
+	(8, 'Sistem Rekomendasi Film Menggunakan Collaborative Filtering', 'rekomendasi_film.zip', 'Approved'),
 	(9, 'Sistem Rekomendasi Musik Berdasrkan Prefernsi', 'rekomendasi_musik.zip', 'Pending'),
 	(10, 'Penerapan Game-based Learning dalam Pendidikan', 'game_based_learning.zip', 'Approved');
 
@@ -181,14 +181,14 @@ INSERT INTO Dokumen_tugas_akhir (tugas_akhir_id, nama_file, bagian, status_dokum
 VALUES 
 	(1, 'bab1.pdf', 'Pendahuluan', 'Approved'),
 	(1, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
-	(1, 'bab3.pdf', 'Metodologi', 'Rejected'),
+	(1, 'bab3.pdf', 'Metodologi', 'Pending'),
 	(2, 'bab1.pdf', 'Pendahuluan', 'Approved'),
 	(2, 'bab2.pdf', 'Kajian Pustaka', 'Pending'),
 	(2, 'bab3.pdf', 'Metodologi', 'Pending'),
 	(3, 'bab1.pdf', 'Pendahuluan', 'Approved'),
 	(3, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
-	(3, 'bab3.pdf', 'Metodologi', 'Rejected'),
-	(4, 'bab1.pdf', 'Pendahuluan', 'Rejected'),
+	(3, 'bab3.pdf', 'Metodologi', 'Approved'),
+	(4, 'bab1.pdf', 'Pendahuluan', 'Pending'),
 	(4, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
 	(4, 'bab3.pdf', 'Metodologi', 'Approved'),
 	(5, 'bab1.pdf', 'Pendahuluan', 'Pending'),
@@ -203,7 +203,7 @@ VALUES
 	(8, 'bab1.pdf', 'Pendahuluan', 'Pending'),
 	(8, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
 	(8, 'bab3.pdf', 'Metodologi', 'Approved'),
-	(9, 'bab1.pdf', 'Pendahuluan', 'Rejected'),
+	(9, 'bab1.pdf', 'Pendahuluan', 'Approved'),
 	(9, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
 	(9, 'bab3.pdf', 'Metodologi', 'Approved'),
 	(10, 'bab1.pdf', 'Pendahuluan', 'Approved'),
@@ -220,30 +220,30 @@ VALUES
     (4, 2, 'Dokumen bab Pendahuluan perlu perbaikan referensi.', '2024-11-12', 'Pending'),
     (5, 2, 'Dokumen bab Kajian Pustaka disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (6, 2, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Approved'),
-    (7, 3, 'Dokumen bab Pendahuluan disetujui tanpa revisi.', '2024-11-12', 'Approved'),
+    (7, 3, 'Dokumen bab Pendahuluan disetujui tanpa revisi.', '2024-11-12', 'Submit'),
     (8, 3, 'Dokumen bab Kajian Pustaka disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (9, 3, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (10, 4, 'Dokumen bab Pendahuluan disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (11, 4, 'Dokumen bab Kajian Pustaka perlu revisi pada metode analisis.', '2024-11-12', 'Pending'),
-    (12, 4, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Approved'),
+    (12, 4, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Submit'),
     (13, 5, 'Dokumen bab Pendahuluan disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (14, 5, 'Dokumen bab Kajian Pustaka disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (15, 5, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (16, 6, 'Dokumen bab Pendahuluan disetujui tanpa revisi.', '2024-11-12', 'Approved'),
-    (17, 6, 'Dokumen bab Kajian Pustaka disetujui tanpa revisi.', '2024-11-12', 'Approved'),
+    (17, 6, 'Dokumen bab Kajian Pustaka disetujui tanpa revisi.', '2024-11-12', 'Submit'),
     (18, 6, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (19, 7, 'Dokumen bab Pendahuluan perlu perbaikan sumber pustaka.', '2024-11-12', 'Pending'),
     (20, 7, 'Dokumen bab Kajian Pustaka disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (21, 7, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (22, 8, 'Dokumen bab Pendahuluan membutuhkan klarifikasi tambahan.', '2024-11-12', 'Pending'),
-    (23, 8, 'Dokumen bab Kajian Pustaka disetujui tanpa revisi.', '2024-11-12', 'Approved'),
+    (23, 8, 'Dokumen bab Kajian Pustaka disetujui tanpa revisi.', '2024-11-12', 'Submit'),
     (24, 8, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (25, 9, 'Dokumen bab Pendahuluan disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (26, 9, 'Dokumen bab Kajian Pustaka membutuhkan penambahan referensi terbaru.', '2024-11-12', 'Pending'),
-    (27, 9, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Approved'),
+    (27, 9, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Submit'),
     (28, 10, 'Dokumen bab Pendahuluan disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (29, 10, 'Dokumen bab Kajian Pustaka disetujui tanpa revisi.', '2024-11-12', 'Approved'),
-    (30, 10, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Approved');
+    (30, 10, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Submit');
 
 GO
 
@@ -256,7 +256,7 @@ VALUES
 	(5, 'tanda_TA_5.pdf', 'tanda_PKL_5.pdf', 'bebas_kompen_5.pdf', 'Pending'),
 	(6, 'tanda_TA_6.pdf', 'tanda_PKL_6.pdf', 'bebas_kompen_6.pdf', 'Approved'),
 	(7, 'tanda_TA_7.pdf', 'tanda_PKL_7.pdf', 'bebas_kompen_7.pdf', 'Approved'),
-	(8, 'tanda_TA_8.pdf', 'tanda_PKL_8.pdf', 'bebas_kompen_8.pdf', 'Rejected'),
+	(8, 'tanda_TA_8.pdf', 'tanda_PKL_8.pdf', 'bebas_kompen_8.pdf', 'Pending'),
 	(9, 'tanda_TA_9.pdf', 'tanda_PKL_9.pdf', 'bebas_kompen_9.pdf', 'Approved'),
 	(10, 'tanda_TA_10.pdf', 'tanda_PKL_10.pdf', 'bebas_kompen_10.pdf', 'Pending');
 
@@ -264,16 +264,16 @@ GO
 
 INSERT INTO Catatan_pendukung (dokumen_pendukung_id, user_id, catatan, tanggal, status_catatan_pendukung)
 VALUES 
-	(11, 1, 'Dokumen tanda terima TA diterima tanpa revisi.', '2024-11-12', 'Approved'),
-	(12, 2, 'Dokumen tanda terima PKL membutuhkan klarifikasi tambahan.', '2024-11-12', 'Pending'),
-	(13, 3, 'Dokumen bebas kompen disetujui tanpa revisi.', '2024-11-12', 'Approved'),
-	(14, 4, 'Dokumen tanda terima TA diterima tanpa revisi.', '2024-11-12', 'Approved'),
-	(15, 5, 'Dokumen tanda terima PKL membutuhkan tanda tangan tambahan.', '2024-11-12', 'Pending'),
-	(16, 6, 'Dokumen bebas kompen disetujui tanpa revisi.', '2024-11-12', 'Approved'),
-	(17, 7, 'Dokumen tanda terima TA disetujui tanpa revisi.', '2024-11-12', 'Approved'),
-	(18, 8, 'Dokumen tanda terima PKL memerlukan verifikasi lebih lanjut.', '2024-11-12', 'Pending'),
-	(19, 9, 'Dokumen bebas kompen disetujui tanpa revisi.', '2024-11-12', 'Approved'),
-	(20, 10, 'Dokumen tanda terima TA diterima tanpa revisi.', '2024-11-12', 'Approved');
+	(1, 1, 'Dokumen tanda terima TA diterima tanpa revisi.', '2024-11-12', 'Approved'),
+	(2, 2, 'Dokumen tanda terima PKL membutuhkan klarifikasi tambahan.', '2024-11-12', 'Pending'),
+	(3, 3, 'Dokumen bebas kompen disetujui tanpa revisi.', '2024-11-12', 'Submit'),
+	(4, 4, 'Dokumen tanda terima TA diterima tanpa revisi.', '2024-11-12', 'Approved'),
+	(5, 5, 'Dokumen tanda terima PKL membutuhkan tanda tangan tambahan.', '2024-11-12', 'Pending'),
+	(6, 6, 'Dokumen bebas kompen disetujui tanpa revisi.', '2024-11-12', 'Submit'),
+	(7, 7, 'Dokumen tanda terima TA disetujui tanpa revisi.', '2024-11-12', 'Approved'),
+	(8, 8, 'Dokumen tanda terima PKL memerlukan verifikasi lebih lanjut.', '2024-11-12', 'Pending'),
+	(9, 9, 'Dokumen bebas kompen disetujui tanpa revisi.', '2024-11-12', 'Submit'),
+	(10, 10, 'Dokumen tanda terima TA diterima tanpa revisi.', '2024-11-12', 'Approved');
 
 GO
 
