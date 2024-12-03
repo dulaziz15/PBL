@@ -35,15 +35,6 @@ CREATE TABLE Mahasiswa (
 )
 GO 
 
-CREATE TABLE Bebas_tanggungan (
-    bebas_tanggungan_id INT PRIMARY KEY IDENTITY(1,1),
-    mahasiswa_id INT UNIQUE,
-    no_surat VARCHAR(100),
-    status_bebas_tanggungan VARCHAR(20) CHECK (status_bebas_tanggungan IN ('Pending', 'Approved')),
-    FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-GO
-
 CREATE TABLE Tugas_akhir (
 	tugas_akhir_id INT PRIMARY KEY IDENTITY(1,1),
 	mahasiswa_id INT UNIQUE, 
@@ -51,6 +42,15 @@ CREATE TABLE Tugas_akhir (
 	file_project VARCHAR(100) NOT NULL, 
 	status_tugas_akhir VARCHAR(20) CHECK (status_tugas_akhir IN ('Pending', 'Approved')), 
 	FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id) ON DELETE CASCADE ON UPDATE CASCADE 
+)
+GO
+
+CREATE TABLE Bebas_tanggungan (
+    bebas_tanggungan_id INT PRIMARY KEY IDENTITY(1,1),
+    tugas_akhir_id INT UNIQUE,
+    no_surat VARCHAR(100),
+    status_bebas_tanggungan VARCHAR(20) CHECK (status_bebas_tanggungan IN ('Pending', 'Approved')),
+    FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO
 
@@ -147,21 +147,6 @@ VALUES
 
 GO 
 
-INSERT INTO Bebas_tanggungan (mahasiswa_id, no_surat, status_bebas_tanggungan)
-VALUES
-    (1, 'BT-001', 'Pending'),
-    (2, 'BT-002', 'Pending'),
-    (3, 'BT-003', 'Approved'),
-    (4, 'BT-004', 'Approved'),
-    (5, 'BT-005', 'Approved'),
-    (6, 'BT-006', 'Pending'),
-    (7, 'BT-007', 'Approved'),
-    (8, 'BT-008', 'Pending'),
-    (9, 'BT-009', 'Pending'),
-    (10, 'BT-010', 'Approved');
-
-GO 
-
 INSERT INTO Tugas_akhir (mahasiswa_id, judul, file_project, status_tugas_akhir)
 VALUES 
 	(1, 'Analisis Keamanan Jaringan', 'keamanan_jaringan.zip', 'Pending'),
@@ -174,6 +159,21 @@ VALUES
 	(8, 'Sistem Rekomendasi Film Menggunakan Collaborative Filtering', 'rekomendasi_film.zip', 'Approved'),
 	(9, 'Sistem Rekomendasi Musik Berdasrkan Prefernsi', 'rekomendasi_musik.zip', 'Pending'),
 	(10, 'Penerapan Game-based Learning dalam Pendidikan', 'game_based_learning.zip', 'Approved');
+
+GO
+
+INSERT INTO Bebas_tanggungan (tugas_akhir_id, no_surat, status_bebas_tanggungan)
+VALUES
+    (1, 'BT-001', 'Pending'),
+    (2, 'BT-002', 'Pending'),
+    (3, 'BT-003', 'Approved'),
+    (4, 'BT-004', 'Approved'),
+    (5, 'BT-005', 'Approved'),
+    (6, 'BT-006', 'Pending'),
+    (7, 'BT-007', 'Approved'),
+    (8, 'BT-008', 'Pending'),
+    (9, 'BT-009', 'Pending'),
+    (10, 'BT-010', 'Approved');
 
 GO
 
