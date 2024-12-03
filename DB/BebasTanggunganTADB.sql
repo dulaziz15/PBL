@@ -16,7 +16,7 @@ CREATE TABLE Log_activity (
 	user_id INT,
 	action VARCHAR(100) NOT NULL, 
 	waktu DATETIME DEFAULT GETDATE(),
-	FOREIGN KEY (user_id) REFERENCES Users(user_id)
+	FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO 
 
@@ -31,7 +31,7 @@ CREATE TABLE Mahasiswa (
 	tgl_lahir DATE, 
 	alamat VARCHAR(255),
 	img VARCHAR(255)
-	FOREIGN KEY (user_id) REFERENCES Users(user_id)
+	FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE ON UPDATE CASCADE 
 )
 GO 
 
@@ -40,7 +40,7 @@ CREATE TABLE Bebas_tanggungan (
     mahasiswa_id INT UNIQUE,
     no_surat VARCHAR(100),
     status_bebas_tanggungan VARCHAR(20) CHECK (status_bebas_tanggungan IN ('Pending', 'Approved', 'Rejected')),
-    FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id)
+    FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO
 
@@ -50,7 +50,7 @@ CREATE TABLE Tugas_akhir (
 	judul VARCHAR(255) NOT NULL,
 	file_project VARCHAR(100) NOT NULL, 
 	status_tugas_akhir VARCHAR(20) CHECK (status_tugas_akhir IN ('Pending', 'Approved', 'Rejected')), 
-	FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id)
+	FOREIGN KEY (mahasiswa_id) REFERENCES Mahasiswa(mahasiswa_id) ON DELETE CASCADE ON UPDATE CASCADE 
 )
 GO
 
@@ -60,7 +60,7 @@ CREATE TABLE Dokumen_tugas_akhir (
 	nama_file VARCHAR(100),
 	bagian VARCHAR(100),
 	status_dokumen_ta VARCHAR(20) CHECK (status_dokumen_ta IN ('Pending', 'Approved', 'Rejected')), 
-	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id)
+	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO
 
@@ -71,8 +71,8 @@ CREATE TABLE Catatan_TA (
     catatan VARCHAR(255) NOT NULL,
     tanggal DATE,
     status_catatan_ta VARCHAR(20) CHECK (status_catatan_ta IN ('Pending', 'Approved', 'Rejected')),
-    FOREIGN KEY (dokumen_id) REFERENCES Dokumen_tugas_akhir(dokumen_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (dokumen_id) REFERENCES Dokumen_tugas_akhir(dokumen_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) 
 )
 GO
 
@@ -83,7 +83,7 @@ CREATE TABLE Dokumen_pendukung (
 	tanda_terima_pkl VARCHAR(100) NOT NULL,
 	bebas_kompen VARCHAR(100) NOT NULL,
 	status_dokumen_pendukung VARCHAR(20) CHECK (status_dokumen_pendukung IN ('Pending', 'Approved', 'Rejected')),
-	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id)
+	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id) ON DELETE CASCADE ON UPDATE CASCADE 
 )
 GO 
 
@@ -94,8 +94,8 @@ CREATE TABLE Catatan_pendukung (
 	catatan VARCHAR(255) NOT NULL,
 	tanggal DATE,
 	status_catatan_pendukung VARCHAR(20) CHECK (status_catatan_pendukung IN ('Pending', 'Approved', 'Rejected')),
-	FOREIGN KEY (dokumen_pendukung_id) REFERENCES Dokumen_pendukung(dokumen_pendukung_id),
-	FOREIGN KEY (user_id) REFERENCES Users(user_id)
+	FOREIGN KEY (dokumen_pendukung_id) REFERENCES Dokumen_pendukung(dokumen_pendukung_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (user_id) REFERENCES Users(user_id) 
 )
 GO
 
@@ -114,7 +114,7 @@ VALUES
     ('attalaodan@gmail.com', 1234567899, 'password123', 2),
     ('admin123@admin.com', 9876543210, 'admin123', 1);
 
-SELECT * FROM Users;
+GO 
 
 INSERT INTO Log_activity (user_id, action, waktu)
 VALUES
@@ -130,7 +130,7 @@ VALUES
     (10, 'Update Document', '2024-11-12 12:30:00'),
     (11, 'Login', '2024-11-12 13:00:00');
 
-SELECT * FROM Log_activity;
+GO 
 
 INSERT INTO Mahasiswa (user_id, NIM, nama, kelas, telp, temp_lahir, tgl_lahir, alamat, img)
 VALUES
@@ -145,7 +145,7 @@ VALUES
     (9, 20200109, 'Rio Adwinata', 'TI-4A', 81234567898, 'Makassar', '2000-09-09', 'Jl. Gunung', 'Rio_Adwinata.jpg'),
     (10, 20200110, 'Attala Odan', 'TI-4A', 81234567899, 'Bekasi', '2000-10-10', 'Jl. Raya No.10', 'Attala_Odan.jpg');
 
-SELECT * FROM Mahasiswa;
+GO 
 
 INSERT INTO Bebas_tanggungan (mahasiswa_id, no_surat, status_bebas_tanggungan)
 VALUES
@@ -160,7 +160,7 @@ VALUES
     (9, 'BT-009', 'Pending'),
     (10, 'BT-010', 'Approved');
 
-SELECT * FROM Bebas_tanggungan;
+GO 
 
 INSERT INTO Tugas_akhir (mahasiswa_id, judul, file_project, status_tugas_akhir)
 VALUES 
@@ -175,7 +175,7 @@ VALUES
 	(9, 'Sistem Rekomendasi Musik Berdasrkan Prefernsi', 'rekomendasi_musik.zip', 'Pending'),
 	(10, 'Penerapan Game-based Learning dalam Pendidikan', 'game_based_learning.zip', 'Approved');
 
-SELECT * FROM Tugas_akhir;
+GO
 
 INSERT INTO Dokumen_tugas_akhir (tugas_akhir_id, nama_file, bagian, status_dokumen_ta)
 VALUES 
@@ -210,7 +210,7 @@ VALUES
 	(10, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
 	(10, 'bab3.pdf', 'Metodologi', 'Approved');
 
-SELECT * FROM Dokumen_tugas_akhir;
+GO
 
 INSERT INTO Catatan_TA (dokumen_id, user_id, catatan, tanggal, status_catatan_ta)
 VALUES 
@@ -245,7 +245,7 @@ VALUES
     (29, 10, 'Dokumen bab Kajian Pustaka disetujui tanpa revisi.', '2024-11-12', 'Approved'),
     (30, 10, 'Dokumen bab Metodologi disetujui tanpa revisi.', '2024-11-12', 'Approved');
 
-SELECT * FROM Catatan_TA;
+GO
 
 INSERT INTO Dokumen_pendukung (tugas_akhir_id, tanda_terima_ta, tanda_terima_pkl, bebas_kompen, status_dokumen_pendukung)
 VALUES 
@@ -260,7 +260,7 @@ VALUES
 	(9, 'tanda_TA_9.pdf', 'tanda_PKL_9.pdf', 'bebas_kompen_9.pdf', 'Approved'),
 	(10, 'tanda_TA_10.pdf', 'tanda_PKL_10.pdf', 'bebas_kompen_10.pdf', 'Pending');
 
-SELECT * FROM Dokumen_pendukung;
+GO
 
 INSERT INTO Catatan_pendukung (dokumen_pendukung_id, user_id, catatan, tanggal, status_catatan_pendukung)
 VALUES 
@@ -275,5 +275,5 @@ VALUES
 	(19, 9, 'Dokumen bebas kompen disetujui tanpa revisi.', '2024-11-12', 'Approved'),
 	(20, 10, 'Dokumen tanda terima TA diterima tanpa revisi.', '2024-11-12', 'Approved');
 
-SELECT * FROM Catatan_pendukung;
+GO
 
