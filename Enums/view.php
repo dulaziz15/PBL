@@ -6,4 +6,5 @@ enum view: string {
     case USER = "user";
     case TUGASAKHIR = "tugas_akhir";
     case DASHBOARD = "dashboard";
+    case BEBASTANGGUNGAN = "bebas_tanggungan";
 }

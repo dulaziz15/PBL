@@ -52,5 +52,10 @@ table th, td {
 }
 
 div.dt-container .dt-search input {
-    background-color: aqua !important;
+    font-size: 15px;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px ;
+    border: solid 2px blue;
+    background-color: white !important;
 }

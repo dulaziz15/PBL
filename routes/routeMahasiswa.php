@@ -14,7 +14,7 @@ class routeMahasiswa {
     }
 
     public function route() {
-        $sub = isset($_GET['sub']) ? $_GET['sub'] : $_GET['sub'] = 'manageuser';
+        $sub = isset($_GET['sub']) ? $_GET['sub'] : $_GET['sub'] = 'managemahasiswa';
         $id = isset($_GET['id']) ? $_GET['id'] : "";
         if($sub == "managemahasiswa") {
             header('location:../view/' . view::MAHASISWA->value . '/index.php');
@@ -30,6 +30,8 @@ class routeMahasiswa {
             $this->mahasiswa->edit($id);
         } elseif($sub == 'getWithUser') {
             $this->mahasiswa->getOne($id);
+        } elseif($sub == 'getByUser') {
+            $this->mahasiswa->getByUser($id);
         } elseif($sub == 'updateMahasiswa') {
             $this->mahasiswa->update($id);
         } elseif($sub == 'hapus') {

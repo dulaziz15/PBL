@@ -2,6 +2,7 @@
 require '../vendor/autoload.php';
 use Pbl\Controller\AuthController;
 use Pbl\Enums\role;
+use Pbl\Routes\routeBebasTanggungan;
 use Pbl\Routes\routeBiodata;
 use Pbl\Routes\routeMahasiswa;
 use Pbl\Routes\routePendukung;
@@ -14,6 +15,7 @@ $user = new RouteUser();
 $tugas_akhir = new routeTA();
 $mahasiswa = new routeMahasiswa();
 $pendukung = new routePendukung();
+$bebasTanggungan = new routeBebasTanggungan();
 
 $page = isset($_GET['page']) ? $_GET['page'] : $_GET['page'] = 'login';
 
@@ -33,18 +35,26 @@ if (isset($_SESSION['user'])) {
             $tugas_akhir->route();
         } elseif ($page == 'dokumenpendukung') {
             $pendukung->route();
+        } elseif ($page == 'bebastanggungan') {
+            $bebasTanggungan->route();
         } elseif ($page == 'mahasiswa') {
             $mahasiswa->route();
         } elseif($page == 'dashboard') {
             header('location:../view/dashboard/index.php');
         }
-    } elseif ($_SESSION['user']['role'] == role::MAHSISWA) {
+    } elseif ($_SESSION['user']['role'] == role::MAHSISWA->value) {
         if ($page == 'biodata') {
             $biodata->route();
-        } elseif($page == 'dashboard') {
+        } elseif ($page == 'tugasakhir') {
+            $tugas_akhir->route();
+        } elseif ($page == 'mahasiswa') {
+            $mahasiswa->route();
+        } elseif ($page == 'dokumenpendukung') {
+            $pendukung->route();
+        }elseif($page == 'dashboard') {
             header('location:../view/dashboard/index.php');
         }
-    } elseif ($_SESSION['user']['role'] == role::ADMIN_JURUSAN) {
+    } elseif ($_SESSION['user']['role'] == role::ADMIN_JURUSAN->value) {
         
     } else {
         header('location:../view/403.php');

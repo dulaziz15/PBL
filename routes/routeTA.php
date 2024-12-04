@@ -10,6 +10,7 @@ class routeTA {
     }
 
     public function route() {
+        // role super admin
         $sub = isset($_GET['sub']) ? $_GET['sub'] : $_GET['sub'] = 'manageTA';
         $id = isset($_GET['id']) ? $_GET['id'] : "";
         if($sub == 'manageTA') {
@@ -28,19 +29,34 @@ class routeTA {
             $this->tugas_akhir->updateDokumenTA($id);
         } elseif($sub == 'getByTugasAkhir') {
             $this->tugas_akhir->getByTA($id);
+        } elseif($sub == 'getOneCatatan') {
+            $this->tugas_akhir->getOneCatatan($id);
         } elseif($sub == 'getOneDokumen') {
             $this->tugas_akhir->getOneDokumen($id);
         } elseif($sub == 'tambahcatatan') {
             $this->tugas_akhir->addCatatan($id);
         } elseif($sub == 'getCatatanTA') {
             $this->tugas_akhir->getCatatanTA($id);
+        } elseif($sub == 'updateCatatan') {
+            $this->tugas_akhir->updateCatatan($id);
         } elseif($sub == 'verifikasiCatatan') {
             $this->tugas_akhir->verifikasiCatatan($id);
+        } elseif($sub == 'pengajuanCatatan') {
+            $this->tugas_akhir->pengajuanCatatan($id);
+        } elseif($sub == 'hapusCatatan') {
+            $this->tugas_akhir->hapusCatatan($id);
         } elseif($sub == 'verifikasi') {
             $this->tugas_akhir->verifikasiDokumen($id);
         } elseif($sub == 'hapus') {
             $this->tugas_akhir->hapus($id);
         } 
+
+        // role mahasiswa
+        elseif($sub == 'getOneMahasiswa') {
+            $this->tugas_akhir->getOneMahasiswa($id);
+        } elseif($sub = 'getTAMahasiswa') {
+            $this->tugas_akhir->getTAMahasiswa($id);
+        }
         
     }
 }

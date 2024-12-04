@@ -14,7 +14,7 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-    
+
     <link rel="stylesheet" href="../../src/css/dashboard.css">
     <link rel="stylesheet" href="../../src/css/component.css">
     <link rel="stylesheet" href="../../src/css/tabel.css">

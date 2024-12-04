@@ -76,6 +76,16 @@ class MahasiswaController
         }
     }
 
+    public function getByUser($id) {
+        $data = $this->mahasiswa->getOneByUser($id);
+        if ($data) {
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo false;
+        }
+    }
+
     public function update($id)
     {
         $user = $_POST['user_id'];

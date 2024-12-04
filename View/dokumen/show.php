@@ -9,9 +9,9 @@ include "../component/sidebar.php"
     <div class="body-main">
         <a href="javascript: history.go(-1)" class="btn btn-back"><i class="fa-solid fa-arrow-left"></i><span>Back</span></a>
         <div class="content-pdf">
-            <div class="dokumen_pdf pdf pdf_tanda_terima_pkl"></div>
-            <div class="dokumen_pdf pdf pdf_tanda_terima_ta"></div>
-            <div class="dokumen_pdf pdf pdf_bebas_kompen"></div>
+            <div class="pdf dokumen_pdf pdf_tanda_terima_pkl"></div>
+            <div class="pdf dokumen_pdf pdf_tanda_terima_ta"></div>
+            <div class="pdf dokumen_pdf pdf_bebas_kompen"></div>
         </div>
         <div class="catatan-dokumen">
             <div class="card-catatan">
@@ -71,12 +71,12 @@ unset($_SESSION['error']);
                                     </div>
                                     <div class="status-catatan">
                                         <div><span>Status Catatan</span></div>
-                                            <a style="margin-right: 10px;" class="status ${catatan.status == 1 ? 'status-verify' : 'status-revisi'}">
-                                                        <i class="fa-solid ${catatan.status == 1 ? 'fa-circle-check' : 'fa-pen-to-square'}"></i>
-                                                            <span>${catatan.status == 1 ? 'Verifiy' : 'Revisi'}</span>
+                                            <a style="margin-right: 10px;" class="status ${catatan.status_catatan_pendukung == 'Approved' ? 'status-verify' : 'status-revisi'}">
+                                                        <i class="fa-solid ${catatan.status_catatan_pendukung == 'Approved' ? 'fa-circle-check' : 'fa-pen-to-square'}"></i>
+                                                            <span>${catatan.status_catatan_pendukung == 'Approved' ? 'Verifiy' : 'Revisi'}</span>
                                                     </a>
                                         <div class="verifikasi-catatan">
-                                        <a onclick="UpdateCatatan(${catatan.catatan_id})" class="btn btn-verifikasi" ${catatan.status == 1 ? 'style="display:none;"' : ''} ">
+                                        <a onclick="UpdateCatatan(${catatan.catatan_id})" class="btn btn-verifikasi" ${catatan.status_catatan_pendukung == 'Approved' ? 'style="display:none;"' : ''} ">
                                             <i class="fa-solid fa-circle-check"></i>
                                             <span>Verifikasi</span>
                                         </a>

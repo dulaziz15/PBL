@@ -15,7 +15,7 @@
         <div class="login-card">
             <!-- Logo -->
             <div class="logo">
-                <img src="../src/img/logopoltek.png" alt="Logo Poltek" />
+                <img src="../src/img/logo_poltek.png" alt="Logo Poltek" />
             </div>
             <!-- Judul Form -->
             <h2>BEBAS TANGGUNGAN TA</h2>
