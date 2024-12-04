@@ -6,7 +6,7 @@ Proyek ini merupakan **Sistem Informasi Bebas Tanggungan TA** yang dirancang unt
 ---
 
 ## Informasi Proyek
-- **Tipe Proyek**: Base Learning  
+- **Tipe Proyek**: Project Base Learning  
 - **Kelas**: 2G  
 - **Kelompok**: 3  
 
