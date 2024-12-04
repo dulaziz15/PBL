@@ -63,15 +63,16 @@ include "../component/sidebar.php"
             type: 'GET',
             url: '/Pbl/routes/route.php?page=tugasakhir&sub=getOne&id=<?= $_GET['id'] ?>',
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 $("#status_project").append(`<div>
-                    <a class="status ${data.status == 1 ? 'status-verify' : 'status-revisi'}">
-                        <i class="fa-solid ${data.status == 1 ? 'fa-circle-check' : 'fa-pen-to-square'}"></i>
-                            <span>${data.status == 1 ? 'Verifiy' : 'Revisi'}</span>
+                    <a class="status ${data.status_tugas_akhir == 'Approved' ? 'status-verify' : data.status_tugas_akhir == 'Pending' ? 'status-revisi' : 'status-rejected'}">
+                            <i class="fa-solid ${data.status_tugas_akhir == 'Approved' ? 'fa-circle-check' : data.status_tugas_akhir == 'Pending' ? 'fa-pen-to-square' : 'fa-circle-xmark'}"></i>
+                            <span>${data.status_tugas_akhir == 'Approved' ? 'Verifiy' : data.status_tugas_akhir == 'Pending' ? 'Revisi' : 'Rejected'}</span>
                             </a>
                     </div>`);
                 $("#data_tugas_akhir").append(`
                     <li><span>NAMA : </span>${data.nama}</li>
+                    <li><span>NIM : </span>${data.NIM}</li>
                     <li><span>JUDUL : </span>${data.judul}</li>
                 `);
             },
@@ -106,9 +107,9 @@ include "../component/sidebar.php"
                 <td>${tugas_akhir.nama_file}</td>
                 <td>
                 <div>
-                    <a class="status ${tugas_akhir.status == 1 ? 'status-verify' : 'status-revisi'}">
-                        <i class="fa-solid ${tugas_akhir.status == 1 ? 'fa-circle-check' : 'fa-pen-to-square'}"></i>
-                            <span>${tugas_akhir.status == 1 ? 'Verifiy' : 'Revisi'}</span>
+                    <a class="status ${tugas_akhir.status_dokumen_ta == 'Approved' ? 'status-verify' : 'status-revisi'}">
+                        <i class="fa-solid ${tugas_akhir.status_dokumen_ta == 'Approved' ? 'fa-circle-check' : 'fa-pen-to-square'}"></i>
+                            <span>${tugas_akhir.status_dokumen_ta == 'Approved' ? 'Verifiy' : 'Revisi'}</span>
                             </a>
                     </div>
                 </td>

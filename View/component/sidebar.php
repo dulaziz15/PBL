@@ -1,4 +1,6 @@
 <?php
+    require '../../vendor/autoload.php';
+    use Pbl\Enums\role;
     $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $uri_segments = explode('/', $uri_path);
 
@@ -18,7 +20,7 @@
                     </div>
                 </li>
                 <?php
-                    if($_SESSION['user']['role'] == 1) {
+                    if($_SESSION['user']['role'] == role::SUPER_ADMIN->value) {
                 ?>
                 <li>
                     <div class="title">
@@ -58,6 +60,14 @@
                     </div>
                 </li>
                 <li>
+                    <div class="menu <?= $url == 'bebas_tanggungan' ? 'active' : '' ?>">
+                        <div class="icon">
+                            <i class="fa-solid fa-gauge"></i>
+                        </div>
+                        <a href="../../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan">Bebas Tanggungan</a>
+                    </div>
+                </li>
+                <li>
                     <div class="title">
                         <span>Arsip</span>
                     </div>
@@ -71,14 +81,53 @@
                     </div>
                 </li>
                 <?php
-                    } elseif($_SESSION['user']['role'] == 2) {
+                    } elseif($_SESSION['user']['role'] == role::MAHSISWA->value) {
                 ?>
+                <li>
+                    <div class="title">
+                        <span>Profil</span>
+                    </div>
+                </li>
                 <li>
                     <div class="menu <?= $url == "biodata" ? 'active' : '' ?>">
                         <div class="icon">
                             <i class="fa-solid fa-gauge"></i>
                         </div>
                         <a href="../../routes/route.php?page=biodata&sub=managebiodata">biodata</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span>Tugas Akhir</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu <?= $url == 'tugas_akhir' ? 'active' : '' ?>">
+                        <div class="icon">
+                            <i class="fa-solid fa-gauge"></i>
+                        </div>
+                        <a href="../../routes/route.php?page=tugasakhir&sub=manageTA">Data Dokumen TA</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu <?= $url == 'dokumen' ? 'active' : '' ?>">
+                        <div class="icon">
+                            <i class="fa-solid fa-gauge"></i>
+                        </div>
+                        <a href="../../routes/route.php?page=dokumenpendukung&sub=manageDokumen">Data Dokumen Pendukung</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span>Bebas Tanggungan</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu <?= $url == 'bebas_tanggungan' ? 'active' : '' ?>">
+                        <div class="icon">
+                            <i class="fa-solid fa-gauge"></i>
+                        </div>
+                        <a href="../../routes/route.php?page=tugasakhir&sub=manageTA">Bebas Tanggungan</a>
                     </div>
                 </li>
                 <?php

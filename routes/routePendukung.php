@@ -22,14 +22,25 @@ class routePendukung {
             $this->DokumenPendukung->add();
         } elseif($sub == "getOne") {
             $this->DokumenPendukung->getOne($id);
+        } elseif($sub == "getOneByTugasAkhir") {
+            $this->DokumenPendukung->getOneByTugasAkhir($id);
+        } elseif($sub == "updateDokumen") {
+            $this->DokumenPendukung->updateDokumen($id);
         } elseif($sub == "tambahcatatan") {
             $this->DokumenPendukung->addCatatan($id); 
         } elseif($sub == "getCatatan") {
             $this->DokumenPendukung->getCatatan($id);
         } elseif($sub == 'verifikasiCatatan') {
             $this->DokumenPendukung->verifikasiCatatan($id);
+        } elseif($sub == 'verifikasiDokumen') {
+            $this->DokumenPendukung->verifikasiDokumen($id);
         } elseif($sub == "hapus") {
             $this->DokumenPendukung->hapus($id);id: 
         }
+
+        // role mahasiswa
+        elseif($sub == 'getOneMahasiswa') {
+            $this->DokumenPendukung->getOneMahasiswa($id);
+        } 
     }
 }

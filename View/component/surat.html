@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family:'Times New Roman', Times, serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        td {
+            vertical-align: top;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            text-align: center;
+            margin-top: -20px;
+            font-size: 12px;
+        }
+
+        .header .content-header p {
+            margin-top: -10px;
+        }
+
+        .isi {
+            font-size: 15px;
+        }
+    </style>
+    <title>Surat Bebas Tanggungan</title>
+</head>
+<body>
+    <div class="header">
+        <div class=""></div>
+        <div class="content-header">
+            <h4>KEMENTERIAN PENDIDIKAN , KEBUDAYAAN, RISET, DAN TEKNOLOGI <br>POLITEKNIK NEGERI MALANG</h4>
+            <p>Jalan Soekarno Hatta No.9, Malang 65141 <br> Telepon (0341) 404424, 404425, Fax : (0341) 404420 <br>
+                <a href="http://www.polinema.ac.id">http://www.polinema.ac.id</a>
+            </p>
+        </div>
+        <div class=""></div>
+    </div>
+    <hr>
+    <div class="isi">
+    <h2>SURAT KETERANGAN BEBAS TANGGUNGAN</h2>
+    <p>Nomor: {{no_surat}}</p>
+    <p>Yang bertanda tangan di bawah ini menerangkan bahwa:</p>
+    <table>
+        <tr>
+            <td>Nama</td>
+            <td>: {{nama}}</td>
+        </tr>
+        <tr>
+            <td>NIM</td>
+            <td>: {{nim}}</td>
+        </tr>
+    </table>
+    <p>Demikian surat ini dibuat untuk dipergunakan sebagaimana mestinya.</p>
+    <br><br><br>
+    <p><strong>TTD</strong></p>
+    <p class="footer">Politeknik Ngeri Malang, Jalan Soekarno Hatta No.9, Malang</p>
+</div>
+</body>
+</html>

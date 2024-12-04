@@ -54,13 +54,12 @@ class TugasAkhirController {
             'lampiran' => $_FILES['lampiran']
         ];
         $judul= $_POST['judul'];
-        $status = 0;
         $mahasiswa_list = $_POST['mahasiswa'];
         list($mahasiswa, $nim) = explode(':', $mahasiswa_list);
         $targetDir = '../src/bebas_tanggungan/' . $nim . "/";
 
         @mkdir($targetDir, 0777, true);
-        $data = $this->tugas_akhir->add($file, $mahasiswa, $judul, $status);
+        $data = $this->tugas_akhir->add($file, $mahasiswa, $judul);
         if($data == true) {
             foreach($file as $dokumen) {
                 move_uploaded_file($dokumen['tmp_name'], $targetDir . $dokumen['name']);
@@ -109,6 +108,16 @@ class TugasAkhirController {
         }
     }
 
+    public function getOneCatatan($id) {
+        $data = $this->tugas_akhir->getOneCatatan($id);
+        if($data) {
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo false;
+        }
+    }
+
     public function getOneDokumen($id) {
         $data = $this->tugas_akhir->getOneDokumen($id);
         if($data) {
@@ -144,6 +153,18 @@ class TugasAkhirController {
         }
     }
 
+    public function updateCatatan($id) {
+        $catatan = $_POST['catatan'];
+        $data = $this->tugas_akhir->updateCatatan($id, $catatan);
+        if($data == true) {
+            $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
+            header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
+        } else {
+            $_SESSION['error'] = "Catatan Gagal terverifikasi Coba Kembali";
+            header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
+        }
+    }
+
     public function verifikasiCatatan($id) {
         $data = $this->tugas_akhir->verifikasiCatatan($id);
         if($data == true) {
@@ -155,10 +176,32 @@ class TugasAkhirController {
         }
     }
 
+    public function pengajuanCatatan($id) {
+        $data = $this->tugas_akhir->pengajuanCatatan($id);
+        if($data == true) {
+            $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
+            header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
+        } else {
+            $_SESSION['error'] = "Catatan Gagal terverifikasi Coba Kembali";
+            header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
+        }
+    }
+
+    public function hapusCatatan($id) {
+        $data = $this->tugas_akhir->hapusCatatan($id);
+        if($data == true) {
+            $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
+            header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
+        } else {
+            $_SESSION['error'] = "Catatan Gagal terverifikasi Coba Kembali";
+            header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
+        }
+    }
+
     public function verifikasiDokumen($id) {
-        $catatan = $this->tugas_akhir->validateCatatan($id);
+        $rejected = $this->tugas_akhir->validateCatatan($id);
         $ta = $this->tugas_akhir->getOneDokumen($id);
-        if($catatan == null) {
+        if($rejected == null) {
             $data = $this->tugas_akhir->verifikasi($id);
             $this->verifikasiTA($ta['tugas_akhir_id']);
             if($data == true) {
@@ -175,6 +218,11 @@ class TugasAkhirController {
     }
 
     public function verifikasiTA($id) {
+        $pending = $this->tugas_akhir->validateCatatanPending($id);
+        if($pending != null) {
+            $data = $this->tugas_akhir->changePending($id);
+        }
+        
         $data = $this->tugas_akhir->validateTA($id);
         if($data == null) {
             $this->tugas_akhir->updateStatusTA($id);
@@ -194,4 +242,26 @@ class TugasAkhirController {
             header('location:../routes/route.php?page=tugasakhir&sub=manageTA');
         }
     }
+
+    public function getOneMahasiswa($id) {
+        $mahasiswa = $this->mahasiswa->getOneByUser($id);
+        $data = $this->tugas_akhir->getOneMahasiswa($mahasiswa['mahasiswa_id']);
+        if($data) {
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo false;
+        }
+    }
+
+    public function getTAMahasiswa($id) {
+        $data = $this->tugas_akhir->getTAMahasiswa($id);
+        if($data) {
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo false;
+        }
+    }
+
 }
