@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    background-color: #e9eef5;
+    background-color: #ffffff;
     padding: 10px 0;
 }
 
@@ -20,13 +20,13 @@ header {
 }
 
 .logo img {
-    height: 50px;
-    margin-right: 10px;
+    height: 70px;
+    margin-right: 280px;
 }
 
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
 }
 
@@ -34,7 +34,8 @@ nav ul {
     list-style: none;
     padding: 0;
     display: flex;
-    margin: 0;
+    margin: 30;
+    margin-right: 550px;
 }
 
 nav ul li {
@@ -66,6 +67,21 @@ nav ul li a {
 .hero img {
     width: 100%;
     height: auto;
+    position: relative;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7)
 }
 
 .hero-text {
@@ -73,19 +89,46 @@ nav ul li a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: 'Inter', sans-serif;
+    line-height: 0.4;
+    text-align: left;
+}
+
+.hero-text h1 span {
+    margin: 0;
+    color: #ffffff;
+    text-align: left;
 }
 
 .hero-text h1 {
-    font-size: 3em;
+    font-size: 100px; 
     margin: 0;
+    color: #00AAFF;
+    text-align: left;
+}
+
+.hero-text h2 {
+    font-size: 50px; 
+    text-align: left;
 }
 
 .hero-text p {
-    font-size: 1.2em;
+    font-size: 15px; 
+    text-align: left;
 }
 
-.hero-text .login-btn {
-    margin-top: 20px;
+.hero-text .login-btn2 {
+    margin-top: 20px; 
+    display: inline-block;
+    background-color: #ffffff;
+    color: #007bff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 18px 30px;
 }
 
 .alur {
@@ -118,8 +161,18 @@ nav ul li a {
 footer {
     background-color: white;
     padding: 20px 0;
-    text-align: center;
-    border-top: 1px solid #ddd;
+}
+
+footer.container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer.logo2 {
+    flex: 1;
 }
 
 footer .container {
@@ -133,6 +186,13 @@ footer .contact,
 footer .social {
     width: 30%;
     margin-bottom: 20px;
+    flex: 1;
+    text-align: center;
+    line-height: 0.2;
+}
+
+footer.info h3 {
+    line-height: 1;
 }
 
 footer .info img {
@@ -143,6 +203,7 @@ footer .social a {
     margin: 0 10px;
     color: #333;
     font-size: 1.5em;
+    margin: 0 5px;
 }
 
 @media (max-width: 768px) {
