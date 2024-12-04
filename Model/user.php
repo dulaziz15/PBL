@@ -5,7 +5,7 @@ use PDOException;
 
 // session_start();
 
-class user {
+class User {
     private $koneksi;
 
     public function __construct(){
