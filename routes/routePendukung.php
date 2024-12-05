@@ -15,6 +15,7 @@ class routePendukung {
         $id = isset($_GET['id']) ? $_GET['id'] : "";
 
         if($sub == "manageDokumen") {
+            // var_dump("cek");
             header('location:../view/dokumen/index.php');
         } elseif($sub == "getAll") {
             $this->DokumenPendukung->getAll();

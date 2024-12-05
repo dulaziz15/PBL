@@ -4,7 +4,6 @@
     function OpenSidebar() {
         if ($(window).width() <= 768) {
             $(".sidebar").slideToggle("slow");
-            $('.content').css('backgorund-color', "0,0,0,0.7")
         }
     }
 

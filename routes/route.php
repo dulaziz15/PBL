@@ -57,7 +57,23 @@ if (isset($_SESSION['user'])) {
             header('location:../view/dashboard/index.php');
         }
     } elseif ($_SESSION['user']['role'] == role::ADMIN_JURUSAN->value) {
-        
+        if ($page == 'tugasakhir') {
+            $tugas_akhir->route();
+        } elseif ($page == 'mahasiswa') {
+            $mahasiswa->route();
+        } elseif ($page == 'bebastanggungan') {
+            $bebasTanggungan->route();
+        } elseif($page == 'dashboard') {
+            header('location:../view/dashboard/index.php');
+        }
+    } elseif ($_SESSION['user']['role'] == role::ADMIN_PRODI->value) {
+        if ($page == 'dokumenpendukung') {
+            $pendukung->route();
+        } elseif ($page == 'mahasiswa') {
+            $mahasiswa->route();
+        } elseif($page == 'dashboard') {
+            header('location:../view/dashboard/index.php');
+        }
     } else {
         header('location:../view/403.php');
     }
