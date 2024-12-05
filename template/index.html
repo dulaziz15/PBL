@@ -1,112 +1,149 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SIBETA - Sistem Informasi Bebas Tanggungan</title>
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
     />
     <link rel="stylesheet" href="style.css" />
+    <script defer src="scripts.js"></script>
   </head>
   <body>
     <header>
       <div class="container">
-        <nav>
+        <nav class="navbar">
           <div class="logo">
             <img
-              alt="Politeknik Negeri Malang Logo"
-              height="74"
               src="images/logo.png"
+              alt="Politeknik Negeri Malang Logo"
               width="356"
+              height="74"
             />
           </div>
           <ul>
             <li>
-              <a href="#"> Home </a>
+              <a href="javascript:void(0);" onclick="scrollToSection('hero')"
+                >Home</a
+              >
             </li>
             <li>
-              <a href="#"> Alur Bebas Tanggungan </a>
+              <a href="javascript:void(0);" onclick="scrollToSection('alur')"
+                >Alur Bebas Tanggungan</a
+              >
             </li>
             <li>
-              <a href="#"> Kontak </a>
+              <a href="javascript:void(0);" onclick="scrollToSection('contact')"
+                >Kontak</a
+              >
             </li>
           </ul>
-          <a class="login-btn" href="logintes.php"> Login </a>
+          <a class="login-btn" href="../View/login.php">Login</a>
         </nav>
       </div>
     </header>
-    <section class="hero">
-      <img
-        alt="Gedung Politeknik Negeri Malang"
-        height="600"
-        src="images/poltek2.png"
-        width="1200"
-      />
-      <div class="hero-text">
-        <h1>SIBETA</h1>
-        <p>Sistem Informasi Bebas Tanggungan</p>
-        <p>
-          Sistem untuk menyelesaikan Bebas Tanggungan Tugas Akhir Jurusan
-          Teknologi Informasi Politeknik Negeri Malang
-        </p>
-        <a class="login-btn" href="logintes.php"> Login </a>
-      </div>
-    </section>
-    <section class="alur">
+
+    <main>
+      <div class="hero" id="hero">
+        <div class="hero-image">
           <img
-            alt="alur bebas tanggungan"
-            height="70%"
-            src="images/alurbebastanggungan.png"
-            width="60%"
+            src="images/poltek2.png"
+            alt="Gedung Politeknik Negeri Malang"
+            width="1200"
+            height="600"
           />
+          <div class="overlay"></div>
+        </div>
+        <div class="hero-text">
+          <h1><span>SI</span>BETA</h1>
+          <h2>SISTEM INFORMASI</h2>
+          <h2>BEBAS TANGGUNGAN</h2>
+          <p>Sistem untuk menyelesaikan Bebas Tanggungan Tugas Akhir</p>
+          <p>Jurusan Teknologi Informasi</p>
+          <p>Politeknik Negeri Malang</p>
+          <a class="login-btn2" href="../View/login.php">Login</a>
         </div>
       </div>
-    </section>
+
+      <section class="alur" id="alur">
+        <div class="alur-image">
+          <img
+            src="images/alurbebastanggungan.png"
+            alt="Alur Bebas Tanggungan"
+            style="width: 60%; height: auto"
+          />
+        </div>
+      </section>
+    </main>
+
     <footer>
-      <div class="container">
+      <div class="container" id="contact">
         <div class="logo2">
           <img
-            alt="Politeknik Negeri Malang Logo"
-            height="100%"
             src="images/logo2.png"
-            width="100%"
+            alt="Logo Polinema"
+            style="width: 100%; height: auto"
           />
         </div>
         <div class="info">
-          <p>INFO</p>
-          <p></p>
+          <h3><strong>INFO</strong></h3>
           <p>Polinema</p>
           <p>Webmail</p>
           <p>Siakad</p>
         </div>
         <div class="contact">
-          <p>CONTACT US</p>
-          <p></p>
+          <h3><strong>CONTACT US</strong></h3>
           <p>JL. Soekarno Hatta No. 9 Malang</p>
-          <p>Phone : (0341) 404424, 404425</p>
-          <p>E-mail : lmspolinema@polinema.ac.id</p>
+          <p>Phone: (0341) 404424, 404425</p>
+          <p>Email: lmspolinema@polinema.ac.id</p>
         </div>
         <div class="social">
-          <p>GET SOCIAL</p>
-          <a href="#">
-            <i class="fab fa-twitter"> </i>
-          </a>
-          <a href="#">
-            <i class="fab fa-facebook-f"> </i>
-          </a>
-          <a href="#">
-            <i class="fab fa-instagram"> </i>
-          </a>
-          <a href="#">
-            <i class="fab fa-google"></i>
-          </a>
+          <h3><strong>GET SOCIAL</strong></h3>
+          <a href="#"
+            ><img
+              src="images/icon/twit.png"
+              alt="Twitter"
+              width="24"
+              height="24"
+          /></a>
+          <a href="#"
+            ><img
+              src="images/icon/ig.png"
+              alt="Instagram"
+              width="24"
+              height="24"
+          /></a>
+          <a href="#"
+            ><img
+              src="images/icon/fb.png"
+              alt="Facebook"
+              width="24"
+              height="24"
+          /></a>
+          <a href="#"
+            ><img
+              src="images/icon/gmail.png"
+              alt="Gmail"
+              width="24"
+              height="24"
+          /></a>
         </div>
       </div>
     </footer>
+
+    <script>
+      function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    </script>
   </body>
 </html>
