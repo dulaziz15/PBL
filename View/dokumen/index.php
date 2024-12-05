@@ -262,15 +262,5 @@ include "../component/sidebar.php"
                     window.location.reload();
                 });
         }
-
-        $.ajax({
-            type: 'GET',
-            url: '/Pbl/routes/route.php?page=tugasakhir&sub=getTAMahasiswa&id=' + <?= $_SESSION['user']['user_id'] ?>,
-            success: function(data) {
-                $("#dataTugasAkhir").val(data.tugas_akhir_id + ":" + data.NIM);
-            },
-            error: function(xhr, status, error) {
-                console.error("AJAX request failed:", status, error);
-            }
-        });
+        
     </script>

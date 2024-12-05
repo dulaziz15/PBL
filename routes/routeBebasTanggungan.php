@@ -21,6 +21,8 @@
                 $this->bebasTanggungan->add();
             } elseif($sub == "getAllVerify") {
                 $this->bebasTanggungan->getAllVerify();
+            } elseif($sub == "donwloadBebasTanggungan") {
+                $this->bebasTanggungan->donwloadBebasTanggungan($id);
             } elseif($sub == "hapus") {
                 $this->bebasTanggungan->hapus($id);
             }

@@ -17,7 +17,7 @@ class DokumenPendukung
 
     public function getAll()
     {
-        $query = "SELECT * FROM Dokumen_pendukung as dok inner join Tugas_akhir as ta on ta.tugas_akhir_id = dok.tugas_akhir_id inner join mahasiswa as mhs on mhs.mahasiswa_id = ta.mahasiswa_id";
+        $query = "SELECT * FROM Dokumen_pendukung as dok inner join Tugas_akhir as ta on ta.tugas_akhir_id = dok.tugas_akhir_id inner join mahasiswa as mhs on mhs.mahasiswa_id = ta.mahasiswa_id order by dokumen_pendukung_id desc";
         $data = $this->koneksi->KoneksiDB()->query($query);
         $result = $data->fetchAll();
         return $result;

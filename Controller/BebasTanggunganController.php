@@ -67,12 +67,13 @@ class BebasTanggunganController
         }
     }
 
-    public function add() {
+    public function add()
+    {
         $tugas_akhir_id = $_POST['tugas_akhir'];
         $tugas_akhir = $this->tugasAkhir->getOne($tugas_akhir_id);
         $no_surat = "BebasTanggungan/" . $tugas_akhir['NIM'];
         $data = $this->bebasTanggungan->add($tugas_akhir_id, $no_surat);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Data Behasil ditambahkan";
             header('location:../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan');
         } else {
@@ -81,7 +82,8 @@ class BebasTanggunganController
         }
     }
 
-    public function getAllVerify() {
+    public function getAllVerify()
+    {
         $data = $this->tugasAkhir->getAllVerify();
         if ($data) {
             header('Content-Type: application/json');
@@ -91,10 +93,11 @@ class BebasTanggunganController
         }
     }
 
-    public function getOneMahasiswa($id) {
+    public function getOneMahasiswa($id)
+    {
         $mahasiswa = $this->mahasiswa->getOneByUser($id);
         $data = $this->bebasTanggungan->getOneMahasiswa($mahasiswa['mahasiswa_id']);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -102,9 +105,10 @@ class BebasTanggunganController
         }
     }
 
-    public function hapus($id) {
+    public function hapus($id)
+    {
         $data = $this->bebasTanggungan->hapus($id);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Data Behasil dihapus";
             header('location:../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan');
         } else {
@@ -145,6 +149,27 @@ class BebasTanggunganController
             return true;
         } catch (Exception $e) {
             return false;
+        }
+    }
+
+    public function donwloadBebasTanggungan($id)
+    {
+        $data = $this->bebasTanggungan->getOne($id);
+        $file = '../src/surat/bebas_tanggungan_' . $data['NIM'] . '.pdf';
+        // var_dump($file);
+        if (file_exists($file)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            readfile($file);
+            exit;
+        } else {
+            $_SESSION['error'] = "File Tidak Ditemukan harap hubungi Admin !";
+            header('location:../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan');
         }
     }
 }
