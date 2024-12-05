@@ -20,12 +20,14 @@ session_start();
     <script src="https://cdn.datatables.net/rowreorder/1.5.0/js/rowReorder.dataTables.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="../../src/css/dashboard.css">
     <link rel="stylesheet" href="../../src/css/component.css">
     <link rel="stylesheet" href="../../src/css/tabel.css">
     <link rel="stylesheet" href="../../src/css/sidebar.css">
     <link rel="stylesheet" href="../../src/css/catatan.css">
+    <link rel="stylesheet" href="../../src/css/dashboard-content.css">
 </head>
 
 <body>

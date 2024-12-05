@@ -152,6 +152,34 @@ class BebasTanggunganController
         }
     }
 
+    public function dataDashboard()
+    {
+        $totalMahasiswa = $this->mahasiswa->getAll();
+        $totalTA = $this->tugasAkhir->getAll();
+        $totalDokumen = $this->dokumenPendukung->getAll();
+        $totalBebastanggungan = $this->bebasTanggungan->getAll();
+        $bebasTanggunganApproved = count(array_filter($totalBebastanggungan, function($item) {
+            return $item['status_bebas_tanggungan'] == 'Approved';
+        }));
+        $dokumenApproved = count(array_filter($totalDokumen, function($item) {
+            return $item['status_dokumen_pendukung'] == 'Approved';
+        }));
+        $TAApproved = count(array_filter($totalTA, function($item) {
+            return $item['status_tugas_akhir'] == 'Approved';
+        }));
+        $content = [
+            'total_mahasiswa' => count($totalMahasiswa),
+            'total_ta' => count($totalTA),
+            'total_dokumen' => count($totalDokumen),
+            'total_bebas_tanggungan' => count($totalBebastanggungan),
+            'bebas_tanggungan_approved' => $bebasTanggunganApproved,
+            'dokumen_approved' => $dokumenApproved,
+            'ta_approved' => $TAApproved
+        ];
+        header('Content-Type: application/json');
+        echo json_encode($content);
+    }
+
     public function donwloadBebasTanggungan($id)
     {
         $data = $this->bebasTanggungan->getOne($id);
