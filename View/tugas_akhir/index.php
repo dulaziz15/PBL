@@ -38,7 +38,7 @@ include_once "../component/sidebar.php"
                             </ul>
                         </div>
                         <div class="table-container dokumen">
-                            <table class="table list-dokumen-ta-mahasiswa">
+                            <table class="table list-dokumen-ta-mahasiswa display nowrap">
                                 <?php
                                 if (isset($_SESSION['sukses'])) {
                                     echo "<h1>" . $_SESSION['sukses'] . "</h1>";
@@ -65,22 +65,32 @@ include_once "../component/sidebar.php"
         <?php
         } else {
         ?>
-        
-        <a href="tambah.php" class="btn btn-tambah">Tambah</a>
-            <div class="table-container tugas_akhir">
-                <table class="table table-list">
-                    <thead>
-                        <tr>
-                            <th>NAMA</th>
-                            <th>NIM</th>
-                            <th>JUDUL</th>
-                            <th>STATUS</th>
-                            <th>ACTION</th>
-                        </tr>
-                    </thead>
-                    <tbody id="dataTugasAkhir">
-                    </tbody>
-                </table>
+
+            <a href="tambah.php" class="btn btn-tambah">Tambah</a>
+            <div class="card-main">
+                <div class="header-card">
+                    <h3>Data Dokumen Pendukung</h3>
+                    <hr>
+                </div>
+                <div class="body-card">
+                    <div class="container-card">
+                        <div class="table-container">
+                            <table class="table list-ta display nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>NAMA</th>
+                                        <th>NIM</th>
+                                        <th>JUDUL</th>
+                                        <th>STATUS</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dataTugasAkhir">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         <?php
         }
@@ -100,7 +110,7 @@ include_once "../component/sidebar.php"
             success: function(data) {
                 console.log(data);
                 if (data == false) {
-                    $(".kosong").html(`<?php  include_once "form_ta_mahasiswa.php"; ?>`);
+                    $(".kosong").html(`<?php include_once "form_ta_mahasiswa.php"; ?>`);
                     $(".card-main").css('display', 'none');
                 } else {
                     $("#status_project").append(`<div>
@@ -114,12 +124,11 @@ include_once "../component/sidebar.php"
                     <li><span>NIM : </span>${data.NIM}</li>
                     <li><span>JUDUL : </span>${data.judul}</li>
                     `);
-                    
+
                     $.ajax({
                         type: 'GET',
                         url: '/Pbl/routes/route.php?page=tugasakhir&sub=getByTugasAkhir&id=' + data.tugas_akhir_id,
                         success: function(data) {
-                            console.log(data);
                             if (Array.isArray(data)) {
                                 let tableContent = '';
                                 data.forEach(tugas_akhir => {
@@ -143,7 +152,17 @@ include_once "../component/sidebar.php"
                                     `;
                                 });
                                 $('#dataTugasAkhirMahasiswa').html(tableContent);
-                                $('.list-dokumen-ta-mahasiswa').DataTable();
+                                $('.list-dokumen-ta-mahasiswa').DataTable({
+                                    paging: true, // Menampilkan paginasi
+                                    searching: true, // Mengaktifkan pencarian
+                                    ordering: true, // Mengaktifkan sorting
+                                    info: true, // Menampilkan informasi tabel
+                                    autoWidth: true, // Menonaktifkan pengaturan otomatis lebar kolom
+                                    responsive: true,
+                                    rowReorder: {
+                                        selector: 'td:nth-child(2)'
+                                    }
+                                });
                             } else {
                                 console.error("Expected an array but received:", data);
                             }
@@ -186,13 +205,16 @@ include_once "../component/sidebar.php"
             `;
                     });
                     $('#dataTugasAkhir').html(tableContent);
-                    $('.table-list').DataTable({
+                    $('.list-ta').DataTable({
                         paging: true, // Menampilkan paginasi
                         searching: true, // Mengaktifkan pencarian
                         ordering: true, // Mengaktifkan sorting
                         info: true, // Menampilkan informasi tabel
                         autoWidth: true, // Menonaktifkan pengaturan otomatis lebar kolom
                         responsive: true, // Menyusun ulang kolom secara responsif di perangkat mobile
+                        rowReorder: {
+                            selector: 'td:nth-child(2)'
+                        }
                     });
                 } else {
                     console.error("Expected an array but received:", data);

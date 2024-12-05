@@ -15,22 +15,32 @@ include "../component/sidebar.php"
             echo "<h1>" . $_SESSION['error'] . "</h1>";
         }
         ?>
-        <div class="table-container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>NIM</th>
-                        <th>NAMA</th>
-                        <th>KELAS</th>
-                        <th>TELEPON</th>
-                        <th>ALAMAT</th>
-                        <th>ACTION</th>
-                    </tr>
-                </thead>
-                <tbody id="dataMahasiswa">
+        <div class="card-main">
+            <div class="header-card">
+                <h3>Data Mahasiswa</h3>
+                <hr>
+            </div>
+            <div class="body-card">
+                <div class="container-card">
+                    <div class="table-container">
+                        <table class="table display nowrap">
+                            <thead>
+                                <tr>
+                                    <th>NIM</th>
+                                    <th>NAMA</th>
+                                    <th>KELAS</th>
+                                    <th>TELEPON</th>
+                                    <th>ALAMAT</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataMahasiswa">
 
-                </tbody>
-            </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <?php
@@ -65,13 +75,16 @@ include "../component/sidebar.php"
                     });
                     $('#dataMahasiswa').html(tableContent);
                     $('table').DataTable({
-                paging: true, // Menampilkan paginasi
-                searching: true, // Mengaktifkan pencarian
-                ordering: true, // Mengaktifkan sorting
-                info: true, // Menampilkan informasi tabel
-                autoWidth: true, // Menonaktifkan pengaturan otomatis lebar kolom
-                responsive: true
-            });
+                        paging: true, // Menampilkan paginasi
+                        searching: true, // Mengaktifkan pencarian
+                        ordering: true, // Mengaktifkan sorting
+                        info: true, // Menampilkan informasi tabel
+                        autoWidth: true, // Menonaktifkan pengaturan otomatis lebar kolom
+                        responsive: true,
+                        rowReorder: {
+                            selector: 'td:nth-child(2)'
+                        }
+                    });
                 } else {
                     console.error("Expected an array but received:", data);
                 }

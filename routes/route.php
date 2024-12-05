@@ -51,7 +51,9 @@ if (isset($_SESSION['user'])) {
             $mahasiswa->route();
         } elseif ($page == 'dokumenpendukung') {
             $pendukung->route();
-        }elseif($page == 'dashboard') {
+        } elseif ($page == 'bebastanggungan') {
+            $bebasTanggungan->route();
+        } elseif($page == 'dashboard') {
             header('location:../view/dashboard/index.php');
         }
     } elseif ($_SESSION['user']['role'] == role::ADMIN_JURUSAN->value) {

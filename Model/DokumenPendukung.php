@@ -25,7 +25,7 @@ class DokumenPendukung
 
     public function add($tugas_akhir, $file)
     {
-        // try {
+        try {
             $query = "INSERT INTO Dokumen_pendukung (tugas_akhir_id, tanda_terima_ta, tanda_terima_pkl, bebas_kompen, status_dokumen_pendukung) VALUES 
                     ('$tugas_akhir','" .
                 $file["tanda_terima_ta"]["name"] . "', '" .
@@ -33,9 +33,9 @@ class DokumenPendukung
                 $file["bebas_kompen"]["name"] . "', '" . status::PENDING->value . "')";
             $this->koneksi->KoneksiDB()->query($query);
             return true;
-        // } catch (PDOException $e) {
-        //     return false;
-        // }
+        } catch (PDOException $e) {
+            return false;
+        }
     }
 
     public function getOne($id)
@@ -102,9 +102,43 @@ class DokumenPendukung
         return $result;
     }
 
+    public function getOneCatatan($id)
+    {
+        $query = "SELECT * FROM Catatan_pendukung WHERE catatan_id = $id";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetch();
+        return $result;
+    }
+
+    public function updateCatatan($id, $catatan) {
+        $query = "UPDATE Catatan_pendukung SET catatan = '$catatan' WHERE catatan_id = $id";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        return true;
+    }
+
+    public function pengajuanCatatan($id) {
+        try{
+            $query = "UPDATE Catatan_pendukung SET status_catatan_pendukung = '" . status::PENGAJUAN->value ."' WHERE catatan_id = $id";
+            $data = $this->koneksi->KoneksiDB()->query($query);
+            return true;
+        } catch(PDOException $e) {
+            return false;
+        }
+    }
+
     public function verifikasiCatatan($id) {
         try{
             $query = "UPDATE Catatan_pendukung SET status_catatan_pendukung = '" . status::APPROVED->value . "' WHERE catatan_id = $id";
+            $data = $this->koneksi->KoneksiDB()->query($query);
+            return true;
+        } catch(PDOException $e) {
+            return false;
+        }
+    }
+
+    public function hapusCatatan($id) {
+        try{
+            $query = "DELETE FROM Catatan_pendukung WHERE catatan_id = $id";
             $data = $this->koneksi->KoneksiDB()->query($query);
             return true;
         } catch(PDOException $e) {

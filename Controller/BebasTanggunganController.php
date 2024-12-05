@@ -5,19 +5,17 @@ namespace Pbl\Controller;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Exception;
-use mPDF;
 use Pbl\Enums\status;
 use Pbl\Model\BebasTanggungan;
 use Pbl\Model\DokumenPendukung;
+use Pbl\Model\Mahasiswa;
 use Pbl\Model\TugasAkhir;
-use PhpOffice\PhpWord\IOFactory;
-use PhpOffice\PhpWord\TemplateProcessor;
-use PhpOffice\PhpWord\Writer\HTML;
 
 class BebasTanggunganController
 {
     private $bebasTanggungan;
     private $tugasAkhir;
+    private $mahasiswa;
     private $dokumenPendukung;
 
     public function __construct()
@@ -25,6 +23,7 @@ class BebasTanggunganController
         $this->bebasTanggungan = new BebasTanggungan();
         $this->tugasAkhir = new TugasAkhir();
         $this->dokumenPendukung = new DokumenPendukung();
+        $this->mahasiswa = new Mahasiswa();
     }
 
     public function getAll()
@@ -64,6 +63,52 @@ class BebasTanggunganController
             }
         } else {
             $_SESSION['error'] = "Dokumen TA belum terverifikasi !!";
+            header('location:../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan');
+        }
+    }
+
+    public function add() {
+        $tugas_akhir_id = $_POST['tugas_akhir'];
+        $tugas_akhir = $this->tugasAkhir->getOne($tugas_akhir_id);
+        $no_surat = "BebasTanggungan/" . $tugas_akhir['NIM'];
+        $data = $this->bebasTanggungan->add($tugas_akhir_id, $no_surat);
+        if($data == true) {
+            $_SESSION['sukses'] = "Data Behasil ditambahkan";
+            header('location:../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan');
+        } else {
+            $_SESSION['error'] = "Data Gagal ditambahkan Coba Kembali";
+            header('location:../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan');
+        }
+    }
+
+    public function getAllVerify() {
+        $data = $this->tugasAkhir->getAllVerify();
+        if ($data) {
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo false;
+        }
+    }
+
+    public function getOneMahasiswa($id) {
+        $mahasiswa = $this->mahasiswa->getOneByUser($id);
+        $data = $this->bebasTanggungan->getOneMahasiswa($mahasiswa['mahasiswa_id']);
+        if($data) {
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo false;
+        }
+    }
+
+    public function hapus($id) {
+        $data = $this->bebasTanggungan->hapus($id);
+        if($data == true) {
+            $_SESSION['sukses'] = "Data Behasil dihapus";
+            header('location:../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan');
+        } else {
+            $_SESSION['error'] = "Data Gagal dihapus Coba Kembali";
             header('location:../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan');
         }
     }

@@ -109,8 +109,53 @@ class PendukungController {
         }
     }
 
+    public function getOneCatatan($id) {
+        $data = $this->DokumenPendukung->getOneCatatan($id);
+        if($data) {
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo false;
+        }
+    }
+
+    public function updateCatatan($id) {
+        $catatan = $_POST['catatan'];
+        $data = $this->DokumenPendukung->updateCatatan($id, $catatan);
+        if($data == true) {
+            $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
+            header('location:../view/dokumen/show_dokumen.php?id=' . $id);
+        } else {
+            $_SESSION['error'] = "Catatan Gagal terverifikasi Coba Kembali";
+            header('location:../view/dokumen/show_dokumen.php?id=' . $id);
+        }
+    }
+
+    public function pengajuanCatatan($id) {
+        $data = $this->DokumenPendukung->pengajuanCatatan($id);
+        if($data == true) {
+            $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
+            header('location:../view/dokumen/index.php');
+        } else {
+            $_SESSION['error'] = "Catatan Gagal terverifikasi Coba Kembali";
+            header('location:../view/dokumen/index.php');
+        }
+    }
+    
+
     public function verifikasiCatatan($id) {
         $data = $this->DokumenPendukung->verifikasiCatatan($id);
+        if($data == true) {
+            $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
+            header('location:../view/dokumen/show.php?id=' . $id);
+        } else {
+            $_SESSION['error'] = "Catatan Gagal terverifikasi Coba Kembali";
+            header('location:../view/dokumen/show.php?id=' . $id);
+        }
+    }
+
+    public function hapusCatatan($id) {
+        $data = $this->DokumenPendukung->hapusCatatan($id);
         if($data == true) {
             $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
             header('location:../view/dokumen/show.php?id=' . $id);
