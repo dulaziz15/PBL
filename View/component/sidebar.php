@@ -37,7 +37,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'user' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-user"></i>
                     </div>
                     <a href="../../routes/route.php?page=user&sub=manageuser">Data User</a>
                 </div>
@@ -45,7 +45,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'mahasiswa' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-graduation-cap"></i>
                     </div>
                     <a href="../../routes/route.php?page=mahasiswa&sub=managemahasiswa">Data Mahasiswa</a>
                 </div>
@@ -53,7 +53,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'tugas_akhir' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-file"></i>
                     </div>
                     <a href="../../routes/route.php?page=tugasakhir&sub=manageTA">Data Dokumen TA</a>
                 </div>
@@ -61,7 +61,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'dokumen' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-folder"></i>
                     </div>
                     <a href="../../routes/route.php?page=dokumenpendukung&sub=manageDokumen">Dokumen Pendukung</a>
                 </div>
@@ -69,7 +69,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'bebas_tanggungan' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-print"></i>
                     </div>
                     <a href="../../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan">Bebas Tanggungan</a>
                 </div>
@@ -111,7 +111,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'tugas_akhir' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-file"></i>
                     </div>
                     <a href="../../routes/route.php?page=tugasakhir&sub=manageTA">Data Dokumen TA</a>
                 </div>
@@ -119,7 +119,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'dokumen' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-folder"></i>
                     </div>
                     <a href="../../routes/route.php?page=dokumenpendukung&sub=manageDokumen">Data Dokumen Pendukung</a>
                 </div>
@@ -132,7 +132,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'bebas_tanggungan' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-print"></i>
                     </div>
                     <a href="../../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan">Bebas Tanggungan</a>
                 </div>
@@ -148,7 +148,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'mahasiswa' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-graduation-cap"></i>
                     </div>
                     <a href="../../routes/route.php?page=mahasiswa&sub=managemahasiswa">Data Mahasiswa</a>
                 </div>
@@ -161,7 +161,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'tugas_akhir' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-file"></i>
                     </div>
                     <a href="../../routes/route.php?page=tugasakhir&sub=manageTA">Data Dokumen TA</a>
                 </div>
@@ -169,7 +169,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'bebas_tanggungan' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-print"></i>
                     </div>
                     <a href="../../routes/route.php?page=bebastanggungan&sub=manageBebasTanggungan">Bebas Tanggungan</a>
                 </div>
@@ -198,7 +198,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'mahasiswa' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-graduation-cap"></i>
                     </div>
                     <a href="../../routes/route.php?page=mahasiswa&sub=managemahasiswa">Data Mahasiswa</a>
                 </div>
@@ -211,7 +211,7 @@ $url = $uri_segments[3];
             <li>
                 <div class="menu <?= $url == 'dokumen' ? 'active' : '' ?>">
                     <div class="icon">
-                        <i class="fa-solid fa-gauge"></i>
+                        <i class="fa-solid fa-folder"></i>
                     </div>
                     <a href="../../routes/route.php?page=dokumenpendukung&sub=manageDokumen">Data Dokumen Pendukung</a>
                 </div>

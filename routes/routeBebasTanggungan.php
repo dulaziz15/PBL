@@ -23,6 +23,8 @@
                 $this->bebasTanggungan->getAllVerify();
             } elseif($sub == "donwloadBebasTanggungan") {
                 $this->bebasTanggungan->donwloadBebasTanggungan($id);
+            } elseif($sub == "dataDashboard") {
+                $this->bebasTanggungan->dataDashboard();
             } elseif($sub == "hapus") {
                 $this->bebasTanggungan->hapus($id);
             }
