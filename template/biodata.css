@@ -1,0 +1,530 @@
+.biodata-mahasiswa,
+.biodata-mahasiswa * {
+  box-sizing: border-box;
+}
+.biodata-mahasiswa {
+  background: #ecf8ff;
+  height: 1246px;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-63 {
+  background: #f9f9f9;
+  border-radius: 10px;
+  width: 280px;
+  height: 748px;
+  position: absolute;
+  left: 35px;
+  top: 37px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.group-46 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-38 {
+  background: #d90000;
+  border-radius: 5px;
+  width: 238px;
+  height: 36px;
+  position: absolute;
+  left: 56px;
+  top: 724px;
+}
+.logout {
+  color: var(--color, #ffffff);
+  text-align: center;
+  font-family: "Inter-SemiBold", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  position: absolute;
+  left: 98.23px;
+  top: 733px;
+  width: 155.47px;
+  height: 17px;
+}
+.rectangle-11 {
+  background: var(--color, #ffffff);
+  border-radius: 10px;
+  width: 238.92px;
+  height: 82px;
+  position: absolute;
+  left: 56px;
+  top: 59px;
+  box-shadow: 0px 0px 7px 0px rgba(150, 139, 139, 1);
+}
+.rectangle-36 {
+  background: var(--color, #ffffff);
+  border-radius: 15px;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 2px;
+  width: 979px;
+  height: 993px;
+  position: absolute;
+  left: 341px;
+  top: 216px;
+  box-shadow: 0px 0px 7px 0px rgba(150, 139, 139, 1);
+}
+.rectangle-37 {
+  background: var(--color, #ffffff);
+  border-radius: 15px;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 2px;
+  width: 979px;
+  height: 94px;
+  position: absolute;
+  left: 341px;
+  top: 100px;
+  box-shadow: 0px 0px 7px 0px rgba(150, 139, 139, 1);
+}
+.biodata {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  position: absolute;
+  left: 390px;
+  top: 132px;
+  width: 310px;
+  height: 30px;
+}
+.rectangle-95 {
+  background: #ffffff;
+  border-radius: 5px;
+  width: 865px;
+  height: 934px;
+  position: absolute;
+  left: 400px;
+  top: 251px;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
+}
+
+.informasi-mahasiswa {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  position: absolute;
+  left: 721px;
+  top: 317px;
+}
+
+.tempat-lahir-tanggal-lahir-umur-alamat-jenis-kelamin-agama {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  left: 721px;
+  top: 339px;
+  width: 203px;
+  height: 215px;
+}
+.tempat-lahir-tanggal-lahir-umur-alamat-jenis-kelamin-agama-span {
+  color: var(--text, #3e3939);
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.cirebon-bandung-14-juli-2004-20-tahun-jl-tlogomas-laki-laki-atheis {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  left: 945px;
+  top: 358px;
+  width: 203px;
+  height: 215px;
+}
+
+.informasi-keluarga {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  position: absolute;
+  left: 721px;
+  top: 590px;
+}
+.nama-ayah-nama-ibu-nik-ayah-nik-ibu {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  left: 721px;
+  top: 614px;
+  width: 203px;
+  height: 141px;
+}
+.nama-ayah-nama-ibu-nik-ayah-nik-ibu-span {
+  color: var(--text, #3e3939);
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+.agus-siti-0129301238127372-1230812308212222 {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  left: 945px;
+  top: 631px;
+  width: 203px;
+  height: 142px;
+}
+.informasi-domisili {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  position: absolute;
+  left: 721px;
+  top: 804px;
+  width: 182px;
+}
+.alamat-rt-rw-kelurahan-kecamatan-kota-kode-pos {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  left: 721px;
+  top: 828px;
+  width: 203px;
+}
+.alamat-rt-rw-kelurahan-kecamatan-kota-kode-pos-span {
+  color: var(--text, #3e3939);
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+.jl-tlogomas-04-06-merjosari-lowokwaru-malang-65144 {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  left: 945px;
+  top: 845px;
+  width: 203px;
+}
+.biodata-mahasiswa2 {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  left: 419px;
+  top: 267px;
+}
+.line-2 {
+  margin-top: -0.5px;
+  border-style: solid;
+  border-color: var(--text, #3e3939);
+  border-width: 0.5px 0 0 0;
+  width: 827px;
+  height: 0px;
+  position: absolute;
+  left: 419px;
+  top: 293px;
+}
+.rectangle-59 {
+  background: var(--abu-abu-poltek, #d9d9d9);
+  border-radius: 15px;
+  width: 281px;
+  height: 856px;
+  position: absolute;
+  left: 419px;
+  top: 309px;
+}
+.rectangle-48 {
+  border-radius: 79.5px;
+  width: 159px;
+  height: 163px;
+  position: absolute;
+  left: 480px;
+  top: 347px;
+  object-fit: cover;
+}
+.abdul-aziz-2221771013-d-4-teknik-informatika-2-g-02 {
+  color: var(--text, #3e3939);
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  left: 482px;
+  top: 521px;
+  width: 164px;
+  height: 144px;
+}
+.image-4 {
+  width: 36px;
+  height: 41px;
+  position: absolute;
+  left: 456px;
+  top: 695px;
+  object-fit: cover;
+}
+.image-5 {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  left: 456px;
+  top: 747px;
+  object-fit: cover;
+}
+.image-6 {
+  width: 35px;
+  height: 42px;
+  position: absolute;
+  left: 456px;
+  top: 792px;
+  object-fit: cover;
+}
+.kontak {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-SemiBold", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  position: absolute;
+  left: 454px;
+  top: 665px;
+  width: 67px;
+  height: 21px;
+}
+.abdulaziz-gmail-com {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  left: 502px;
+  top: 755px;
+  width: 160px;
+  height: 21px;
+}
+._081231272828 {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  left: 502px;
+  top: 710px;
+  width: 119px;
+  height: 21px;
+}
+.abdul-aziz {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  left: 505px;
+  top: 803px;
+  width: 160px;
+  height: 21px;
+}
+.data-master {
+  color: #3e3939;
+  text-align: left;
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  position: absolute;
+  left: 56px;
+  top: 230px;
+  width: 128px;
+  height: 17px;
+}
+.rectangle-83 {
+  background: var(--birulms, #1976d2);
+  border-radius: 10px;
+  width: 250px;
+  height: 60px;
+  position: absolute;
+  left: 56px;
+  top: 160px;
+  box-shadow: 0px 2px 10px 0px rgba(150, 139, 139, 0.45);
+}
+.management-tugas-akhir {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  position: absolute;
+  left: 118px;
+  top: 356px;
+  width: 179px;
+  height: 18px;
+}
+.request-bebas-tugas-akhir {
+  color: #383838;
+  text-align: left;
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  position: absolute;
+  left: 118px;
+  top: 285px;
+  width: 162px;
+  height: 17px;
+}
+.group-55 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-382 {
+  background: var(--color, #ffffff);
+  border-radius: 5px;
+  width: 35px;
+  height: 37px;
+  position: absolute;
+  left: 67px;
+  top: 346px;
+}
+.group-56 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-383 {
+  background: var(--color, #ffffff);
+  border-radius: 5px;
+  width: 35px;
+  height: 37px;
+  position: absolute;
+  left: 67px;
+  top: 275px;
+}
+.management-dokumen-pendukung {
+  color: var(--text, #3e3939);
+  text-align: left;
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  position: absolute;
+  left: 113px;
+  top: 432px;
+  width: 201px;
+  height: 17px;
+}
+.group-54 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-384 {
+  background: var(--color, #ffffff);
+  border-radius: 5px;
+  width: 35px;
+  height: 37px;
+  position: absolute;
+  left: 65px;
+  top: 422px;
+}
+._103408-text-book-icon-1 {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 74px;
+  top: 429px;
+  object-fit: cover;
+}
+.book-solid-1 {
+  width: 18px;
+  height: 20px;
+  position: absolute;
+  left: 74px;
+  top: 357px;
+  overflow: visible;
+}
+.image-13 {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 74px;
+  top: 283px;
+  object-fit: cover;
+}
+.biodata2 {
+  color: var(--color, #ffffff);
+  text-align: left;
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  position: absolute;
+  left: 113px;
+  top: 182px;
+  width: 93px;
+  height: 17px;
+}
+.group-67 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-385 {
+  background: var(--color, #ffffff);
+  border-radius: 5px;
+  width: 35px;
+  height: 37px;
+  position: absolute;
+  left: 65px;
+  top: 172px;
+}
+.gauge-solid-1 {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: 65px;
+  top: 172px;
+  overflow: visible;
+}
+.group-615 {
+  position: absolute;
+  inset: 0;
+}
+.sibeta-1 {
+  width: 41.28px;
+  height: 46.36px;
+  position: absolute;
+  left: 73px;
+  top: 77.64px;
+  object-fit: cover;
+}
+.sistem-bebas-tanggungan-tugas-akhir-1-1 {
+  width: 199.48px;
+  height: 47px;
+  position: absolute;
+  left: 77px;
+  top: 77px;
+
+}
