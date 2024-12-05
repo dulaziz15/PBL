@@ -1,4 +1,4 @@
-/* SIDEBAR  */
+/* SIDEBAR */
 .sidebar {
     width: 250px;
     padding: 20px;
@@ -6,10 +6,14 @@
     color: rgb(56, 56, 56);
     font-weight: 500;
     background-color: whitesmoke;
-    height: 750px;
+    height: 107vh;
     overflow-y: auto;
     box-sizing: border-box;
     position: fixed;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+    display: block;
+    /* Sidebar is visible by default */
 }
 
 .sidebar .logo {
@@ -57,7 +61,7 @@
 }
 
 .sidebar li .active {
-    background: linear-gradient(90deg, rgba(25,118,210,1) 30%, rgba(11,100,189,1) 96%);
+    background: linear-gradient(90deg, rgba(25, 118, 210, 1) 30%, rgba(11, 100, 189, 1) 96%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -79,7 +83,7 @@
 }
 
 .sidebar .logout-btn {
-    background: linear-gradient(90deg, rgba(217,0,0,1) 30%, rgba(194,1,1,1) 96%);
+    background: linear-gradient(90deg, rgba(217, 0, 0, 1) 30%, rgba(194, 1, 1, 1) 96%);
     display: flex;
     position: absolute;
     justify-content: center;
@@ -93,4 +97,87 @@
 
 .sidebar .logout {
     text-decoration: none;
+}
+
+/* Hide sidebar on small screens, show hamburger menu */
+.sidebar-toggle {
+    display: none;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+    /* Open sidebar */
+}
+
+.sidebar.closed {
+    transform: translateX(-250px);
+    /* Sidebar is hidden */
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        margin-top: 70px;
+        width: 250px;
+        padding: 20px;
+        border-radius: 10px;
+        color: rgb(56, 56, 56);
+        font-weight: 500;
+        background-color: whitesmoke;
+        height: 98vh;
+        overflow-y: auto;
+        box-sizing: border-box;
+        position: fixed;
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(0);
+        z-index: 1;
+        /* Sidebar is visible by default */
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+    .sidebar li {
+        margin-bottom: 0px;
+    }
+    
+    .sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 320px) {
+    .sidebar {
+        margin-top: 70px;
+        width: 250px;
+        padding: 20px;
+        border-radius: 10px;
+        color: rgb(56, 56, 56);
+        font-weight: 500;
+        background-color: whitesmoke;
+        height: 98vh;
+        overflow-y: auto;
+        box-sizing: border-box;
+        position: fixed;
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(0);
+        z-index: 1;
+        /* Sidebar is visible by default */
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+    .sidebar li {
+        margin-bottom: 0px;
+    }
+    
+    .sidebar {
+        display: none;
+    }
 }

@@ -30,13 +30,21 @@ class routePendukung {
             $this->DokumenPendukung->addCatatan($id); 
         } elseif($sub == "getCatatan") {
             $this->DokumenPendukung->getCatatan($id);
-        } elseif($sub == 'verifikasiCatatan') {
+        } elseif($sub == "getOneCatatan") {
+            $this->DokumenPendukung->getOneCatatan($id);
+        } elseif($sub == "updateCatatan") {
+            $this->DokumenPendukung->updateCatatan($id);
+        } elseif($sub == 'pengajuanCatatan') {
+            $this->DokumenPendukung->pengajuanCatatan($id);
+        }elseif($sub == 'verifikasiCatatan') {
             $this->DokumenPendukung->verifikasiCatatan($id);
+        } elseif($sub == 'hapusCatatan') {
+            $this->DokumenPendukung->hapusCatatan($id);
         } elseif($sub == 'verifikasiDokumen') {
             $this->DokumenPendukung->verifikasiDokumen($id);
         } elseif($sub == "hapus") {
-            $this->DokumenPendukung->hapus($id);id: 
-        }
+            $this->DokumenPendukung->hapus($id);
+        } 
 
         // role mahasiswa
         elseif($sub == 'getOneMahasiswa') {

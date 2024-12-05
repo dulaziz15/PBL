@@ -31,6 +31,14 @@ class TugasAkhir
         return $result;
     }
 
+    public function getAllVerify()
+    {
+        $query = "SELECT * from Tugas_akhir as ta inner join Mahasiswa as mhs on mhs.mahasiswa_id = ta.mahasiswa_id where status_tugas_akhir = '" . status::APPROVED->value . "' order by ta.tugas_akhir_id desc";
+        $data = $this->koneksi->KoneksiDB()->query($query);
+        $result = $data->fetchAll();
+        return $result;
+    }
+
     public function add($file, $mahasiswa, $judul) {
         try {
             $query = "INSERT INTO Tugas_akhir (mahasiswa_id, judul, file_project, status_tugas_akhir) VALUES

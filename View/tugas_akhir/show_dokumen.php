@@ -103,7 +103,7 @@ include "../component/sidebar.php"
                     let tableContent = '';
                     data.forEach(catatan => {
                         tableContent += `
-                                                <div class="catatan-body">
+                                <div class="catatan-body">
                                     <div class="text">
                                         ${catatan.catatan}
                                     </div>

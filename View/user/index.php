@@ -15,21 +15,31 @@ include "../component/sidebar.php"
         }
         ?>
         <a href="tambah.php" class="btn btn-tambah">Tambah</a>
-        <div class="table-container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>USERNAME</th>
-                        <th>EMAIL</th>
-                        <th>PASSWORD</th>
-                        <th>ROLE</th>
-                        <th>ACTION</th>
-                    </tr>
-                </thead>
-                <tbody id="dataUser">
+        <div class="card-main">
+            <div class="header-card">
+                <h3>Data User</h3>
+                <hr>
+            </div>
+            <div class="body-card">
+                <div class="container-card">
+                    <div class="table-container">
+                        <table class="table display nowrap">
+                            <thead>
+                                <tr>
+                                    <th>USERNAME</th>
+                                    <th>EMAIL</th>
+                                    <th>PASSWORD</th>
+                                    <th>ROLE</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataUser">
 
-                </tbody>
-            </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -65,20 +75,23 @@ unset($_SESSION['error']);
                 });
                 $('#dataUser').html(tableContent);
                 $('table').DataTable({
-                paging: true, // Menampilkan paginasi
-                searching: true, // Mengaktifkan pencarian
-                ordering: true, // Mengaktifkan sorting
-                info: true, // Menampilkan informasi tabel
-                autoWidth: true, // Menonaktifkan pengaturan otomatis lebar kolom
-                responsive: true, // Menyusun ulang kolom secara responsif di perangkat mobile
-                language: {
-                    search: "Cari:",
-                    lengthMenu: "Tampilkan _MENU_ entri per halaman",
-                    info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ entri",
-                    infoEmpty: "Menampilkan 0 hingga 0 dari 0 entri",
-                    infoFiltered: "(disaring dari _MAX_ total entri)"
-                }
-            });
+                    paging: true, // Menampilkan paginasi
+                    searching: true, // Mengaktifkan pencarian
+                    ordering: true, // Mengaktifkan sorting
+                    info: true, // Menampilkan informasi tabel
+                    autoWidth: true, // Menonaktifkan pengaturan otomatis lebar kolom
+                    responsive: true, // Menyusun ulang kolom secara responsif di perangkat mobile
+                    language: {
+                        search: "Cari:",
+                        lengthMenu: "Tampilkan _MENU_ entri per halaman",
+                        info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ entri",
+                        infoEmpty: "Menampilkan 0 hingga 0 dari 0 entri",
+                        infoFiltered: "(disaring dari _MAX_ total entri)",
+                        rowReorder: {
+                            selector: 'td:nth-child(2)'
+                        }
+                    }
+                });
             } else {
                 console.error("Expected an array but received:", data);
             }

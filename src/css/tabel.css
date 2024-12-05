@@ -2,16 +2,15 @@
 
 .table-container {
     margin-top: 20px;
-    overflow-x: auto;
+    width: 100%;
+    overflow: auto;
 }
 
 .table {
-    width: 100%;
     border-collapse: collapse;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     text-align: center;
     border-radius: 5px;
-    overflow: hidden;
 }
 
 .table thead {
@@ -24,7 +23,8 @@
 }
 
 table th, td {
-    padding: 20px !important;
+    padding: 20px 15px 20px 15px !important;
+    white-space: nowrap;
 }
 
 .table tbody tr:hover {
@@ -39,16 +39,17 @@ table th, td {
 
 .table .tugas_akhir table thead tr th {
     font-size: 15px;
-    padding: 10px;
+    padding: 20px;
 }
 
 .tugas_akhir .table tbody tr td{
     font-size: 15px;
-    padding: 20px;
+    padding: 20px 15px 20px 15px;
 }
 
 .table .table-container.dokumen {
     font-size: 15px;
+    padding: 20px 15px 20px 15px;
 }
 
 div.dt-container .dt-search input {
@@ -59,3 +60,4 @@ div.dt-container .dt-search input {
     border: solid 2px blue;
     background-color: white !important;
 }
+

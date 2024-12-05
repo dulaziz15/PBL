@@ -8,7 +8,6 @@ class Koneksi {
         $conn = new PDO("sqlsrv:server=NOF\SQLEXPRESS;database=BebasTanggunganDB");
         return $conn;
     }
-
 }
 
 ?>
