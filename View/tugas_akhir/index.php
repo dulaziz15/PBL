@@ -11,11 +11,6 @@ include_once "../component/sidebar.php"
     </div>
     <div class="body-main">
         <?php
-        if (isset($_SESSION['sukses'])) {
-            echo "<h1>" . $_SESSION['sukses'] . "</h1>";
-        } elseif (isset($_SESSION['error'])) {
-            echo "<h1>" . $_SESSION['error'] . "</h1>";
-        }
 
         if ($_SESSION['user']['role'] == role::MAHSISWA->value) { ?>
             <div class="kosong">
@@ -24,6 +19,13 @@ include_once "../component/sidebar.php"
                 <div class="header-card">
                     <h3>Informasi Dokumen TA</h3>
                     <hr>
+                    <?php
+                        if (isset($_SESSION['sukses'])) {
+                            echo "<h3 class='alert-sukses'><i class='fa-solid fa-circle-check'></i>" . $_SESSION['sukses'] . "</h3>";
+                        } elseif (isset($_SESSION['error'])) {
+                            echo "<h3  class='alert-error'><i class='fa-solid fa-warning'></i>" . $_SESSION['error'] . "</h3>";
+                        }
+                    ?>
                 </div>
                 <div class="body-card">
                     <div class="container-card">
@@ -41,9 +43,9 @@ include_once "../component/sidebar.php"
                             <table class="table list-dokumen-ta-mahasiswa display nowrap">
                                 <?php
                                 if (isset($_SESSION['sukses'])) {
-                                    echo "<h1>" . $_SESSION['sukses'] . "</h1>";
+                                    echo "<h3 class='alert-sukses'><i class='fa-solid fa-circle-check'></i>" . $_SESSION['sukses'] . "</h3>";
                                 } elseif (isset($_SESSION['error'])) {
-                                    echo "<h1>" . $_SESSION['error'] . "</h1>";
+                                    echo "<h3  class='alert-error'><i class='fa-solid fa-warning'></i>" . $_SESSION['error'] . "</h3>";
                                 }
                                 ?>
                                 <thead>
@@ -69,7 +71,7 @@ include_once "../component/sidebar.php"
             <a href="tambah.php" class="btn btn-tambah">Tambah</a>
             <div class="card-main">
                 <div class="header-card">
-                    <h3>Data Dokumen Pendukung</h3>
+                    <h3>Data Dokumen Tugas Akhir</h3>
                     <hr>
                 </div>
                 <div class="body-card">

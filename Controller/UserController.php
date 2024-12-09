@@ -24,7 +24,7 @@ class UserController implements UserControllerInterface {
             $_SESSION['sukses'] = "Data Berhasil Ditambahkan";
             header('location:../routes/route.php?page=user&sub=manageuser');
         } else {
-            $_SESSION['error'] = "Data Gagal Ditambahkan";
+            $_SESSION['error'] = "Gagal menambahkan data! Pastikan Username dan Email belum digunakan!!";
             header('location:../routes/route.php?page=user&sub=manageuser');
         }
     }

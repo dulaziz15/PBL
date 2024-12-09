@@ -21,6 +21,13 @@ include "../component/sidebar.php"
                     <div class="keterangan">
                         <span>Status Project</span>
                         <p id="status_project"></p>
+                        <?php
+                        if (isset($_SESSION['sukses'])) {
+                            echo "<h3 class='alert-sukses'><i class='fa-solid fa-circle-check'></i>" . $_SESSION['sukses'] . "</h3>";
+                        } elseif (isset($_SESSION['error'])) {
+                            echo "<h3  class='alert-error'><i class='fa-solid fa-warning'></i>" . $_SESSION['error'] . "</h3>";
+                        }
+                        ?>
                     </div>
                     <div class="informasi-dokumen">
                         <div class="pdf">
@@ -42,7 +49,7 @@ include "../component/sidebar.php"
                                             <input type="submit" value="Tambah"><br>
                                         </form>
                                     <?php
-                                        }
+                                    }
                                     ?>
                                 </div>
 
@@ -146,7 +153,7 @@ include "../component/sidebar.php"
                     });
                     $('.card-catatan').append(tableContent);
                     const role = <?= $_SESSION['user']['role'] ?>;
-                    if(role == 2) {
+                    if (role == 2) {
                         $('.catatan-admin').css('display', 'none');
                     } else {
                         $('.catatan-mahasiswa').css('display', 'none');

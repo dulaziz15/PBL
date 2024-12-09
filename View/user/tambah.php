@@ -1,30 +1,41 @@
-<?php
-include "../component/header.php";
-include "../component/sidebar.php"
-?>
-<div class="content">
-    <div class="header-main">
-        <h2>Management User</h2>
-    </div>
-    <div class="body-main">
-        <form action="../../routes/route.php?page=user&sub=tambahuser" method="POST">
-            <input type="number" name="username" placeholder="username">
-            <input type="email" name="email" placeholder="email">
-            <input type="text" name="password" placeholder="password">
-            <select name="role" id="">
-                <option value="1">Super Admin</option>
-                <option value="2">Mahasiswa</option>
-                <option value="3">Admin Jurusan</option>
-                <option value="4">Admin Prodi</option>
-            </select>
-            <input type="submit" value="Tambah">
-        </form>
-    </div>
-</div>
-<?php
-include "../component/footer.php";
-?>
-<?php
-unset($_SESSION['sukses']);
-unset($_SESSION['error']);
-?>
+   
+   <div class="body-main" id="modal-tambah-user">
+       <div class="card-main">
+           <div class="header-card">
+               <h3>Tambah User</h3>
+               <hr>
+           </div>
+           <div class="body-card">
+               <div class="container-card">
+                   <form action="../../routes/route.php?page=user&sub=tambahuser" method="POST">
+                       <div class="form-modal">
+                           <div class="form-input">
+                               <label for="">Username</label>
+                               <input type="number" name="username" placeholder="username">
+                           </div>
+                           <div class="form-input">
+                               <label for="">Email</label>
+                               <input type="email" name="email" placeholder="email">
+                           </div>
+                           <div class="form-input">
+                               <label for="">Password</label>
+                               <input type="text" name="password" placeholder="password">
+                           </div>
+                           <div class="form-input">
+                               <label for="">Password</label>
+                               <select name="role">
+                                   <option value="1">Super Admin</option>
+                                   <option value="2">Mahasiswa</option>
+                                   <option value="3">Admin Jurusan</option>
+                                   <option value="4">Admin Prodi</option>
+                               </select>
+                           </div>
+                           <div class="">
+                               <input class="btn btn-submit" type="submit" value="Tambah">
+                           </div>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>

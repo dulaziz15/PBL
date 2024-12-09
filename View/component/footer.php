@@ -20,7 +20,14 @@
             $(".sidebar").show();
         }
     });
+
+    setTimeout(function() {
+        $(".navbar").show("slow");
+        $(".container").show("slow");
+        $(".loading-container").hide();
+    }, 300);
 </script>
+
 </body>
 
 </html>

@@ -68,9 +68,9 @@ include "../component/sidebar.php"
                         <div class="table-container">
                             <?php
                             if (isset($_SESSION['sukses'])) {
-                                echo "<h1>" . $_SESSION['sukses'] . "</h1>";
+                                echo "<h3 class='alert-sukses'><i class='fa-solid fa-circle-check'></i>" . $_SESSION['sukses'] . "</h3>";
                             } elseif (isset($_SESSION['error'])) {
-                                echo "<h1>" . $_SESSION['error'] . "</h1>";
+                                echo "<h3  class='alert-error'><i class='fa-solid fa-warning'></i>" . $_SESSION['error'] . "</h3>";
                             }
                             ?>
                             <table class="table display nowrap table-dokumen-pendukung">

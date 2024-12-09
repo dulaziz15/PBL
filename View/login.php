@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../src/css/login&Regis.css">
 </head>
 <body>
-<body>
     <div class="login-container">
         <div class="login-card">
             <!-- Logo -->
@@ -41,7 +40,10 @@
             </form>
         </div>
     </div>
-
+    <?php
+unset($_SESSION['sukses']);
+unset($_SESSION['error']);
+?>
     <script>
         document.getElementById('showPassword').addEventListener('change', function () {
             var passwordInput = document.getElementById('password');
