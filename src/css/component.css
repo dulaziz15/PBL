@@ -57,12 +57,12 @@
 
 .btn-back {
     background-color: white;
-    border: 1px solid #D9D9D9;
-    color: #D9D9D9;
+    border: 1px solid #000000;
+    color: #000000;
 }
 
 .btn-back:hover {
-    background-color: #D9D9D9;
+    background-color: #000000;
     color: white;
 }
 
@@ -84,6 +84,17 @@
 }
 
 .btn-download:hover {
+    background: linear-gradient(90deg, rgba(25,118,210,1) 30%, rgba(11,100,189,1) 96%);
+    color: white;
+}
+
+.btn-submit {
+    background-color: #d2e8f9;
+    border: 1px solid #1976d2;
+    color: #1976d2;
+}
+
+.btn-submit:hover {
     background: linear-gradient(90deg, rgba(25,118,210,1) 30%, rgba(11,100,189,1) 96%);
     color: white;
 }
@@ -121,4 +132,30 @@
 .status-submit {
     background-color: #b4d6f8;
     color: #1976d2;
+}
+
+/* alert */
+
+.alert-sukses {
+    background-color: #d2f3e4;
+    border: 1px solid #19D225;
+    color: #19D225;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.alert-sukses i {
+    margin-right: 10px;
+}
+
+.alert-error i {
+    margin-right: 10px;
+}
+
+.alert-error {
+    background-color: #edf2ed;
+    border: 1px solid #C91906;
+    color: #C91906;
+    padding: 10px;
+    border-radius: 5px;
 }

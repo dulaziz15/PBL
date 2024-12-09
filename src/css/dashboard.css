@@ -95,6 +95,10 @@ embed:focus {
     display: none;
 }
 
+.header-card {
+    display: block;
+}
+
 @media (max-width: 768px) {
     .content {
         flex: 1;

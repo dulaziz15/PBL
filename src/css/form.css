@@ -1,0 +1,54 @@
+.form-container {
+    /* background-color: antiquewhite; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 50px;
+}
+
+.form-input {
+    /* background-color:aqua; */
+    padding: 10px;
+    display: block;
+}
+
+.form-input input, select {
+    border: 2px solid #0245a3;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    background-color:rgb(255, 255, 255);
+}
+
+.form-input label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-input-select label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-input-submit #submit, #update {
+    padding: 15px 20px;
+    border: none;
+    background-color: rgb(0, 136, 9);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.form-input-submit {
+    display: flex;
+    justify-content: start;
+}
+
+.back {
+    text-decoration: none;
+    background-color:aquamarine;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: black;
+}

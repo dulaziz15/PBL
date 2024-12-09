@@ -13,11 +13,27 @@
     text-align: center;
 }
 
-.card-dashboard .jumlah-ta {
+.card-dashboard .content-ta {
+    color: white;
+    background-color: #04aa6d;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-dashboard .content-ta .jumlah-ta {
     color: white;
     background-color: #0245A3;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-dashboard .content-ta .read-more {
+    padding: 10px;
+}
+
+.card-dashboard .content-ta .read-more a {
+    text-decoration: none;
+    color: white;
 }
 
 .card-dashboard h3 {
@@ -37,8 +53,13 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .statistics .chart-container {

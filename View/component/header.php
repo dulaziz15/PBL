@@ -21,6 +21,11 @@ session_start();
     <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Remember to include jQuery :) -->
+
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
     <link rel="stylesheet" href="../../src/css/dashboard.css">
     <link rel="stylesheet" href="../../src/css/component.css">
@@ -28,12 +33,19 @@ session_start();
     <link rel="stylesheet" href="../../src/css/sidebar.css">
     <link rel="stylesheet" href="../../src/css/catatan.css">
     <link rel="stylesheet" href="../../src/css/dashboard-content.css">
+    <link rel="stylesheet" href="../../src/css/biodata.css">
+    <link rel="stylesheet" href="../../src/css/form.css">
+    <link rel="stylesheet" href="../../src/css/modal.css">
+    <link rel="stylesheet" href="../../src/css/loading.css">
 </head>
 
 <body>
-    <nav class="navbar">
-        <h1 class="toggle-sidebar" onclick="OpenSidebar()">
+    <?php
+    include_once 'loading.php';
+    ?>
+    <nav class="navbar" style="display: none;">
+        <h1 class="toggle-sidebar" style="display: none;" onclick="OpenSidebar()">
             <i class="fa-solid fa-bars"></i>
         </h1>
     </nav>
-    <div class="container">
+    <div class="container" style="display: none;">

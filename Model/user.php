@@ -13,7 +13,7 @@ class User {
     }
 
     public function validasi_nim($nim, $password) {
-        $query = "select * from dbo.Users where username = '$nim' and password = '$password'";
+        $query = "SELECT * from dbo.Users where username = '$nim' and password = '$password'";
         $data = $this->koneksi->KoneksiDB()->query($query);
         $result = $data->fetch();
         if(empty($result) == true) {

@@ -8,17 +8,17 @@ include "../component/sidebar.php"
     </div>
     <div class="body-main">
         <a href="tambah.php" class="btn btn-tambah">Tambah</a>
-        <?php
-        if (isset($_SESSION['sukses'])) {
-            echo "<h1>" . $_SESSION['sukses'] . "</h1>";
-        } elseif (isset($_SESSION['error'])) {
-            echo "<h1>" . $_SESSION['error'] . "</h1>";
-        }
-        ?>
         <div class="card-main">
             <div class="header-card">
                 <h3>Data Mahasiswa</h3>
                 <hr>
+                <?php
+                    if (isset($_SESSION['sukses'])) {
+                        echo "<h3 class='alert-sukses'><i class='fa-solid fa-circle-check'></i>" . $_SESSION['sukses'] . "</h3>";
+                    } elseif (isset($_SESSION['error'])) {
+                        echo "<h3  class='alert-error'><i class='fa-solid fa-warning'></i>" . $_SESSION['error'] . "</h3>";
+                    }
+                ?>
             </div>
             <div class="body-card">
                 <div class="container-card">

@@ -1,0 +1,24 @@
+.biodata-mahasiswa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    padding: 20px;
+}
+
+.biodata-mahasiswa .foto-profil{
+    padding: 40px;
+    background-color: whitesmoke;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    justify-items: center;
+    text-align: center;
+}
+
+.biodata-mahasiswa .foto-profil img{
+    width: 100px;
+}
+
+.biodata-mahasiswa .data-profil{
+    padding: 40px;
+}
