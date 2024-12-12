@@ -42,6 +42,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-top: 20px;
+    margin-bottom: 20px;
     border-radius: 5px;
 }
 
@@ -67,6 +68,22 @@ body {
 
 .pdf embed {
     width: 600px;
+    height: 700px;
+}
+
+.pdf-arsip {
+    background-color: #1976d2;
+    padding: 20px;
+    border-radius: 5px;
+    height: auto;
+}
+
+.pdf-arsip span {
+    color: white;
+}
+
+.pdf-arsip embed {
+    width: 100%;
     height: 700px;
 }
 
@@ -99,6 +116,18 @@ embed:focus {
     display: block;
 }
 
+.akun {
+    display: flex;
+    justify-content: right;
+}
+
+.akun .ket{
+    padding: 10px;
+    background-color: #F2FCFC;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 @media (max-width: 768px) {
     .content {
         flex: 1;
@@ -112,6 +141,7 @@ embed:focus {
     }
 
     .navbar {
+        display: block;
         background-color: #0245A3;
         color: white;
         padding: 0px 20px 0px 20px;
@@ -134,6 +164,10 @@ embed:focus {
     body {
         zoom: 70%;
     }
+
+    .toggle-sidebar {
+        display: block !important;
+    }
 }
 
 @media (max-width: 325px) {
@@ -151,6 +185,7 @@ embed:focus {
 
 
     .navbar {
+        display: block;
         background-color: #0245A3;
         color: white;
         padding: 0px 20px 0px 20px;
@@ -168,6 +203,10 @@ embed:focus {
 
     nav h1 {
         cursor: pointer;
+    }
+
+    .toggle-sidebar {
+        display: block !important;
     }
 
 
@@ -199,6 +238,7 @@ embed:focus {
 
 
     .navbar {
+        display: block;
         background-color: #0245A3;
         color: white;
         padding: 0px 20px 0px 20px;
@@ -216,6 +256,10 @@ embed:focus {
 
     nav h1 {
         cursor: pointer;
+    }
+
+    .toggle-sidebar {
+        display: block !important;
     }
 
 

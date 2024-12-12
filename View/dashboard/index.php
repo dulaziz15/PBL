@@ -3,9 +3,7 @@ include "../component/header.php";
 include "../component/sidebar.php"
 ?>
 <div class="content">
-<div class="akun">
-            Selamat Datang <?= $_SESSION['user']['email'] ?>
-        </div>
+    <?php include_once '../component/akun.php'; ?>
     <div class="header-main">
         <h2>Dashboard</h2>
     </div>
@@ -100,7 +98,7 @@ include "../component/footer.php";
                     </div>
                 </div>`;
             $('.main-dashboard').html(tableContent);
-            
+
             const ctxBar = document.getElementById('barChart').getContext('2d');
             const barChart = new Chart(ctxBar, {
                 type: 'bar',

@@ -1,7 +1,9 @@
 <?php
 require '../vendor/autoload.php';
+
 use Pbl\Controller\AuthController;
 use Pbl\Enums\role;
+use Pbl\Routes\routeArsip;
 use Pbl\Routes\routeBebasTanggungan;
 use Pbl\Routes\routeBiodata;
 use Pbl\Routes\routeMahasiswa;
@@ -9,74 +11,55 @@ use Pbl\Routes\routePendukung;
 use Pbl\Routes\routeTA;
 use Pbl\Routes\routeUser;
 
-$biodata = new routeBiodata();
-$auth = new AuthController();
-$user = new RouteUser();
-$tugas_akhir = new routeTA();
-$mahasiswa = new routeMahasiswa();
-$pendukung = new routePendukung();
-$bebasTanggungan = new routeBebasTanggungan();
+// Inisialisasi controller
+$controllers = [
+    'auth' => new AuthController(),
+    'user' => new routeUser(),
+    'tugasakhir' => new routeTA(),
+    'mahasiswa' => new routeMahasiswa(),
+    'dokumenpendukung' => new routePendukung(),
+    'bebastanggungan' => new routeBebasTanggungan(),
+    'biodata' => new routeBiodata(),
+    'arsip' => new routeArsip()
+];
 
-$page = isset($_GET['page']) ? $_GET['page'] : $_GET['page'] = 'login';
+// Default page
+$page = $_GET['page'] ?? 'login';
 
-if ($page == 'login') {
-    $auth->login();
-} elseif ($page == 'proses_login') {
-    $auth->proses_login();
-} elseif ($page == 'logout') {
-    $auth->logout();
+if ($page === 'login') {
+    $controllers['auth']->login();
+    exit;
+} elseif ($page === 'proses_login') {
+    $controllers['auth']->proses_login();
+    exit;
+} elseif ($page === 'logout') {
+    $controllers['auth']->logout();
+    exit;
+} elseif ($page === 'dashboard') {
+    header('location:../view/dashboard/index.php');
+    exit;
 }
 
-if (isset($_SESSION['user'])) {
-    if($_SESSION['user']['role'] == role::SUPER_ADMIN->value) {
-        if ($page == 'user') {
-            $user->route();
-        } elseif ($page == 'tugasakhir') {
-            $tugas_akhir->route();
-        } elseif ($page == 'dokumenpendukung') {
-            $pendukung->route();
-        } elseif ($page == 'bebastanggungan') {
-            $bebasTanggungan->route();
-        } elseif ($page == 'mahasiswa') {
-            $mahasiswa->route();
-        } elseif($page == 'dashboard') {
-            header('location:../view/dashboard/index.php');
-        }
-    } elseif ($_SESSION['user']['role'] == role::MAHSISWA->value) {
-        if ($page == 'biodata') {
-            $biodata->route();
-        } elseif ($page == 'tugasakhir') {
-            $tugas_akhir->route();
-        } elseif ($page == 'mahasiswa') {
-            $mahasiswa->route();
-        } elseif ($page == 'dokumenpendukung') {
-            $pendukung->route();
-        } elseif ($page == 'bebastanggungan') {
-            $bebasTanggungan->route();
-        } elseif($page == 'dashboard') {
-            header('location:../view/dashboard/index.php');
-        }
-    } elseif ($_SESSION['user']['role'] == role::ADMIN_JURUSAN->value) {
-        if ($page == 'tugasakhir') {
-            $tugas_akhir->route();
-        } elseif ($page == 'mahasiswa') {
-            $mahasiswa->route();
-        } elseif ($page == 'bebastanggungan') {
-            $bebasTanggungan->route();
-        } elseif($page == 'dashboard') {
-            header('location:../view/dashboard/index.php');
-        }
-    } elseif ($_SESSION['user']['role'] == role::ADMIN_PRODI->value) {
-        if ($page == 'dokumenpendukung') {
-            $pendukung->route();
-        } elseif ($page == 'mahasiswa') {
-            $mahasiswa->route();
-        } elseif($page == 'dashboard') {
-            header('location:../view/dashboard/index.php');
-        }
-    } else {
-        header('location:../view/403.php');
-    }
-} else {
+if (!isset($_SESSION['user'])) {
     header('location:../view/login.php');
+    exit;
+}
+
+$roleRoutes = [
+    role::SUPER_ADMIN->value => ['user', 'tugasakhir', 'dokumenpendukung', 'bebastanggungan', 'mahasiswa', 'dashboard', 'arsip'],
+    role::MAHSISWA->value => ['biodata', 'tugasakhir', 'mahasiswa', 'dokumenpendukung', 'bebastanggungan', 'dashboard'],
+    role::ADMIN_JURUSAN->value => ['tugasakhir', 'mahasiswa', 'bebastanggungan', 'dashboard', 'arsip'],
+    role::ADMIN_PRODI->value => ['dokumenpendukung', 'mahasiswa', 'bebastanggungan', 'dashboard', 'arsip'],
+];
+
+$userRole = $_SESSION['user']['role'];
+if (!isset($roleRoutes[$userRole]) || !in_array($page, $roleRoutes[$userRole])) {
+    header('location:../view/403.php');
+    exit;
+}
+
+if (isset($controllers[$page])) {
+    $controllers[$page]->route();
+} else {
+    header('location:../view/404.php');
 }

@@ -2,54 +2,37 @@
 namespace Pbl\Routes;
 
 use Pbl\Controller\PendukungController;
+use Pbl\Core\Route;
 
-class routePendukung {
+class routePendukung extends Route{
     private $DokumenPendukung;
 
     public function __construct() {
         $this->DokumenPendukung = new PendukungController();
+        $this->routes = [
+            'manageDokumen' => 'index',
+            'getAll' => 'getAll',
+            'addDokumen' => 'add',
+            'getOne' => 'getOne',
+            'getOneByTugasAkhir' => 'getOneByTugasAkhir',
+            'updateDokumen' => 'update',
+            'tambahcatatan' => 'addCatatan',
+            'getCatatan' => 'getCatatan',
+            'getOneCatatan' => 'getOneCatatan',
+            'updateCatatan' => 'updateCatatan',
+            'pengajuanCatatan' => 'pengajuanCatatan',
+            'verifikasiCatatan' => 'verifikasiCatatan',
+            'hapusCatatan' => 'hapusCatatan',
+            'verifikasiDokumen' => 'verifikasiDokumen',
+            'hapus' => 'delete',
+            'getOneMahasiswa' => 'getOneMahasiswa'
+        ];
     }
 
-    public function route() {
-        $sub = isset($_GET['sub']) ? $_GET['sub'] : $_GET['sub'] = 'manageDokumen';
-        $id = isset($_GET['id']) ? $_GET['id'] : "";
-
-        if($sub == "manageDokumen") {
-            // var_dump("cek");
-            header('location:../view/dokumen/index.php');
-        } elseif($sub == "getAll") {
-            $this->DokumenPendukung->getAll();
-        } elseif($sub == "addDokumen") {
-            $this->DokumenPendukung->add();
-        } elseif($sub == "getOne") {
-            $this->DokumenPendukung->getOne($id);
-        } elseif($sub == "getOneByTugasAkhir") {
-            $this->DokumenPendukung->getOneByTugasAkhir($id);
-        } elseif($sub == "updateDokumen") {
-            $this->DokumenPendukung->updateDokumen($id);
-        } elseif($sub == "tambahcatatan") {
-            $this->DokumenPendukung->addCatatan($id); 
-        } elseif($sub == "getCatatan") {
-            $this->DokumenPendukung->getCatatan($id);
-        } elseif($sub == "getOneCatatan") {
-            $this->DokumenPendukung->getOneCatatan($id);
-        } elseif($sub == "updateCatatan") {
-            $this->DokumenPendukung->updateCatatan($id);
-        } elseif($sub == 'pengajuanCatatan') {
-            $this->DokumenPendukung->pengajuanCatatan($id);
-        }elseif($sub == 'verifikasiCatatan') {
-            $this->DokumenPendukung->verifikasiCatatan($id);
-        } elseif($sub == 'hapusCatatan') {
-            $this->DokumenPendukung->hapusCatatan($id);
-        } elseif($sub == 'verifikasiDokumen') {
-            $this->DokumenPendukung->verifikasiDokumen($id);
-        } elseif($sub == "hapus") {
-            $this->DokumenPendukung->hapus($id);
-        } 
-
-        // role mahasiswa
-        elseif($sub == 'getOneMahasiswa') {
-            $this->DokumenPendukung->getOneMahasiswa($id);
-        } 
+    public function route($controller = null, $sub = '', $id = '') {
+        $sub = $sub ?: ($_GET['sub'] ?? 'manageUser');
+        $id = $id ?: ($_GET['id'] ?? "");
+        
+        parent::route($this->DokumenPendukung, $sub, $id);
     }
 }

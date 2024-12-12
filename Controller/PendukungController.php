@@ -1,22 +1,21 @@
 <?php
+
 namespace Pbl\Controller;
 
 use DateTime;
-use Pbl\Model\DokumenPendukung;
-use Pbl\Model\Mahasiswa;
+use Pbl\Core\Controller;
+use Pbl\Interface\ManagementDataInterface;
 
-class PendukungController {
-    private $DokumenPendukung;
-    private $mahasiswa;
-
-    public function __construct() {
-        $this->DokumenPendukung = new DokumenPendukung();
-        $this->mahasiswa = new Mahasiswa();
+class PendukungController extends Controller implements ManagementDataInterface
+{
+    public function index()
+    {
+        header('location:../view/dokumen');
     }
-
-    public function getAll() {
+    public function getAll()
+    {
         $data = $this->DokumenPendukung->getAll();
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -24,33 +23,56 @@ class PendukungController {
         }
     }
 
-    public function add() {
+    public function add()
+    {
+        // Menentukan ukuran maksimum file (misalnya 2MB)
+        $maxFileSize = 2 * 1024 * 1024; // 2MB dalam byte
+
+        // Daftar file yang diupload
         $file = [
             'tanda_terima_ta' => $_FILES['tanda_terima_ta'],
             'tanda_terima_pkl' => $_FILES['tanda_terima_pkl'],
             'bebas_kompen' => $_FILES['bebas_kompen']
         ];
+
+        // Mengambil data tugas akhir dan NIM
         $tugas_akhir_data = $_POST['tugas_akhir'];
         list($tugas_akhir, $nim) = explode(':', $tugas_akhir_data);
         $targetDir = '../src/dokumen_pendukung/' . $nim . "/";
 
+        // Membuat direktori jika belum ada
         @mkdir($targetDir, 0777, true);
+
+        // Validasi ukuran file
+        foreach ($file as $key => $dokumen) {
+            // Jika ukuran file lebih besar dari batas maksimum
+            if ($dokumen['size'] > $maxFileSize) {
+                $_SESSION['error'] = "File " . $dokumen['name'] . " terlalu besar. Maksimum ukuran file adalah 2MB.";
+                header('location:../routes/route.php?page=dokumenpendukung&sub=manageDokumen');
+                exit();
+            }
+        }
+
+        // Jika validasi berhasil, lanjutkan untuk menambah data
         $data = $this->DokumenPendukung->add($tugas_akhir, $file);
-        if($data) {
-            foreach($file as $dokumen) {
+        if ($data) {
+            // Memindahkan file yang valid ke direktori tujuan
+            foreach ($file as $dokumen) {
                 move_uploaded_file($dokumen['tmp_name'], $targetDir . $dokumen['name']);
             }
-            $_SESSION['sukses'] = "Data Behasil ditambah";
+            $_SESSION['sukses'] = "Data Berhasil ditambah";
             header('location:../routes/route.php?page=dokumenpendukung&sub=manageDokumen');
         } else {
-            $_SESSION['error'] = "Data Gagal ditambah Coba Kembali";
+            $_SESSION['error'] = "Data Gagal ditambah. Coba Kembali.";
             header('location:../routes/route.php?page=dokumenpendukung&sub=manageDokumen');
         }
     }
 
-    public function getOne($id) {
+
+    public function getOne($id)
+    {
         $data = $this->DokumenPendukung->getOne($id);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -58,9 +80,10 @@ class PendukungController {
         }
     }
 
-    public function getOneByTugasAkhir($id) {
+    public function getOneByTugasAkhir($id)
+    {
         $data = $this->DokumenPendukung->getOneByTugasAkhir($id);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -68,13 +91,14 @@ class PendukungController {
         }
     }
 
-    public function updateDokumen($id) {
+    public function update($id)
+    {
         $dokumen = $_FILES['dokumen'];
         $bagian = $_POST['bagian'];
         $nim = $this->DokumenPendukung->getNIMbyDokumen($id);
         $targetDir = '../src/dokumen_pendukung/' . $nim['NIM'] . "/";
         $data = $this->DokumenPendukung->updateDokumen($id, $dokumen, $bagian);
-        if($data) {
+        if ($data) {
             move_uploaded_file($dokumen['tmp_name'], $targetDir . $dokumen['name']);
             $_SESSION['sukses'] = "Data Behasil diupdate";
             header('location:../routes/route.php?page=dokumenpendukung&sub=manageDokumen');
@@ -84,13 +108,14 @@ class PendukungController {
         }
     }
 
-    public function addCatatan($id) {
+    public function addCatatan($id)
+    {
         $user = $_SESSION['user']['user_id'];
         $catatan = $_POST['catatan'];
         $format = new DateTime();
         $tanggal = $format->format('Y-m-d');
         $data = $this->DokumenPendukung->addCatatan($id, $user, $catatan, $tanggal);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Catatan Behasil ditambahkan";
             header('location:../view/dokumen/show.php?id=' . $id);
         } else {
@@ -99,9 +124,10 @@ class PendukungController {
         }
     }
 
-    public function getCatatan($id) {
+    public function getCatatan($id)
+    {
         $data = $this->DokumenPendukung->getCatatan($id);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -109,9 +135,10 @@ class PendukungController {
         }
     }
 
-    public function getOneCatatan($id) {
+    public function getOneCatatan($id)
+    {
         $data = $this->DokumenPendukung->getOneCatatan($id);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -119,10 +146,11 @@ class PendukungController {
         }
     }
 
-    public function updateCatatan($id) {
+    public function updateCatatan($id)
+    {
         $catatan = $_POST['catatan'];
         $data = $this->DokumenPendukung->updateCatatan($id, $catatan);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
             header('location:../view/dokumen/show_dokumen.php?id=' . $id);
         } else {
@@ -131,9 +159,10 @@ class PendukungController {
         }
     }
 
-    public function pengajuanCatatan($id) {
+    public function pengajuanCatatan($id)
+    {
         $data = $this->DokumenPendukung->pengajuanCatatan($id);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
             header('location:../view/dokumen/index.php');
         } else {
@@ -141,11 +170,12 @@ class PendukungController {
             header('location:../view/dokumen/index.php');
         }
     }
-    
 
-    public function verifikasiCatatan($id) {
+
+    public function verifikasiCatatan($id)
+    {
         $data = $this->DokumenPendukung->verifikasiCatatan($id);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
             header('location:../view/dokumen/show.php?id=' . $id);
         } else {
@@ -154,9 +184,10 @@ class PendukungController {
         }
     }
 
-    public function hapusCatatan($id) {
+    public function hapusCatatan($id)
+    {
         $data = $this->DokumenPendukung->hapusCatatan($id);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
             header('location:../view/dokumen/show.php?id=' . $id);
         } else {
@@ -165,12 +196,13 @@ class PendukungController {
         }
     }
 
-    public function verifikasiDokumen($id) {
+    public function verifikasiDokumen($id)
+    {
         $rejected = $this->DokumenPendukung->validateCatatan($id);
         $ta = $this->DokumenPendukung->getOne($id);
-        if($rejected == null) {
+        if ($rejected == null) {
             $data = $this->DokumenPendukung->verifikasi($id);
-            if($data == true) {
+            if ($data == true) {
                 $_SESSION['sukses'] = "Dokumen Behasil terverifikasi";
                 header('location:../view/dokumen/index.php');
             } else {
@@ -183,9 +215,10 @@ class PendukungController {
         }
     }
 
-    public function hapus($id) {
+    public function delete($id)
+    {
         $data = $this->DokumenPendukung->hapus($id);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Data Behasil dihapus";
             header('location:../routes/route.php?page=dokumenpendukung&sub=manageDokumen');
         } else {
@@ -194,11 +227,12 @@ class PendukungController {
         }
     }
 
-    
-    public function getOneMahasiswa($id) {
+
+    public function getOneMahasiswa($id)
+    {
         $mahasiswa = $this->mahasiswa->getOneByUser($id);
         $data = $this->DokumenPendukung->getOneMahasiswa($mahasiswa['mahasiswa_id']);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {

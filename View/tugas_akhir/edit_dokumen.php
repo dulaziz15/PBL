@@ -3,6 +3,7 @@ include "../component/header.php";
 include "../component/sidebar.php"
 ?>
 <div class="content">
+    <?php include_once '../component/akun.php'; ?>
     <div class="header-main">
         <h2>Management Tugas Akhir</h2>
     </div>
@@ -29,12 +30,3 @@ include "../component/sidebar.php"
     unset($_SESSION['sukses']);
     unset($_SESSION['error']);
     ?>
-    <script>
-        $.ajax({
-            type: 'GET',
-            url: '/Pbl/routes/route.php?page=tugasakhir&sub=getOne&id=<?= $_GET['id'] ?>',
-            success: function(data) {
-                console.log(data);
-            }
-        });
-    </script>

@@ -6,6 +6,7 @@ include "../component/header.php";
 include "../component/sidebar.php"
 ?>
 <div class="content">
+    <?php include_once '../component/akun.php'; ?>
     <div class="header-main">
         <h2>Management Bebas Tanggungan</h2>
     </div>
@@ -22,26 +23,36 @@ include "../component/sidebar.php"
                         <h3>Informasi Dokumen TA</h3>
                         <hr>
                         <?php
-                            if (isset($_SESSION['sukses'])) {
-                                echo "<h3 class='alert-sukses'><i class='fa-solid fa-circle-check'></i>" . $_SESSION['sukses'] . "</h3>";
-                            } elseif (isset($_SESSION['error'])) {
-                                echo "<h3  class='alert-error'><i class='fa-solid fa-warning'></i>" . $_SESSION['error'] . "</h3>";
-                            }
+                        if (isset($_SESSION['sukses'])) {
+                            echo "<h3 class='alert-sukses'><i class='fa-solid fa-circle-check'></i>" . $_SESSION['sukses'] . "</h3>";
+                        } elseif (isset($_SESSION['error'])) {
+                            echo "<h3  class='alert-error'><i class='fa-solid fa-warning'></i>" . $_SESSION['error'] . "</h3>";
+                        }
                         ?>
                     </div>
                     <div class="body-card">
                         <div class="container-card">
-                            <div class="keterangan">
-                                <span>Status Dokumen</span>
-                                <p id="status_project"></p>
-                            </div>
                             <div class="informasi">
                                 <span>informasi tugas akhir</span>
                                 <ul id="data_tugas_akhir">
 
                                 </ul>
                             </div>
-                            
+                            <div class="keterangan">
+                                <span>Status Bebas Tanggungan</span>
+                                <p id="status_project"></p>
+                            </div>
+                            <div class="keterangan">
+                                <span>Status Tugas Akhir</span>
+                                <p id="status_ta"></p>
+                            </div>
+                            <div class="keterangan">
+                                <span>Status Dokumen Pendukung</span>
+                                <p id="status_dokumen"></p>
+                            </div>
+                            <div class="download">
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,7 +125,7 @@ include "../component/sidebar.php"
                     </div></td>
                         <td>
                             <a href="../../routes/route.php?page=bebastanggungan&sub=verifikasi&id=${dokumen.bebas_tanggungan_id}" ${dokumen.status_bebas_tanggungan != "Approved" ? '' : 'style="display:none;"'} onclick=" return confirm('Pastikan semua catatan sudah terverifikasi !')" class="btn btn-verifikasi"><i class="fa-solid fa-circle-check"></i><span>Verifikasi</span></a>
-                            <a href="../../routes/route.php?page=bebastanggungan&sub=donwloadBebasTanggungan&id=${dokumen.bebas_tanggungan_id}" ${dokumen.status_bebas_tanggungan == "Approved" ? '' : 'style="display:none;"'} class="btn btn-download"><i class="fa-solid fa-download"></i><span>Download</span></a>
+                            <a href="../../routes/route.php?page=bebastanggungan&sub=downloadBebasTanggungan&id=${dokumen.bebas_tanggungan_id}" ${dokumen.status_bebas_tanggungan == "Approved" ? '' : 'style="display:none;"'} class="btn btn-download"><i class="fa-solid fa-download"></i><span>Download</span></a>
                             <a href="../../routes/route.php?page=bebastanggungan&sub=hapus&id=${dokumen.bebas_tanggungan_id}" class="btn btn-hapus"><i class="fa-solid fa-trash"></i><span>Hapus</span></a>
                         </td>
                         </tr>
@@ -155,6 +166,19 @@ include "../component/sidebar.php"
                             <span>${data.status_bebas_tanggungan == 'Approved' ? 'Verifiy' : data.status_bebas_tanggungan == 'Pending' ? 'Pending' : 'Rejected'}</span>
                             </a>
                     </div>`);
+                    $("#status_ta").append(`<div>
+                    <a class="status ${data.status_tugas_akhir == 'Approved' ? 'status-verify' : data.status_tugas_akhir == 'Pending' ? 'status-revisi' : 'status-rejected'}">
+                            <i class="fa-solid ${data.status_tugas_akhir == 'Approved' ? 'fa-circle-check' : data.status_tugas_akhir == 'Pending' ? 'fa-pen-to-square' : 'fa-circle-xmark'}"></i>
+                            <span>${data.status_tugas_akhir == 'Approved' ? 'Verifiy' : data.status_tugas_akhir == 'Pending' ? 'Pending' : 'Rejected'}</span>
+                            </a>
+                    </div>`);
+                    $("#status_dokumen").append(`<div>
+                    <a class="status ${data.status_dokumen_pendukung == 'Approved' ? 'status-verify' : data.status_dokumen_pendukung == 'Pending' ? 'status-revisi' : 'status-rejected'}">
+                            <i class="fa-solid ${data.status_dokumen_pendukung == 'Approved' ? 'fa-circle-check' : data.status_dokumen_pendukung == 'Pending' ? 'fa-pen-to-square' : 'fa-circle-xmark'}"></i>
+                            <span>${data.status_dokumen_pendukung == 'Approved' ? 'Verifiy' : data.status_dokumen_pendukung == 'Pending' ? 'Pending' : 'Rejected'}</span>
+                            </a>
+                    </div>`);
+                    $(".download").append(`<a href="../../routes/route.php?page=bebastanggungan&sub=downloadBebasTanggungan&id=${data.bebas_tanggungan_id}" ${data.status_bebas_tanggungan == "Approved" ? '' : 'style="display:none;"'} class="btn btn-download"><i class="fa-solid fa-download"></i><span>Download</span></a>`);
                     $("#data_tugas_akhir").append(`
                     <li><span>NAMA : </span>${data.nama}</li>
                     <li><span>NIM : </span>${data.NIM}</li>

@@ -1,13 +1,10 @@
 <?php
 namespace Pbl\Controller;
-use Pbl\Interface\AuthControllerInterface;
-use Pbl\Model\User;
 
-class AuthController implements AuthControllerInterface{
-    private $user;
-    public function __construct(){
-        $this->user = new User();
-    }
+use Pbl\Core\Controller;
+use Pbl\Interface\AuthControllerInterface;
+
+class AuthController extends Controller implements AuthControllerInterface{
 
     public function login() {
         header("location:../view/login.php");

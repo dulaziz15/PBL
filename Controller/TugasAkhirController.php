@@ -1,29 +1,27 @@
 <?php
+
 namespace Pbl\Controller;
 
 use DateTime;
-use Pbl\Model\Mahasiswa;
-use Pbl\Model\TugasAkhir;
+use Exception;
+use Jurosh\PDFMerge\PDFMerger;
+use Karriere\PdfMerge\PdfMerge;
+use Pbl\Core\Controller;
 use Pbl\Enums\view;
+use Pbl\Interface\ManagementDataInterface;
 
-class TugasAkhirController {
-    private $tugas_akhir;
-    private $mahasiswa;
-    private $user;
+class TugasAkhirController extends Controller implements ManagementDataInterface
+{
 
-    public function __construct() {
-        $this->tugas_akhir = new TugasAkhir();
-        $this->mahasiswa = new Mahasiswa();
-        $this->user = $_SESSION['user']['user_id'];
+    public function index()
+    {
+        header('location:../view/' . View::TUGASAKHIR->value);
     }
 
-    public function index() {
-        header('location:../view/' . View::TUGASAKHIR->value . '/index.php');
-    }
-
-    public function getAll() {
+    public function getAll()
+    {
         $data = $this->tugas_akhir->getAll();
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -31,9 +29,10 @@ class TugasAkhirController {
         }
     }
 
-    public function getOne($id) {
+    public function getOne($id)
+    {
         $data = $this->tugas_akhir->getOne($id);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -41,11 +40,17 @@ class TugasAkhirController {
         }
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         header('location:../view/' . View::TUGASAKHIR->value . '/edit.php?id=' . $id);
     }
-    
-    public function add() {
+
+    public function add()
+    {
+        // Menentukan ukuran maksimum file 
+        $maxFileSize = 2 * 1024 * 1024; // 2MB dalam byte
+
+        // Daftar file yang diupload
         $file = [
             'pendahuluan' => $_FILES['pendahuluan'],
             'abstrak' => $_FILES['abstrak'],
@@ -53,28 +58,46 @@ class TugasAkhirController {
             'daftarpustaka' => $_FILES['daftarpustaka'],
             'lampiran' => $_FILES['lampiran']
         ];
-        $judul= $_POST['judul'];
+
+        // Ambil input lainnya
+        $judul = $_POST['judul'];
         $mahasiswa_list = $_POST['mahasiswa'];
         list($mahasiswa, $nim) = explode(':', $mahasiswa_list);
         $targetDir = '../src/bebas_tanggungan/' . $nim . "/";
 
+        // Buat direktori tujuan 
         @mkdir($targetDir, 0777, true);
+
+        // Validasi ukuran file
+        foreach ($file as $key => $dokumen) {
+            if ($dokumen['size'] > $maxFileSize) {
+                $_SESSION['error'] = "File " . $dokumen['name'] . " terlalu besar. Maksimum ukuran file adalah 2MB.";
+                header('location:../routes/route.php?page=tugasakhir&sub=manageTA');
+                exit();
+            }
+        }
+
+        // Jika validasi berhasil, lanjutkan untuk menambah data
         $data = $this->tugas_akhir->add($file, $mahasiswa, $judul);
-        if($data == true) {
-            foreach($file as $dokumen) {
+
+        if ($data == true) {
+            foreach ($file as $dokumen) {
+                // Pindahkan file yang valid ke direktori tujuan
                 move_uploaded_file($dokumen['tmp_name'], $targetDir . $dokumen['name']);
             }
-            $_SESSION['sukses'] = "Data Behasil ditambah";
+            $_SESSION['sukses'] = "Data Berhasil ditambah";
             header('location:../routes/route.php?page=tugasakhir&sub=manageTA');
         } else {
-            $_SESSION['error'] = "Data Gagal ditambah Coba Kembali";
+            $_SESSION['error'] = "Data Gagal ditambah. Coba Kembali.";
             header('location:../routes/route.php?page=tugasakhir&sub=manageTA');
         }
     }
 
-    public function update($id) {
+
+    public function update($id)
+    {
         $data = $this->tugas_akhir->update($id);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Data Behasil diupdate";
             header('location:../routes/route.php?page=tugasakhir&sub=manageTA');
         } else {
@@ -83,12 +106,13 @@ class TugasAkhirController {
         }
     }
 
-    public function updateDokumenTA($id) {
+    public function updateDokumenTA($id)
+    {
         $file = $_FILES['dokumen'];
         $data = $this->tugas_akhir->updateDokumenTA($id, $file);
         $dokumen = $this->tugas_akhir->getNIMbyDokumen($id);
         $targetDir = '../src/bebas_tanggungan/' . $dokumen['nim'] . "/";
-        if($data == true) {
+        if ($data == true) {
             move_uploaded_file($file['dokumen']['tmp_name'], $targetDir . $file['name']);
             $_SESSION['sukses'] = "Data Behasil diupdate";
             header('location:../view/tugas_akhir/show.php?id=' . $dokumen['tugas_akhir_id']);
@@ -98,9 +122,10 @@ class TugasAkhirController {
         }
     }
 
-    public function getByTA($id) {
+    public function getByTA($id)
+    {
         $data = $this->tugas_akhir->getDokumen($id);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -108,9 +133,10 @@ class TugasAkhirController {
         }
     }
 
-    public function getOneCatatan($id) {
+    public function getOneCatatan($id)
+    {
         $data = $this->tugas_akhir->getOneCatatan($id);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -118,9 +144,10 @@ class TugasAkhirController {
         }
     }
 
-    public function getOneDokumen($id) {
+    public function getOneDokumen($id)
+    {
         $data = $this->tugas_akhir->getOneDokumen($id);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -128,13 +155,14 @@ class TugasAkhirController {
         }
     }
 
-    public function addCatatan($id) {
+    public function addCatatan($id)
+    {
         $user = $_SESSION['user']['user_id'];
         $catatan = $_POST['catatan'];
         $format = new DateTime();
         $tanggal = $format->format('Y-m-d');
         $data = $this->tugas_akhir->addCatatan($id, $user,  $catatan, $tanggal);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Catatan Behasil ditambahkan";
             header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
         } else {
@@ -143,9 +171,10 @@ class TugasAkhirController {
         }
     }
 
-    public function getCatatanTA($id) {
+    public function getCatatanTA($id)
+    {
         $data = $this->tugas_akhir->getCatatanTA($id);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -153,10 +182,11 @@ class TugasAkhirController {
         }
     }
 
-    public function updateCatatan($id) {
+    public function updateCatatan($id)
+    {
         $catatan = $_POST['catatan'];
         $data = $this->tugas_akhir->updateCatatan($id, $catatan);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
             header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
         } else {
@@ -165,9 +195,10 @@ class TugasAkhirController {
         }
     }
 
-    public function verifikasiCatatan($id) {
+    public function verifikasiCatatan($id)
+    {
         $data = $this->tugas_akhir->verifikasiCatatan($id);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
             header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
         } else {
@@ -176,9 +207,10 @@ class TugasAkhirController {
         }
     }
 
-    public function pengajuanCatatan($id) {
+    public function pengajuanCatatan($id)
+    {
         $data = $this->tugas_akhir->pengajuanCatatan($id);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
             header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
         } else {
@@ -187,9 +219,10 @@ class TugasAkhirController {
         }
     }
 
-    public function hapusCatatan($id) {
+    public function hapusCatatan($id)
+    {
         $data = $this->tugas_akhir->hapusCatatan($id);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Catatan Behasil terverifikasi";
             header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
         } else {
@@ -198,13 +231,14 @@ class TugasAkhirController {
         }
     }
 
-    public function verifikasiDokumen($id) {
+    public function verifikasiDokumen($id)
+    {
         $rejected = $this->tugas_akhir->validateCatatan($id);
         $ta = $this->tugas_akhir->getOneDokumen($id);
-        if($rejected == null) {
+        if ($rejected == null) {
             $data = $this->tugas_akhir->verifikasi($id);
             $this->verifikasiTA($ta['tugas_akhir_id']);
-            if($data == true) {
+            if ($data == true) {
                 $_SESSION['sukses'] = "Dokumen Behasil terverifikasi";
                 header('location:../view/tugas_akhir/show.php?id=' . $ta['tugas_akhir_id']);
             } else {
@@ -217,24 +251,69 @@ class TugasAkhirController {
         }
     }
 
-    public function verifikasiTA($id) {
+    private function verifikasiTA($id)
+    {
         $pending = $this->tugas_akhir->validateCatatanPending($id);
-        if($pending != null) {
+        if ($pending != null) {
             $data = $this->tugas_akhir->changePending($id);
         }
-        
+
         $data = $this->tugas_akhir->validateTA($id);
-        if($data == null) {
+        if ($data == null) {
             $this->tugas_akhir->updateStatusTA($id);
+            $this->mergePDF($id);
             return true;
         } else {
             return true;
         }
     }
 
-    public function hapus($id) {
+    private function mergePDF($id)
+    {
+        $data = $this->tugas_akhir->getDokumen($id);
+        $mahasiswa = $this->tugas_akhir->getOne($id);
+
+        $folderPath = realpath('../src/bebas_tanggungan/' . $mahasiswa['NIM']);
+
+        if (!$folderPath) {
+            echo "Directory does not exist: " . $folderPath;
+            return;
+        }
+
+        if (!is_writable($folderPath)) {
+            echo "Directory is not writable: " . $folderPath;
+            return;
+        }
+
+        $outputFile = $folderPath . DIRECTORY_SEPARATOR . $mahasiswa['NIM'] . '.pdf';
+
+        echo "Output file path: " . $outputFile . "<br>";
+
+        $pdf = new PdfMerge();
+
+        foreach ($data as $file) {
+            $filePath = $folderPath . DIRECTORY_SEPARATOR . $file['nama_file'];
+
+            if (file_exists($filePath)) {
+                $pdf->add($filePath);
+            } else {
+                echo "File not found: " . $filePath . "<br>";
+            }
+        }
+
+        try {
+            $pdf->merge($outputFile, 'F');  // 'F' is for saving to a file
+            echo "PDF berhasil digabungkan menjadi: " . $outputFile;
+        } catch (Exception $e) {
+            echo "Error merging PDFs: " . $e->getMessage();
+        }
+    }
+
+
+    public function delete($id)
+    {
         $data = $this->tugas_akhir->hapus($id);
-        if($data == true) {
+        if ($data == true) {
             $_SESSION['sukses'] = "Data Behasil dihapus";
             header('location:../routes/route.php?page=tugasakhir&sub=manageTA');
         } else {
@@ -243,10 +322,11 @@ class TugasAkhirController {
         }
     }
 
-    public function getOneMahasiswa($id) {
+    public function getOneMahasiswa($id)
+    {
         $mahasiswa = $this->mahasiswa->getOneByUser($id);
         $data = $this->tugas_akhir->getOneMahasiswa($mahasiswa['mahasiswa_id']);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
@@ -254,14 +334,14 @@ class TugasAkhirController {
         }
     }
 
-    public function getTAMahasiswa($id) {
+    public function getTAMahasiswa($id)
+    {
         $data = $this->tugas_akhir->getTAMahasiswa($id);
-        if($data) {
+        if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
         } else {
             echo false;
         }
     }
-
 }

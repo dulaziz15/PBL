@@ -3,17 +3,12 @@
 namespace Pbl\Model;
 
 use Pbl\Config\Koneksi;
+use Pbl\Core\Model;
 use Pbl\Enums\status;
 use PDOException;
 
-class DokumenPendukung
+class DokumenPendukung extends Model
 {
-    private $koneksi;
-
-    public function __construct()
-    {
-        $this->koneksi = new Koneksi();
-    }
 
     public function getAll()
     {

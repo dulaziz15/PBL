@@ -3,15 +3,11 @@
 namespace Pbl\Model;
 
 use Pbl\Config\koneksi;
+use Pbl\Core\Model;
 use PDOException;
 
-class Mahasiswa
+class Mahasiswa extends Model
 {
-    private $koneksi;
-    public function __construct()
-    {
-        $this->koneksi = new koneksi();
-    }
 
     public function getOne($id)
     {

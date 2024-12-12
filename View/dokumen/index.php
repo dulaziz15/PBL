@@ -6,6 +6,7 @@ include "../component/header.php";
 include "../component/sidebar.php"
 ?>
 <div class="content">
+    <?php include_once '../component/akun.php'; ?>
     <div class="header-main">
         <h2>Management Dokumen Pendukung</h2>
     </div>
@@ -57,7 +58,7 @@ include "../component/sidebar.php"
         <?php
         } else {
         ?>
-            <a href="tambah.php" class="btn btn-tambah">Tambah</a>
+            <a href="tambah.php" rel="modal:open" class="btn btn-tambah">Tambah</a>
             <div class="card-main">
                 <div class="header-card">
                     <h3>Data Dokumen Pendukung</h3>
@@ -123,8 +124,8 @@ include "../component/sidebar.php"
                         <td>
                             <a href="../../routes/route.php?page=dokumenpendukung&sub=verifikasiDokumen&id=${dokumen.dokumen_pendukung_id}" onclick=" return confirm('Pastikan semua catatan sudah terverifikasi !')" class="btn btn-verifikasi"><i class="fa-solid fa-circle-check"></i><span>Verifikasi</span></a>
                             <a href="show.php?id=${dokumen.dokumen_pendukung_id}" class="btn btn-show"><i class="fa-solid fa-eye"></i><span>Show</span></a>
-                            <a href="edit.php?id=${dokumen.dokumen_pendukung_id}" class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></a>
-                            <a href="../../routes/route.php?page=dokumenpendukung&sub=hapus&id=${dokumen.dokumen_pendukung_id}" class="btn btn-hapus"><i class="fa-solid fa-trash"></i><span>Hapus</span></a>
+                            <a href="edit.php?id=${dokumen.dokumen_pendukung_id}" rel="modal:open" class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></a>
+                            <a href="../../routes/route.php?page=dokumenpendukung&sub=hapus&id=${dokumen.dokumen_pendukung_id}" onclick="return confirm('Apakah anda yakin ingin menghapus data Dokumen dengan judul ${dokumen.judul} ?')" class="btn btn-hapus"><i class="fa-solid fa-trash"></i><span>Hapus</span></a>
                         </td>
                         </tr>
                     `;
@@ -262,5 +263,4 @@ include "../component/sidebar.php"
                     window.location.reload();
                 });
         }
-        
     </script>

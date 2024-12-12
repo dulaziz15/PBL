@@ -1,6 +1,42 @@
 .form-modal {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 30px;
+}
+
+.form-modal-mahasiswa {
+    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     padding: 30px;
+}
+
+.modal {
+    max-width: 50% !important;
+}
+
+@media (max-width: 768px) {
+    .modal {
+        max-width: 50% !important;
+    }
+}
+
+@media (max-width: 1440px) {
+    .modal {
+        max-width: 50% !important;
+    }
+}
+
+@media (max-width: 425px) {
+    .modal {
+        max-width: 90% !important;
+    }
+
+    .form-modal {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 20px;
+        padding: 30px;
+    }
 }

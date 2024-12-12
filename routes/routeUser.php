@@ -1,31 +1,32 @@
 <?php
-    namespace Pbl\Routes;
-    use Pbl\Controller\UserController;
-    use Pbl\Enums\view;
-    class routeUser {
-        private $user;
-        public function __construct(){
-            $this->user = new UserController();
-        }
+namespace Pbl\Routes;
 
-        public function route() {  
-            $sub = isset($_GET['sub']) ? $_GET['sub'] : $_GET['sub'] = 'manageuser';
-            $id = isset($_GET['id']) ? $_GET['id'] : "";
-            if($sub == 'manageuser') {
-                header('location:../view/' . view::USER->value . '/index.php');
-            } elseif ($sub == 'tambahuser') {
-                $this->user->addUser();
-            } elseif ($sub == 'getAll') {
-                $this->user->getAll();
-            } elseif($sub == 'edit') {
-                $this->user->edit($id);
-            } elseif($sub == 'getOne') {
-                $this->user->getOne($id);
-            } elseif($sub == 'update') {
-                $this->user->update($id);
-            } elseif($sub == 'hapus') {
-                $this->user->delete($id);
-            }
-        }
+use Pbl\Controller\BebasTanggunganController;
+use Pbl\Controller\UserController;
+use Pbl\Core\Route;
+
+class routeUser extends Route {
+    private $user;
+
+    public function __construct() {
+        $this->user = new UserController();
+        $this->routes = [
+            'manageuser' => 'index',
+            'tambahuser' => 'add',
+            'edit' => 'edit',
+            'getAll' => 'getAll',
+            'getOne' => 'getOne',
+            'update' => 'update',
+            'hapus' => 'delete',
+            'getUser' => 'getEmpty'
+        ];
     }
+
+    public function route($controller = null, $sub = '', $id = '') {  
+        $sub = $sub ?: ($_GET['sub'] ?? 'manageUser');
+        $id = $id ?: ($_GET['id'] ?? "");
+
+        parent::route($this->user, $sub, $id);
+    }
+}
 ?>

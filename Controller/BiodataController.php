@@ -1,18 +1,19 @@
 <?php
 namespace Pbl\Controller;
-use Pbl\Model\Mahasiswa;
+
+use Pbl\Core\Controller;
+
 session_start();    
 
-class BiodataController {
-    private $mahasiswa;
+class BiodataController extends Controller{
     private $user_id;
     public function __construct() {
-        $this->mahasiswa = new Mahasiswa();
         $this->user_id = $_SESSION['user']['user_id'];
+        parent::__construct();
     }
 
-    public function getOne() {
-        $data = $this->mahasiswa->getOne($this->user_id);
+    public function getOne($id) {
+        $data = $this->mahasiswa->getOneByUser($id);
         if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);

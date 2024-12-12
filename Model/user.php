@@ -1,16 +1,12 @@
 <?php
 namespace Pbl\Model;
 use Pbl\Config\koneksi;
+use Pbl\Core\Model;
 use PDOException;
 
 // session_start();
 
-class User {
-    private $koneksi;
-
-    public function __construct(){
-        $this->koneksi = new Koneksi();
-    }
+class User extends Model {
 
     public function validasi_nim($nim, $password) {
         $query = "SELECT * from dbo.Users where username = '$nim' and password = '$password'";
