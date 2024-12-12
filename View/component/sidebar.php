@@ -80,11 +80,11 @@ $url = $uri_segments[3];
                 </div>
             </li>
             <li>
-                <div class="menu <?= $url == 'pendukung' ? 'active' : '' ?>">
+                <div class="menu <?= $url == 'arsip' ? 'active' : '' ?>">
                     <div class="icon">
                         <i class="fa-solid fa-gauge"></i>
                     </div>
-                    <a href="../../routes/route.php?page=tugasakhir&sub=manageTA">Arsip</a>
+                    <a href="../../routes/route.php?page=arsip&sub=manageArsip">Arsip</a>
                 </div>
             </li>
         <?php
@@ -184,7 +184,7 @@ $url = $uri_segments[3];
                     <div class="icon">
                         <i class="fa-solid fa-gauge"></i>
                     </div>
-                    <a href="../../routes/route.php?page=tugasakhir&sub=manageTA">Arsip</a>
+                    <a href="../../routes/route.php?page=arsip&sub=manageArsip">Arsip</a>
                 </div>
             </li>
         <?php
@@ -226,7 +226,7 @@ $url = $uri_segments[3];
                     <div class="icon">
                         <i class="fa-solid fa-gauge"></i>
                     </div>
-                    <a href="../../routes/route.php?page=tugasakhir&sub=manageTA">Arsip</a>
+                    <a href="../../routes/route.php?page=arsip&sub=manageArsip">Arsip</a>
                 </div>
             </li>
         <?php

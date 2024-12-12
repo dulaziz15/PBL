@@ -13,11 +13,19 @@
 }
 
 .form-input input, select {
-    border: 2px solid #0245a3;
-    padding: 10px;
-    border-radius: 5px;
-    width: 100%;
-    background-color:rgb(255, 255, 255);
+    border: 2px solid #0245a3 !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+    width: 100% !important;
+    background-color:rgb(255, 255, 255) !important;
+}
+
+.select2-hidden-accessible {
+    border: 2px solid #0245a3 !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+    width: 100% !important;
+    background-color:rgb(255, 255, 255) !important;
 }
 
 .form-input label {

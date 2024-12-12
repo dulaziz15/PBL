@@ -3,18 +3,13 @@
 namespace Pbl\Model;
 
 use Pbl\Config\koneksi;
+use Pbl\Core\Model;
 use Pbl\Enums\status;
 use Pbl\Enums\tugas_akhir;
 use PDOException;
 
-class TugasAkhir
+class TugasAkhir extends Model
 {
-    private $koneksi;
-
-    public function __construct()
-    {
-        $this->koneksi = new koneksi();
-    }
 
     public function getAll()
     {
@@ -235,7 +230,7 @@ class TugasAkhir
     }
 
     public function getTAMahasiswa($id) {
-        $query = "SELECT * FROM Tugas_akhir as ta inner join Mahasiswa as mhs on mhs.mahasiswa_id = ta.mahasiswa_id inner join Users as usr on usr.user_id = mhs.user_id Where usr.user_id = $id";
+        $query = "SELECT * FROM Tugas_akhir as ta inner join Mahasiswa as mhs on mhs.mahasiswa_id = ta.mahasiswa_id inner join Users as usr on usr.user_id = mhs.user_id Where usr.user_id = '$id'";
         $data = $this->koneksi->KoneksiDB()->query($query);
         $result = $data->fetch();
         return $result;

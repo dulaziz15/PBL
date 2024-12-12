@@ -1,20 +1,16 @@
 <?php
 namespace Pbl\Controller;
-use Pbl\Model\Mahasiswa;
-use Pbl\Model\User;
-use Pbl\Interface\UserControllerInterface;
+
+use Pbl\Core\Controller;
+use Pbl\Interface\ManagementDataInterface;
 
 
-class UserController implements UserControllerInterface {
-    private $user;
-    private $mahasiswa;
-
-    public function __construct() {
-        $this->user = new User();
-        $this->mahasiswa = new Mahasiswa();
+class UserController extends Controller implements ManagementDataInterface {
+    public function index() {
+        header('location:../view/user');
     }
 
-    public function addUser(){
+    public function add(){
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];

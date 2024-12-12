@@ -5,25 +5,16 @@ namespace Pbl\Controller;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Exception;
+use Pbl\Core\Controller;
 use Pbl\Enums\status;
-use Pbl\Model\BebasTanggungan;
-use Pbl\Model\DokumenPendukung;
-use Pbl\Model\Mahasiswa;
-use Pbl\Model\TugasAkhir;
+use Pbl\Enums\view;
+use Pbl\Interface\ManagementDataInterface;
 
-class BebasTanggunganController
+class BebasTanggunganController extends Controller 
 {
-    private $bebasTanggungan;
-    private $tugasAkhir;
-    private $mahasiswa;
-    private $dokumenPendukung;
 
-    public function __construct()
-    {
-        $this->bebasTanggungan = new BebasTanggungan();
-        $this->tugasAkhir = new TugasAkhir();
-        $this->dokumenPendukung = new DokumenPendukung();
-        $this->mahasiswa = new Mahasiswa();
+    public function index() {
+        header('location:../view/' . view::BEBASTANGGUNGAN->value);
     }
 
     public function getAll()
@@ -70,7 +61,7 @@ class BebasTanggunganController
     public function add()
     {
         $tugas_akhir_id = $_POST['tugas_akhir'];
-        $tugas_akhir = $this->tugasAkhir->getOne($tugas_akhir_id);
+        $tugas_akhir = $this->tugas_akhir->getOne($tugas_akhir_id);
         $no_surat = "BebasTanggungan/" . $tugas_akhir['NIM'];
         $data = $this->bebasTanggungan->add($tugas_akhir_id, $no_surat);
         if ($data == true) {
@@ -84,7 +75,7 @@ class BebasTanggunganController
 
     public function getAllVerify()
     {
-        $data = $this->tugasAkhir->getAllVerify();
+        $data = $this->tugas_akhir->getAllVerify();
         if ($data) {
             header('Content-Type: application/json');
             echo json_encode($data);
@@ -105,7 +96,7 @@ class BebasTanggunganController
         }
     }
 
-    public function hapus($id)
+    public function delete($id)
     {
         $data = $this->bebasTanggungan->hapus($id);
         if ($data == true) {
@@ -117,7 +108,7 @@ class BebasTanggunganController
         }
     }
 
-    public function addSurat($bebasTanggungan)
+    private function addSurat($bebasTanggungan)
     {
         try {
             $templatePath = '../view/component/surat.html';
@@ -155,8 +146,8 @@ class BebasTanggunganController
     public function dataDashboard()
     {
         $totalMahasiswa = $this->mahasiswa->getAll();
-        $totalTA = $this->tugasAkhir->getAll();
-        $totalDokumen = $this->dokumenPendukung->getAll();
+        $totalTA = $this->tugas_akhir->getAll();
+        $totalDokumen = $this->DokumenPendukung->getAll();
         $totalBebastanggungan = $this->bebasTanggungan->getAll();
         $bebasTanggunganApproved = count(array_filter($totalBebastanggungan, function($item) {
             return $item['status_bebas_tanggungan'] == 'Approved';
@@ -180,7 +171,7 @@ class BebasTanggunganController
         echo json_encode($content);
     }
 
-    public function donwloadBebasTanggungan($id)
+    public function downloadBebasTanggungan($id)
     {
         $data = $this->bebasTanggungan->getOne($id);
         $file = '../src/surat/bebas_tanggungan_' . $data['NIM'] . '.pdf';

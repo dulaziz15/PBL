@@ -1,20 +1,23 @@
 <?php
 namespace Pbl\Routes;
 use Pbl\Controller\BiodataController;
+use Pbl\Core\Route;
 
-class routeBiodata {
+class routeBiodata extends Route {
     private $biodata;
 
     public function __construct() {
         $this->biodata = new BiodataController();
+        $this->routes = [
+            'getOne' => 'getOne',
+            'managebiodata' => 'managebiodata'
+        ];
     }
 
-    public function route() {
+    public function route($controller = null, $sub = '', $id = '') {
         $sub = isset($_GET['sub']) ? $_GET['sub'] : "";
-        if($sub == 'getone') {
-            $this->biodata->getOne();
-        } elseif($sub == 'managebiodata') {
-            $this->biodata->managebiodata();
-        }
+        $id = $id ?: ($_GET['id'] ?? "");
+
+        parent::route($this->biodata, $sub, $id);
     }
 }

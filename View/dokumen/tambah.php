@@ -1,49 +1,63 @@
-<?php
-include "../component/header.php";
-include "../component/sidebar.php"
-?>
-<div class="content">
-    <div class="header-main">
-        <h2>Management User</h2>
-    </div>
-    <div class="body-main">
-        <h1>Tambah Dokumen Pendukung</h1>
-        <form action="../../routes/route.php?page=dokumenpendukung&sub=addDokumen" method="post" enctype="multipart/form-data">
-            <label for="tanda_terima_ta">Tanda Terima TA</label><br>
-            <input type="file" name="tanda_terima_ta" id="" accept="application/pdf"><br>
-            <label for="tanda_terima_pkl">Tanda Terima PKL</label><br>
-            <input type="file" name="tanda_terima_pkl" id="" accept="application/pdf"><br>
-            <label for="bebas_kompen">Bebas Kompen</label><br>
-            <input type="file" name="bebas_kompen" id="" accept="application/pdf"><br>
-            <select name="tugas_akhir" id="dataTugasAkhir">
-            </select>
-            <input type="submit" value="Tambah">
-        </form>
+<div class="body-main" id="modal-tambah-dokumen">
+    <div class="card-main">
+        <div class="header-card">
+            <h3>Tambah Dokumen Pendukung</h3>
+            <hr>
+        </div>
+        <div class="body-card">
+            <div class="container-card">
+                <div class="ketentuan-file">
+                    <h4>Ketentuan Upload File</h4>
+                    <ul>
+                        <li>Format nama file NAMA_NIM_DOKUMEN.pdf</li>
+                        <li>File max 2MB</li>
+                    </ul>
+                </div>
+                <form action="../../routes/route.php?page=dokumenpendukung&sub=addDokumen" method="POST" enctype="multipart/form-data">
+                    <div class="form-modal">
+                        <div class="form-input">
+                            <label for="">Tanda Terima PKL</label>
+                            <input type="file" name="tanda_terima_pkl" accept="application/pdf">
+                        </div>
+                        <div class="form-input">
+                            <label for="">Tanda Terima TA</label>
+                            <input type="file" name="tanda_terima_ta" accept="application/pdf">
+                        </div>
+                        <div class="form-input">
+                            <label for="">Bebas Kompen</label>
+                            <input type="file" name="bebas_kompen" id="fileproject" accept="application/pdf">
+                        </div>
+                        <div class="form-input">
+                            <label for="">Tugas Akhir</label>
+                            <select name="tugas_akhir" id="dataTugasAkhir">
+
+                            </select>
+                        </div>
+                        <div class="form-input-submit">
+                            <input class="btn btn-submit" type="submit" value="Tambah">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-<?php
-include "../component/footer.php";
-?>
-<?php
-unset($_SESSION['sukses']);
-unset($_SESSION['error']);
-?>
 <script>
     $.ajax({
         type: 'GET',
         url: '/Pbl/routes/route.php?page=tugasakhir&sub=getAll',
         success: function(data) {
             if (Array.isArray(data)) {
-                    let tableContent = '';
-                    data.forEach(ta => {
-                        tableContent += `
-                        <option value="${ta.tugas_akhir_id}:${ta.NIM}">${ta.nama + "=>" + ta.judul}</option>
+                let tableContent = '';
+                data.forEach(ta => {
+                    tableContent += `
+                        <option value="${ta.tugas_akhir_id}:${ta.NIM}">${ta.nama + " judul :  " + ta.judul}</option>
                     `;
-                    });
-                    $('#dataTugasAkhir').append(tableContent);
-                } else {
-                    console.error("Expected an array but received:", data);
-                }
+                });
+                $('#dataTugasAkhir').append(tableContent);
+            } else {
+                console.error("Expected an array but received:", data);
+            }
         },
         error: function(xhr, status, error) {
             console.error("AJAX request failed:", status, error);

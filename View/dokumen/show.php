@@ -3,6 +3,7 @@ include "../component/header.php";
 include "../component/sidebar.php"
 ?>
 <div class="content">
+    <?php include_once '../component/akun.php'; ?>
     <div class="header-main">
         <h2>Management Dokumen Pendukung</h2>
     </div>

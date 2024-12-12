@@ -30,7 +30,7 @@
                                    <option value="4">Admin Prodi</option>
                                </select>
                            </div>
-                           <div class="">
+                           <div class="form-input-submit">
                                <input class="btn btn-submit" type="submit" value="Tambah">
                            </div>
                        </div>

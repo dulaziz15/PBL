@@ -21,9 +21,7 @@ session_start();
     <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Remember to include jQuery :) -->
-
-    <!-- jQuery Modal -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
@@ -37,8 +35,13 @@ session_start();
     <link rel="stylesheet" href="../../src/css/form.css">
     <link rel="stylesheet" href="../../src/css/modal.css">
     <link rel="stylesheet" href="../../src/css/loading.css">
+    <link rel="stylesheet" href="../../src/css/ketentuan.css">
 </head>
-
+<?php
+    if(!isset($_SESSION['user'])) {
+        header('location:../login.php');
+    }
+?>
 <body>
     <?php
     include_once 'loading.php';

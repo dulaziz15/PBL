@@ -2,16 +2,15 @@
 
 namespace Pbl\Controller;
 
-use Pbl\Model\Mahasiswa;
+use Pbl\Core\Controller;
 use Pbl\Enums\view;
-use PDOException;
+use Pbl\Interface\ManagementDataInterface;
 
-class MahasiswaController
+class MahasiswaController extends Controller implements ManagementDataInterface
 {
-    private $mahasiswa;
-    public function __construct()
-    {
-        $this->mahasiswa = new Mahasiswa();
+
+    public function index() {
+        header('location:../view/' . view::MAHASISWA->value);
     }
 
     public function getAll()
@@ -36,7 +35,7 @@ class MahasiswaController
         }
     }
 
-    public function addMahasiswa()
+    public function add()
     {
         $nama = $_POST['nama'];
         $nim = $_POST['nim'];
@@ -124,7 +123,7 @@ class MahasiswaController
         }
     }
 
-    public function hapus($id) {
+    public function delete($id) {
         $data = $this->mahasiswa->hapus($id);
         if ($data == true) {
             $_SESSION['sukses'] = "data berhasil di Hapus";
