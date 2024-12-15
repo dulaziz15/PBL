@@ -59,7 +59,7 @@ CREATE TABLE Dokumen_tugas_akhir (
 	tugas_akhir_id INT,
 	nama_file VARCHAR(100),
 	bagian VARCHAR(100),
-	status_dokumen_ta VARCHAR(20) CHECK (status_dokumen_ta IN ('Pending', 'Approved')), 
+	status_dokumen_ta VARCHAR(20) CHECK (status_dokumen_ta IN ('Pending', 'Approved', 'Rejected')), 
 	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 GO
@@ -82,7 +82,7 @@ CREATE TABLE Dokumen_pendukung (
 	tanda_terima_ta VARCHAR(100) NOT NULL,
 	tanda_terima_pkl VARCHAR(100) NOT NULL,
 	bebas_kompen VARCHAR(100) NOT NULL,
-	status_dokumen_pendukung VARCHAR(20) CHECK (status_dokumen_pendukung IN ('Pending', 'Approved')),
+	status_dokumen_pendukung VARCHAR(20) CHECK (status_dokumen_pendukung IN ('Pending', 'Approved', 'Rejected')),
 	FOREIGN KEY (tugas_akhir_id) REFERENCES Tugas_akhir(tugas_akhir_id) ON DELETE CASCADE ON UPDATE CASCADE 
 )
 GO 
@@ -100,6 +100,7 @@ CREATE TABLE Catatan_pendukung (
 GO
 
 -- PENGISIAN TABEL 
+
 INSERT INTO Users (email, username, password, role)
 VALUES
     ('gerialfian@gmail.com', 1234567890, 'password123', 2),
@@ -186,29 +187,29 @@ VALUES
 	(2, 'bab2.pdf', 'Kajian Pustaka', 'Pending'),
 	(2, 'bab3.pdf', 'Metodologi', 'Pending'),
 	(3, 'bab1.pdf', 'Pendahuluan', 'Approved'),
-	(3, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
+	(3, 'bab2.pdf', 'Kajian Pustaka', 'Rejected'),
 	(3, 'bab3.pdf', 'Metodologi', 'Approved'),
 	(4, 'bab1.pdf', 'Pendahuluan', 'Pending'),
 	(4, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
 	(4, 'bab3.pdf', 'Metodologi', 'Approved'),
 	(5, 'bab1.pdf', 'Pendahuluan', 'Pending'),
 	(5, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
-	(5, 'bab3.pdf', 'Metodologi', 'Approved'),
+	(5, 'bab3.pdf', 'Metodologi', 'Rejected'),
 	(6, 'bab1.pdf', 'Pendahuluan', 'Approved'),
 	(6, 'bab2.pdf', 'Kajian Pustaka', 'Pending'),
 	(6, 'bab3.pdf', 'Metodologi', 'Approved'),
 	(7, 'bab1.pdf', 'Pendahuluan', 'Approved'),
 	(7, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
 	(7, 'bab3.pdf', 'Metodologi', 'Approved'),
-	(8, 'bab1.pdf', 'Pendahuluan', 'Pending'),
+	(8, 'bab1.pdf', 'Pendahuluan', 'Rejected'),
 	(8, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
 	(8, 'bab3.pdf', 'Metodologi', 'Approved'),
 	(9, 'bab1.pdf', 'Pendahuluan', 'Approved'),
-	(9, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
+	(9, 'bab2.pdf', 'Kajian Pustaka', 'Rejected'),
 	(9, 'bab3.pdf', 'Metodologi', 'Approved'),
 	(10, 'bab1.pdf', 'Pendahuluan', 'Approved'),
 	(10, 'bab2.pdf', 'Kajian Pustaka', 'Approved'),
-	(10, 'bab3.pdf', 'Metodologi', 'Approved');
+	(10, 'bab3.pdf', 'Metodologi', 'Rejected');
 
 GO
 
@@ -250,14 +251,14 @@ GO
 INSERT INTO Dokumen_pendukung (tugas_akhir_id, tanda_terima_ta, tanda_terima_pkl, bebas_kompen, status_dokumen_pendukung)
 VALUES 
 	(1, 'tanda_TA_1.pdf', 'tanda_PKL_1.pdf', 'bebas_kompen_1.pdf', 'Approved'),
-	(2, 'tanda_TA_2.pdf', 'tanda_PKL_2.pdf', 'bebas_kompen_2.pdf', 'Approved'),
+	(2, 'tanda_TA_2.pdf', 'tanda_PKL_2.pdf', 'bebas_kompen_2.pdf', 'Rejected'),
 	(3, 'tanda_TA_3.pdf', 'tanda_PKL_3.pdf', 'bebas_kompen_3.pdf', 'Approved'),
-	(4, 'tanda_TA_4.pdf', 'tanda_PKL_4.pdf', 'bebas_kompen_4.pdf', 'Approved'),
+	(4, 'tanda_TA_4.pdf', 'tanda_PKL_4.pdf', 'bebas_kompen_4.pdf', 'Rejected'),
 	(5, 'tanda_TA_5.pdf', 'tanda_PKL_5.pdf', 'bebas_kompen_5.pdf', 'Pending'),
 	(6, 'tanda_TA_6.pdf', 'tanda_PKL_6.pdf', 'bebas_kompen_6.pdf', 'Approved'),
 	(7, 'tanda_TA_7.pdf', 'tanda_PKL_7.pdf', 'bebas_kompen_7.pdf', 'Approved'),
 	(8, 'tanda_TA_8.pdf', 'tanda_PKL_8.pdf', 'bebas_kompen_8.pdf', 'Pending'),
-	(9, 'tanda_TA_9.pdf', 'tanda_PKL_9.pdf', 'bebas_kompen_9.pdf', 'Approved'),
+	(9, 'tanda_TA_9.pdf', 'tanda_PKL_9.pdf', 'bebas_kompen_9.pdf', 'Rejected'),
 	(10, 'tanda_TA_10.pdf', 'tanda_PKL_10.pdf', 'bebas_kompen_10.pdf', 'Pending');
 
 GO
