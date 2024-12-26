@@ -1,4 +1,4 @@
-<div class="body-main" id="modal-tambah-dokumen">
+
     <div class="card-main">
         <div class="header-card">
             <h3>Tambah Dokumen Pendukung</h3>
@@ -14,7 +14,7 @@
                     </ul>
                 </div>
                 <form action="../../routes/route.php?page=dokumenpendukung&sub=addDokumen" method="POST" enctype="multipart/form-data">
-                    <div class="form-modal">
+                    <div class="form-modal-ta">
                         <div class="form-input">
                             <label for="">Tanda Terima PKL</label>
                             <input type="file" name="tanda_terima_pkl" accept="application/pdf" required>
@@ -26,13 +26,8 @@
                         <div class="form-input">
                             <label for="">Bebas Kompen</label>
                             <input type="file" name="bebas_kompen" id="fileproject" accept="application/pdf" required>
-                        </div>
-                        <div class="form-input">
-                            <label for="">Tugas Akhir</label>
-                            <select name="tugas_akhir" id="dataTugasAkhir">
-
-                            </select>
-                        </div>
+                        </div><br>
+                        <input type="hidden" name="user_id" value="<?= $_SESSION['user']['user_id'] ?>">
                         <div class="form-input-submit">
                             <input class="btn btn-submit" type="submit" value="Tambah">
                         </div>
@@ -41,8 +36,3 @@
             </div>
         </div>
     </div>
-</div>
-<script src="ajax/tambah.js"></script>
-<script>
-    tambahAjax();
-</script>

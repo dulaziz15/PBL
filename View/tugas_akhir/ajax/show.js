@@ -47,15 +47,15 @@ function showAjax(id) {
             <td>${tugas_akhir.nama_file}</td>
             <td>
             <div>
-                <a class="status ${tugas_akhir.status_dokumen_ta == 'Approved' ? 'status-verify' : 'status-revisi'}">
-                    <i class="fa-solid ${tugas_akhir.status_dokumen_ta == 'Approved' ? 'fa-circle-check' : 'fa-pen-to-square'}"></i>
-                        <span>${tugas_akhir.status_dokumen_ta == 'Approved' ? 'Verifiy' : 'Revisi'}</span>
-                        </a>
+                <a class="status ${tugas_akhir.status_dokumen_ta == 'Approved' ? 'status-verify' : tugas_akhir.status_dokumen_ta == 'Pending' ? 'status-revisi' : 'status-rejected'}">
+                        <i class="fa-solid ${tugas_akhir.status_dokumen_ta == 'Approved' ? 'fa-circle-check' : tugas_akhir.status_dokumen_ta == 'Pending' ? 'fa-pen-to-square' : 'fa-circle-xmark'}"></i>
+                        <span>${tugas_akhir.status_dokumen_ta == 'Approved' ? 'Verifiy' : tugas_akhir.status_dokumen_ta == 'Pending' ? 'Pending' : 'Rejected'}</span>
+                </a>
                 </div>
             </td>
             <td>
                 <a href="../../routes/route.php?page=tugasakhir&sub=verifikasi&id=${tugas_akhir.dokumen_id}" onclick=" return confirm('Pastikan semua catatan sudah terverifikasi !')" class="btn btn-verifikasi"><i class="fa-solid fa-circle-check"></i><span>Verifikasi</span></a>
-                <a href="edit_dokumen.php?id=${tugas_akhir.dokumen_id}" class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></a>
+                <a href="edit_dokumen.php?id=${tugas_akhir.dokumen_id}" rel="modal:open" class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></a>
                 <a href="show_dokumen.php?id=${tugas_akhir.dokumen_id}" class="btn btn-show"><i class="fa-solid fa-eye"></i><span>Show</span></a>
             </td>
             </tr>

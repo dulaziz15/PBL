@@ -9,7 +9,6 @@
 .table {
     border-collapse: collapse;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    text-align: center;
     border-radius: 5px;
     width: 100%;
 }

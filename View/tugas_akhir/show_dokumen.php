@@ -46,7 +46,7 @@ include "../component/sidebar.php"
                                     ?>
                                         <a id="button-add-catatan" class="btn btn-tambah-catatan">Tambah</a>
                                         <form action="../../routes/route.php?page=tugasakhir&sub=tambahcatatan&id=<?= $_GET['id'] ?>" method="post" style="display: none;" class="form-catatan" id="form-catatan">
-                                            <input type="text" placeholder="catatan" name="catatan"><br>
+                                            <input type="text" placeholder="catatan" name="catatan" required><br>
                                             <input type="submit" class="btn" value="Tambah"><br>
                                         </form>
                                     <?php

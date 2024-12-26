@@ -12,6 +12,13 @@
     padding: 30px;
 }
 
+.form-modal-ta {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 30px;
+}
+
 .modal {
     max-width: 50% !important;
 }

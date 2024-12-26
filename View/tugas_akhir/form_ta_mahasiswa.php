@@ -1,4 +1,3 @@
-<div class="body-main" id="modal-tambah-ta-mahasiswa" style="display: none;">
     <div class="card-main">
         <div class="header-card">
             <h3>Tambah Dokumen Tugas Akhir</h3>
@@ -15,35 +14,35 @@
                     </ul>
                 </div>
                 <form action="../../routes/route.php?page=tugasakhir&sub=add" enctype="multipart/form-data" method="POST">
-                    <div class="form-modal">
+                    <div class="form-modal-ta">
                         <div class="form-input">
                             <label for="">Judul</label>
-                            <input type="text" name="judul" id="judul">
+                            <input type="text" name="judul" id="judul" required>
                         </div>
                         <div class="form-input">
                             <label for="">File Project</label>
-                            <input type="file" name="fileproject" id="fileproject">
+                            <input type="file" name="fileproject" id="fileproject" required>
                         </div>
                         <div class="form-input">
                             <label for="">Pendahuluan</label>
-                            <input type="file" name="pendahuluan" id="pendahuluan" accept="application/pdf">
+                            <input type="file" name="pendahuluan" id="pendahuluan" accept="application/pdf" required>
                         </div>
                         <div class="form-input">
                             <label for="">Abstrak</label>
-                            <input type="file" name="abstrak" id="abstrak" accept="application/pdf">
+                            <input type="file" name="abstrak" id="abstrak" accept="application/pdf" required>
                         </div>
                         <div class="form-input">
                             <label for="">Pembahasan</label>
-                            <input type="file" name="isi" id="isi" accept="application/pdf">
+                            <input type="file" name="isi" id="isi" accept="application/pdf" required>
                         </div>
                         <div class="form-input">
                             <label for="">Daftar Pustaka</label>
-                            <input type="file" name="daftarpustaka" id="daftarpustaka" accept="application/pdf">
+                            <input type="file" name="daftarpustaka" id="daftarpustaka" accept="application/pdf" required>
                         </div>
                         <div class="form-input">
                             <label for="">Lampiran</label>
-                            <input type="file" name="lampiran" id="lampiran" accept="application/pdf">
-                        </div>
+                            <input type="file" name="lampiran" id="lampiran" accept="application/pdf" required>
+                        </div><br>
                         <input type="hidden" name="mahasiswa" id="mahasiswa_tambah_ta">
                         <div class="form-input-submit">
                             <input class="btn btn-submit" type="submit" value="Tambah">
@@ -53,4 +52,3 @@
             </div>
         </div>
     </div>
-</div>

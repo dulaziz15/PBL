@@ -33,7 +33,6 @@
                         <input type="checkbox" id="showPassword">
                         <span>Tampilkan Password</span>
                     </label>
-                    <span>Buat Akun <a href="Regis.php">Di sini!</a></span>
                 </div>
 
                 <button type="submit">LOGIN</button>

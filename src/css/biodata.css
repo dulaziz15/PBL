@@ -16,9 +16,10 @@
 }
 
 .biodata-mahasiswa .foto-profil img{
-    width: 100px;
+    width: 200px;
 }
 
 .biodata-mahasiswa .data-profil{
     padding: 40px;
+    font-size: large;
 }

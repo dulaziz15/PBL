@@ -10,11 +10,11 @@
                     <div class="form-modal">
                         <div class="form-input">
                             <label for="">Upload Dokumen</label>
-                            <input type="file" name="tanda_terima_pkl" accept="application/pdf">
+                            <input type="file" name="tanda_terima_pkl" accept="application/pdf" required>
                         </div>
                         <div class="form-input">
                             <label for="">Bagian</label>
-                            <select name="bagian" id="dataTugasAkhir">
+                            <select name="bagian" id="dataTugasAkhir" required>
                                 <option value="tanda_terima_pkl">Tanda Terima PKL</option>
                                 <option value="tanda_terima_ta">Tanda Terima TA</option>
                                 <option value="bebas_kompen">Bebas Kompen</option>

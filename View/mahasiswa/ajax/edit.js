@@ -3,7 +3,6 @@ function editAjax(id) {
         type: 'GET',
         url: '/Pbl/routes/route.php?page=mahasiswa&sub=getWithUser&id=' + id,
         success: function(data) {
-            // console.log(data);
             $("#nim").val(data.NIM);
             $("#nama").val(data.nama);
             $("#kelas").val(data.kelas);

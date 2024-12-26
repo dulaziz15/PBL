@@ -25,6 +25,21 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
+    <?php
+    // remove header
+    header_remove('ETag');
+    header_remove('Pragma');
+    header_remove('Cache-Control');
+    header_remove('Last-Modified');
+    header_remove('Expires');
+
+    // set header
+    header('Expires: Thu, 1 Jan 1970 00:00:00 GMT');
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+    header('Cache-Control: post-check=0, pre-check=0',false);
+    header('Pragma: no-cache');
+    ?>
+
     <link rel="stylesheet" href="../../src/css/dashboard.css">
     <link rel="stylesheet" href="../../src/css/component.css">
     <link rel="stylesheet" href="../../src/css/tabel.css">
@@ -38,6 +53,7 @@ session_start();
     <link rel="stylesheet" href="../../src/css/ketentuan.css">
 </head>
 <?php
+
     if(!isset($_SESSION['user'])) {
         header('location:../login.php');
     }

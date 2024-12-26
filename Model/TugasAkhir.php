@@ -116,6 +116,16 @@ class TugasAkhir extends Model
 
     }
 
+    public function rejectedTA($id) {
+        try {
+            $sql = "UPDATE Dokumen_tugas_akhir SET status_dokumen_ta = '" . status::REJECTED->value . "' Where dokumen_id = '$id'";
+            $data = $this->koneksi->KoneksiDB()->query($sql);
+            return true;
+        } catch(PDOException $e) {
+            return false;
+        }
+    }
+
     public function getCatatanTA($id) {
         $query = "SELECT * FROM Catatan_TA where dokumen_id = '$id'";
         $data = $this->koneksi->KoneksiDB()->query($query);
@@ -151,7 +161,7 @@ class TugasAkhir extends Model
         return $result;
     }
 
-    public function verifikasiCatatan($id) {
+    public function verifikasiCatatan($id): bool {
         try{
             $query = "UPDATE Catatan_TA SET status_catatan_ta = '" . status::APPROVED->value ."' WHERE catatan_id = $id";
             $data = $this->koneksi->KoneksiDB()->query($query);

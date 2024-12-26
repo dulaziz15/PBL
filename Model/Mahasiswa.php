@@ -47,7 +47,7 @@ class Mahasiswa extends Model
     {
         try {
             $query = "INSERT INTO Mahasiswa (user_id, nama, NIM, kelas, telp, temp_lahir, tgl_lahir, alamat, img) VALUES ('$user', '$nama', $nim, '$kelas', $telp, '$temp_lahir', '$tgl_lahir', '$alamat', '$nameImg')";
-            $data = $this->koneksi->KoneksiDB()->query($query);
+            $this->koneksi->KoneksiDB()->query($query);
             return true;
         } catch (PDOException $e) {
             return false;
