@@ -14,7 +14,7 @@ function indexAjax() {
                     <td>${mahasiswa.telp}</td>
                     <td>${mahasiswa.alamat}</td>
                     <td>
-                        <a href="show.php?id=${mahasiswa.mahasiswa_id}" class="btn btn-show"><i class="fa-solid fa-eye"></i><span>Show</span></a>
+                        <a href="show.php?id=${mahasiswa.mahasiswa_id}" rel="modal:open" class="btn btn-show"><i class="fa-solid fa-eye"></i><span>Show</span></a>
                         <a href="edit.php?id=${mahasiswa.mahasiswa_id}" rel="modal:open" class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></a>
                         <a href="../../routes/route.php?page=mahasiswa&sub=hapus&id=${mahasiswa.mahasiswa_id}" onclick="return confirm('Apakah anda yakin ingin menghapus data mahasiswa dengan nama ${mahasiswa.nama} ?')" class="btn btn-hapus"><i class="fa-solid fa-trash"></i><span>Hapus</span></a>
                     </td>

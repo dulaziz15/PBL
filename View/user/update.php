@@ -10,19 +10,19 @@
                        <div class="form-modal">
                            <div class="form-input">
                                <label for="">Username</label>
-                               <input type="number" name="username" placeholder="username" id="username">
+                               <input type="number" name="username" placeholder="username" id="username" required>
                            </div>
                            <div class="form-input">
                                <label for="">Email</label>
-                               <input type="email" name="email" placeholder="email" id="email">
+                               <input type="email" name="email" placeholder="email" id="email" required>
                            </div>
                            <div class="form-input">
                                <label for="">Password</label>
-                               <input type="text" name="password" placeholder="password" id="password">
+                               <input type="text" name="password" placeholder="password" id="password" required> 
                            </div>
                            <div class="form-input">
                                <label for="">Password</label>
-                               <select name="role" id="role">
+                               <select name="role" id="role" required>
                                    <option value="1">Super Admin</option>
                                    <option value="2">Mahasiswa</option>
                                    <option value="3">Admin Jurusan</option>

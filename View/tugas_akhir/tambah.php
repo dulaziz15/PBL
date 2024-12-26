@@ -12,41 +12,42 @@
                             <li>Format nama file NAMA_NIM_BAGIAN.pdf</li>
                             <li>File Project berupa zip</li>
                             <li>Pendahuluan meliputi cover</li>
+                            <li>File Maximal 2 MB</li>
                         </ul>
                     </div>
                     <form action="../../routes/route.php?page=tugasakhir&sub=add" enctype="multipart/form-data" method="POST">
                         <div class="form-modal">
                             <div class="form-input">
                                 <label for="">Judul</label>
-                                <input type="text" name="judul" id="judul">
+                                <input type="text" name="judul" id="judul" required>
                             </div>
                             <div class="form-input">
                                 <label for="">File Project</label>
-                                <input type="file" name="fileproject" id="fileproject">
+                                <input type="file" name="fileproject" id="fileproject" required> 
                             </div>
                             <div class="form-input">
                                 <label for="">Pendahuluan</label>
-                                <input type="file" name="pendahuluan" id="pendahuluan" accept="application/pdf">
+                                <input type="file" name="pendahuluan" id="pendahuluan" accept="application/pdf" required>
                             </div>
                             <div class="form-input">
                                 <label for="">Abstrak</label>
-                                <input type="file" name="abstrak" id="abstrak" accept="application/pdf">
+                                <input type="file" name="abstrak" id="abstrak" accept="application/pdf" required>
                             </div>
                             <div class="form-input">
                                 <label for="">Pembahasan</label>
-                                <input type="file" name="isi" id="isi" accept="application/pdf">
+                                <input type="file" name="isi" id="isi" accept="application/pdf" required>
                             </div>
                             <div class="form-input">
                                 <label for="">Daftar Pustaka</label>
-                                <input type="file" name="daftarpustaka" id="daftarpustaka" accept="application/pdf">
+                                <input type="file" name="daftarpustaka" id="daftarpustaka" accept="application/pdf" required>
                             </div>
                             <div class="form-input">
                                 <label for="">Lampiran</label>
-                                <input type="file" name="lampiran" id="lampiran" accept="application/pdf">
+                                <input type="file" name="lampiran" id="lampiran" accept="application/pdf" required>
                             </div>
                             <div class="form-input">
                                 <label for="">Mahasiswa</label>
-                                <select name="mahasiswa" id="dataMahasiswa" style="width: 300px;" class="operator">
+                                <select name="mahasiswa" id="dataMahasiswa" style="width: 300px;" class="operator" required>
 
                                 </select>
                             </div>

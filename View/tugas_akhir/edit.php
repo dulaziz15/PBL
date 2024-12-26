@@ -10,11 +10,11 @@
                         <div class="form-modal">
                             <div class="form-input">
                                 <label for="">Judul</label>
-                                <input type="text" name="judul" id="judul">
+                                <input type="text" name="judul" id="judul" required>
                             </div>
                             <div class="form-input">
                                 <label for="">File Project</label>
-                                <input type="file" name="fileproject" id="fileproject">
+                                <input type="file" name="fileproject" id="fileproject" required>
                             </div>
                             <div class="form-input-submit">
                                 <input class="btn btn-submit" type="submit" value="Update">

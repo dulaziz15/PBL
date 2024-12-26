@@ -67,7 +67,7 @@
           <p>Sistem untuk menyelesaikan Bebas Tanggungan Tugas Akhir</p>
           <p>Jurusan Teknologi Informasi</p>
           <p>Politeknik Negeri Malang</p>
-          <a class="login-btn2" href="../View/login.php">Login</a>
+          <a class="login-btn2" href="View/login.php">Login</a>
         </div>
       </div>
 

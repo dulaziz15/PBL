@@ -16,7 +16,7 @@ include "../component/sidebar.php"
             <div class="body-card">
                 <div class="container-card">
                     <div class="table-container">
-                        <table class="table display nowrap">
+                        <table class="table display nowrap data-arsip">
                             <thead>
                                 <tr>
                                     <th>NIM</th>

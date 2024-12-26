@@ -50,13 +50,13 @@ class DokumenPendukung extends Model
     }
 
     public function updateDokumen($id, $dokumen, $bagian) {
-        // try {
+        try {
             $query = "UPDATE Dokumen_pendukung SET $bagian = '" . $dokumen['name'] . "' WHERE dokumen_pendukung_id = $id";
             $data = $this->koneksi->KoneksiDB()->query($query);
             return true;
-        // } catch(PDOException $e) {
-        //     return false;
-        // }
+        } catch(PDOException $e) {
+            return false;
+        }
     }
 
     public function getNIMbyDokumen($id) {

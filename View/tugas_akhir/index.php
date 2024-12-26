@@ -14,10 +14,10 @@ include_once "../component/sidebar.php"
         <?php
 
         if ($_SESSION['user']['role'] == role::MAHSISWA->value) { ?>
-            <div class="kosong">
-                <?php include 'form_ta_mahasiswa.php' ?>
+            <div class="kosong" style="display: none;">
+                <?php include_once 'form_ta_mahasiswa.php'; ?>
             </div>
-            <div class="card-main">
+            <div class="card-main data-tugas-akhir-mahasiswa">
                 <div class="header-card">
                     <h3>Informasi Dokumen TA</h3>
                     <hr>

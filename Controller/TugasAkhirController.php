@@ -163,6 +163,7 @@ class TugasAkhirController extends Controller implements ManagementDataInterface
         $tanggal = $format->format('Y-m-d');
         $data = $this->tugas_akhir->addCatatan($id, $user,  $catatan, $tanggal);
         if ($data == true) {
+            $this->tugas_akhir->rejectedTA($id);
             $_SESSION['sukses'] = "Catatan Behasil ditambahkan";
             header('location:../view/tugas_akhir/show_dokumen.php?id=' . $id);
         } else {

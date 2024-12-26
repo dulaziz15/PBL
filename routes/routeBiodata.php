@@ -10,7 +10,8 @@ class routeBiodata extends Route {
         $this->biodata = new BiodataController();
         $this->routes = [
             'getOne' => 'getOne',
-            'managebiodata' => 'managebiodata'
+            'managebiodata' => 'managebiodata',
+            'updateBiodata' => 'updateBiodata'
         ];
     }
 

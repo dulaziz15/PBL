@@ -5,7 +5,7 @@ include "../component/sidebar.php"
 <div class="content">
     <?php include_once '../component/akun.php'; ?>
     <div class="header-main">
-        <h2>Management User</h2>
+        <h2>Management biodata</h2>
     </div>
     <div class="body-main">
         <div id="buttonBiodata">
@@ -13,8 +13,15 @@ include "../component/sidebar.php"
         </div>
         <div class="card-main">
             <div class="header-card">
-                <h3>Informasi Dokumen Pendukung</h3>
+                <h3>Biodata Mahasiswa</h3>
                 <hr>
+                <?php
+                if (isset($_SESSION['sukses'])) {
+                    echo "<h3 class='alert-sukses'><i class='fa-solid fa-circle-check'></i>" . $_SESSION['sukses'] . "</h3>";
+                } elseif (isset($_SESSION['error'])) {
+                    echo "<h3  class='alert-error'><i class='fa-solid fa-warning'></i>" . $_SESSION['error'] . "</h3>";
+                }
+                ?>
             </div>
             <div class="body-card">
                 <div class="container-card">
@@ -32,39 +39,10 @@ include "../component/sidebar.php"
                         </div>
                         <div class="data-profil">
                             <div class="data-biodata">
-                                <h1>Informasi Mahasiswa</h1>
-                                <table border="0" id="table-biodata">
-                                    <tr>
-                                        <td>Nama</td>
-                                        <td>:</td>
-                                        <td>Abdul Aziz</td>
-                                    </tr>
-                                    <tr>
-                                        <td>NIM</td>
-                                        <td>:</td>
-                                        <td>2221771013</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kelas</td>
-                                        <td>:</td>
-                                        <td>2G</td>
-                                    </tr>
-                                    <tr>
-                                        <td>No. Telp</td>
-                                        <td>:</td>
-                                        <td>0836273</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tempat, Tanggal Lahir</td>
-                                        <td>:</td>
-                                        <td>Cirebon, 15 Juli 2004</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Alamat</td>
-                                        <td>:</td>
-                                        <td>Cirebon</td>
-                                    </tr>
-                                </table>
+                                <h3>Biodata Mahasiswa</h3>
+                                <ul id="data-biodata">
+
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -89,10 +67,19 @@ include "../component/sidebar.php"
                     $("#buttonBiodata").append(`<a href="" id="btn-create-biodata">Biodata Anda belum lengkap, Lengkapi Biodata</a>`);
                 } else {
                     $(".keterangan-profil").append(`
-                    <h4>${data.nama}</h4>
-                    <h4>${data.NIM}</h4>
+                    <h3>${data.nama}</h3>
+                    <h3>${data.NIM}</h3>
                     `)
                     $(".img-profile").append(`<img src="../../src/img/mahasiswa/${data.img}" alt="">`)
+                    $("#data-biodata").append(`
+                        <li>Nama: ${data.nama}</li>
+                        <li>NIM: ${data.NIM}</li>
+                        <li>kelas: ${data.kelas}</li>
+                        <li>No Telp: ${data.telp}</li>
+                        <li>Tempat, Tanggal lahir: ${data.temp_lahir + ', ' + data.tgl_lahir}</li>
+                        <li>Alamat: ${data.alamat}</li>
+                    `);
+                    $(".data-profil").append(`<a href="edit.php?id=${data.mahasiswa_id}" rel="modal:open" class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></a>`)
                 }
             },
             error: function(xhr, status, error) {
