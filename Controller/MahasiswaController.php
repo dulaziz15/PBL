@@ -50,7 +50,7 @@ class MahasiswaController extends Controller implements ManagementDataInterface
         $namaImg = $_FILES['img']['name'];
         $data = $this->mahasiswa->addMahasiswa($nama, $nim, $kelas, $telp, $temp_lahir, $tgl_lahir, $alamat, $namaImg, $user);
         if ($data == true) {
-            move_uploaded_file($imgNama, $path . $namaImg);
+            move_uploaded_file($imgNama, $path . $namaImg); 
             $_SESSION['sukses'] = "Data Berhasil Disimpan";
             header('location:../routes/route.php?page=mahasiswa&sub=managemahasiswa');
         } else {
